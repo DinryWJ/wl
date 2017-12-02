@@ -1,5 +1,7 @@
 package dao;
 
-public interface GoodsDAO {
+import entity.Goods;
 
+public interface GoodsDAO {
+	void addGoods(Goods goods);
 }

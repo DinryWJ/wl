@@ -1,5 +1,7 @@
 package dao;
 
-public interface ComplaintDAO {
+import entity.Complaint;
 
+public interface ComplaintDAO {
+	void addComplaint(Complaint compliant);
 }
