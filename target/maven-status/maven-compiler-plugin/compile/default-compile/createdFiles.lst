@@ -1,5 +1,6 @@
 com\zust\entity\Staff.class
 com\zust\service\StaffService.class
+com\zust\test.class
 com\zust\service\StationService.class
 com\zust\entity\User.class
 com\zust\dao\ComplaintDAO.class

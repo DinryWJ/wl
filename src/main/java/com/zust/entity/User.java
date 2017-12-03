@@ -26,7 +26,7 @@ public class User {
 	@Column(name="address")
 	private String address;
 	@Column(name="phone")
-	private int phone;
+	private String phone;
 	@Column(name="integral")
 	private int integral;
 	@Column(name="gender")
@@ -64,10 +64,10 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public int getIntegral() {
