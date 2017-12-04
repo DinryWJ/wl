@@ -19,11 +19,11 @@ public class UserDAO{
 	
 	public User getUserById(int id){
 		Session session = sessionFactory.getCurrentSession();
-		String hql="from User where userId=?";
-		User user = (User) session.createQuery(hql).setParameter(0, id).uniqueResult();
+		User user = (User) session.get(User.class, id);
 		return user;
 	}
 	public void createUser(String password,String name,String address,String phone,boolean gender,int price){
+		Session session = sessionFactory.getCurrentSession();
 		User user = new User();
 		user.setAddress(address);
 		user.setCreatetime(new Date());
@@ -35,11 +35,20 @@ public class UserDAO{
 		user.setPrice(price);
 		user.setType(false);
 		user.setUpdatetime(new Date());
-		sessionFactory.getCurrentSession().save(user);
+		session.save(user);
 	}
 	public void updateUser(int id,String password,String address,String phone,boolean gender){
 		Session session = sessionFactory.getCurrentSession();
-		session.get(User.class, id);
-		
+		User user = (User) session.get(User.class, id);
+		user.setAddress(address);
+		user.setPassword(password);
+		user.setPhone(phone);
+		user.setGender(gender);
+		session.update(user);
+	}
+	public void delUser(int id){
+		Session session = sessionFactory.getCurrentSession();
+		User user = (User) session.get(User.class, id);
+		session.delete(user);
 	}
 }

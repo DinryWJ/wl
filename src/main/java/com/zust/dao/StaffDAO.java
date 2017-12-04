@@ -1,5 +1,8 @@
 package com.zust.dao;
 
-public class StaffDAO {
+import org.springframework.stereotype.Repository;
 
+@Repository
+public class StaffDAO {
+	
 }
