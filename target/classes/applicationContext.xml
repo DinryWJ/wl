@@ -24,18 +24,14 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
         					<property name="annotatedClasses">
             			<list>
                 			<value>com.zust.entity.User</value>
-                			<value>com.zust.entity.Goods</value>
-                			<value>com.zust.entity.Logistics</value>
-                			<value>com.zust.entity.Staff</value>
-                			<value>com.zust.entity.Complaint</value>
-                			<value>com.zust.entity.Station</value>
+
             			</list>
         			</property>
         			<property name="hibernateProperties">
-           			 <value>
-               		 hibernate.dialect=org.hibernate.dialect.MySQLDialect
-                		hibernate.show_sql=true
-           			 </value>
+        			    <value>  
+                hibernate.dialect=org.hibernate.dialect.MySQLDialect
+                hibernate.show_sql=true
+           	 			</value> 
        				 </property>
    					 </bean>
                    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
@@ -52,4 +48,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
          				<property name="sessionFactory" ref="sessionFactory"></property>  
     				</bean>
      				<tx:annotation-driven transaction-manager="txManager"/>
+     			<aop:config>
+					<aop:pointcut id="transactionPointcut" expression="execution(* sy.service..*.*(..))" />
+					<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
+				</aop:config>
 </beans>

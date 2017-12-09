@@ -21,9 +21,9 @@ public class Staff {
 	@JoinColumn(name="station_id")
 	private Station station;
 	@Column(name="position")
-	private String position;
+	private int position;
 	@Column(name="phone")
-	private int phone;
+	private String phone;
 	@Column(name="address")
 	private String address;
 	
@@ -45,23 +45,22 @@ public class Staff {
 	public void setGender(boolean gender) {
 		this.gender = gender;
 	}
-
 	public Station getStation() {
 		return station;
 	}
 	public void setStation(Station station) {
 		this.station = station;
 	}
-	public String getPosition() {
+	public int getPosition() {
 		return position;
 	}
-	public void setPosition(String position) {
+	public void setPosition(int position) {
 		this.position = position;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getAddress() {

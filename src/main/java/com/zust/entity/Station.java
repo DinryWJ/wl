@@ -18,7 +18,7 @@ public class Station {
 	@Column(name="intro")
 	private String intro;
 	@Column(name="phone")
-	private int phone;
+	private String phone;
 	
 	
 	public int getStationId() {
@@ -45,12 +45,13 @@ public class Station {
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	
 	
 }

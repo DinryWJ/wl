@@ -1,5 +1,7 @@
 package com.zust.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,8 +33,23 @@ public class Goods {
 	private String type;
 	@Column(name="intro")
 	private String intro;
-
+	@Column(name="createtime")
+	private Date createtime;
+	@Column(name="updatetime")
+	private Date updatetime;
 	
+	public Date getCreatetime() {
+		return createtime;
+	}
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
+	}
+	public Date getUpdatetime() {
+		return updatetime;
+	}
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
+	}
 	public int getGoodsId() {
 		return goodsId;
 	}
