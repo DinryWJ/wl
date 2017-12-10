@@ -13,6 +13,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
  <bean              
  	class="org.springframework.web.servlet.view.InternalResourceViewResolver"
  	p:viewClass="org.springframework.web.servlet.view.JstlView"
- 	p:prefix="/WEB-INF/jsp/"
+ 	p:prefix=""
  	p:suffix=".jsp" />
 </beans>

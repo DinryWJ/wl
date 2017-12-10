@@ -23,8 +23,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
         					<property name="dataSource" ref="dataSource" />
         					<property name="annotatedClasses">
             			<list>
-                			<value>com.zust.entity.User</value>
-
+                			<value>com.zust.entity.Tuser</value>
+							<value>com.zust.entity.Tgoods</value>
             			</list>
         			</property>
         			<property name="hibernateProperties">
@@ -41,15 +41,10 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
        		 				p:username="root"
        		 				p:password="123456"
        		 				/>  
-       		 		 <bean id="hibernateTemplate" 
-       		 		 	class="org.springframework.orm.hibernate3.HibernateTemplate" 
-       		 		 	p:sessionFactory-ref="sessionFactory"/>
-       		 		<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+
+       		 		<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
          				<property name="sessionFactory" ref="sessionFactory"></property>  
     				</bean>
-     				<tx:annotation-driven transaction-manager="txManager"/>
-     			<aop:config>
-					<aop:pointcut id="transactionPointcut" expression="execution(* sy.service..*.*(..))" />
-					<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
-				</aop:config>
+     				<tx:annotation-driven />
+     			
 </beans>
