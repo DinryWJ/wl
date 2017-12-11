@@ -140,7 +140,7 @@ public class Tuser {
 	}
 	
 	@OneToMany
-	@JoinColumn(name="USER_ID")
+	@JoinColumn(name="s_user_id")
 	public Set<Tgoods> getGoods() {
 		return tgoods;
 	}

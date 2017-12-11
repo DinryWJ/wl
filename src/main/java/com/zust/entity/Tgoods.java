@@ -182,7 +182,7 @@ public class Tgoods {
 	}
 	
 	@ManyToOne
-	@JoinColumn(name="USER_ID")
+	@JoinColumn(name="s_user_id")
 	public Tuser getUser() {
 		return tuser;
 	}

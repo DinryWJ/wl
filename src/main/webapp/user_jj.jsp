@@ -53,7 +53,7 @@
       <h1>寄件</h1>
     </div>
 
-    <form action="" class="panel form-horizontal">
+    <form action="jj.html" class="panel form-horizontal">
       <div class="panel-heading">
         <span class="panel-title">寄件人信息</span>
       </div>
@@ -61,15 +61,15 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">寄件人姓名</label>
-            <input type="text" name="name" placeholder="寄件人姓名" class="form-control form-group-margin">
+            <input type="text" name="sname" placeholder="寄件人姓名" class="form-control form-group-margin">
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="phone" placeholder="手机号" class="form-control form-group-margin">
+            <input type="text" name="sphone" placeholder="手机号" class="form-control form-group-margin">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
-            <input type="text" name="address" placeholder="详细地址" class="form-control form-group-margin">
+            <input type="text" name="saddress" placeholder="详细地址" class="form-control form-group-margin">
           </div>
         </div><!-- row -->
         
@@ -84,32 +84,32 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">名字</label>
-            <input type="text" name="weight" placeholder="物品名称" class="form-control form-group-margin">
+            <input type="text" name="name" placeholder="物品名称" class="form-control form-group-margin">
           </div>
           <div  class="col-md-4">
           <label  class="col-sm-2 control-label">类型</label>
               <div class="col-sm-10">
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" class="px" checked="">
+                    <input type="radio" name="type" id="optionsRadios1" value="option1" class="px" checked="">
                     <span class="lbl">服饰</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" class="px">
+                    <input type="radio" name="type" id="optionsRadios2" value="option2" class="px">
                     <span class="lbl">电子产品</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" class="px">
+                    <input type="radio" name="type" id="optionsRadios3" value="option3" class="px">
                     <span class="lbl">食品</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios4" value="option4" class="px">
+                    <input type="radio" name="type" id="optionsRadios4" value="option4" class="px">
                     <span class="lbl">书籍</span>
                   </label>
                 </div> <!-- / .radio -->
@@ -131,15 +131,15 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">收件人姓名</label>
-            <input type="text" name="s_user_id" placeholder="收件人姓名" class="form-control form-group-margin">
+            <input type="text" name="rname" placeholder="收件人姓名" class="form-control form-group-margin">
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="sphone" placeholder="手机号" class="form-control form-group-margin">
+            <input type="text" name="rphone" placeholder="手机号" class="form-control form-group-margin">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
-            <input type="text" name="e_address" placeholder="详细地址" class="form-control form-group-margin">
+            <input type="text" name="raddress" placeholder="详细地址" class="form-control form-group-margin">
           </div>
         </div><!-- row -->
       </div>

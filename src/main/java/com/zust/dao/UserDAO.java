@@ -1,13 +1,16 @@
 package com.zust.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.zust.entity.Tgoods;
 import com.zust.entity.Tuser;
 
 
@@ -65,5 +68,36 @@ public class UserDAO{
 		String hql ="SELECT userId FROM Tuser WHERE email = ?";
 		int result = (Integer) session.createQuery(hql).setParameter(0, email).uniqueResult();
 		return result;
+	}
+	public void userJjPage(int id,String sname, String sphone, String saddress, String name, String type, int weight,
+			String intro, String rname, String rphone, String raddress) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();	
+		Tuser tuser = (Tuser) session.get(Tuser.class,id);
+		Tgoods tgoods = new Tgoods();
+		tgoods.setsUserName(sname);
+		tgoods.setsUserPhone(sphone);
+		tgoods.setsUserAddress(saddress);
+		tgoods.setName(name);
+		tgoods.setType(type);
+		tgoods.setWeight(weight);
+		tgoods.setIntro(intro);
+		tgoods.setrUserName(rname);
+		tgoods.setrUserPhone(rphone);
+		tgoods.setrUserAddress(raddress);
+		tgoods.setCreatetime(new Date());
+		tgoods.setUpdatetime(new Date());
+		tgoods.setCode(getNewCode());
+		tgoods.setUser(tuser);
+		session.save(tgoods);
+	}
+	//生成一个订单号yyyyMMddhhmmss+xxxx
+	public String getNewCode(){		
+		Date date = new Date();
+		String d = new SimpleDateFormat("yyyyMMddhhmmss").format(date);
+		Random random = new Random();  
+        int rannum = (int) (random.nextDouble() * (9999 - 1000 + 1)) + 1000;
+		String d2 = d+rannum;
+		return d2;
 	}
 }

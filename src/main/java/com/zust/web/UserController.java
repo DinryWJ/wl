@@ -1,9 +1,12 @@
 package com.zust.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.zust.Model.User;
 import com.zust.service.UserService;
 
 @Controller
@@ -34,5 +37,12 @@ public class UserController {
 	@RequestMapping(value="/user_jj.html")
 	public String userJj(){
 		return "user_jj";
+	}
+	@RequestMapping(value="/jj.html")
+	public String userJjPage(HttpServletRequest request,String sname,String sphone,String saddress,String name,String type,int weight,String intro,String rname,String rphone,String raddress){
+		User user  = (User) request.getSession().getAttribute("user");
+		int id = user.getUserId();
+		userService.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
+		return "user_index";
 	}
 }

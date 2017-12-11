@@ -36,5 +36,10 @@ public class UserService {
 		// TODO Auto-generated method stub
 		userDAO.createUser(email, name, password);
 	}
+	public void userJjPage(int id,String sname, String sphone, String saddress, String name, String type, int weight,
+			String intro, String rname, String rphone, String raddress) {
+		// TODO Auto-generated method stub
+		userDAO.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
+	}
 
 }
