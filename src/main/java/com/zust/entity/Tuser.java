@@ -139,8 +139,7 @@ public class Tuser {
 		this.createtime = createtime;
 	}
 	
-	@OneToMany
-	@JoinColumn(name="s_user_id")
+	@OneToMany(mappedBy="user")
 	public Set<Tgoods> getGoods() {
 		return tgoods;
 	}

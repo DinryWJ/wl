@@ -1,12 +1,13 @@
-D:\workspace\wl\src\main\java\com\zust\Model\User.java
 D:\workspace\wl\src\main\java\com\zust\service\LogisticsService.java
 D:\workspace\wl\src\main\java\com\zust\web\MainController.java
+D:\workspace\wl\src\main\java\com\zust\dto\User.java
 D:\workspace\wl\src\main\java\com\zust\entity\Tstation.java
 D:\workspace\wl\src\main\java\com\zust\service\ComplaintService.java
 D:\workspace\wl\src\main\java\com\zust\entity\Tuser.java
 D:\workspace\wl\src\main\java\com\zust\service\StaffService.java
 D:\workspace\wl\src\main\java\com\zust\service\StationService.java
-D:\workspace\wl\src\main\java\com\zust\Model\LoginCommand.java
+D:\workspace\wl\src\main\java\com\zust\dto\Goods.java
+D:\workspace\wl\src\main\java\com\zust\dto\LoginCommand.java
 D:\workspace\wl\src\main\java\com\zust\service\UserService.java
 D:\workspace\wl\src\main\java\com\zust\web\UserController.java
 D:\workspace\wl\src\main\java\com\zust\entity\Tgoods.java

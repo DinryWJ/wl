@@ -100,4 +100,24 @@ public class UserDAO{
 		String d2 = d+rannum;
 		return d2;
 	}
+	public List<Tgoods> getMyYj(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();	
+		String hql="FROM Tgoods t WHERE t.user.userId=?";
+		Tuser tuser = (Tuser) session.get(Tuser.class,id);
+		List<Tgoods> tgoods = session.createQuery(hql).setParameter(0, tuser.getUserId()).list();
+		return tgoods;
+	}
+	public void updateUser(String email,String name,String phone,String address){
+		Session session = sessionFactory.getCurrentSession();
+		
+		int id = getUserIdByEmail(email);
+		Tuser tuser = (Tuser) session.get(Tuser.class,id);
+		tuser.setName(name);
+//		tuser.setGender(gender);
+		tuser.setPhone(phone);
+		tuser.setAddress(address);
+		
+	}
+
 }

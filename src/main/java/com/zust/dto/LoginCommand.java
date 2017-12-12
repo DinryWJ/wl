@@ -1,4 +1,4 @@
-package com.zust.Model;
+package com.zust.dto;
 
 public class LoginCommand {
 	private String email;

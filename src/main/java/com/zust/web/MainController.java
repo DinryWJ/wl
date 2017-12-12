@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.zust.Model.LoginCommand;
-import com.zust.Model.User;
+import com.zust.dto.LoginCommand;
+import com.zust.dto.User;
 import com.zust.dao.UserDAO;
 
 import com.zust.service.UserService;

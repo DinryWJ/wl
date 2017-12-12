@@ -1,5 +1,4 @@
 com\zust\service\StaffService.class
-com\zust\Model\User.class
 com\zust\service\StationService.class
 com\zust\entity\Tstation.class
 com\zust\entity\Tuser.class
@@ -9,6 +8,8 @@ com\zust\service\ComplaintService.class
 com\zust\web\UserController.class
 com\zust\entity\Tgoods.class
 com\zust\service\LogisticsService.class
+com\zust\dto\User.class
+com\zust\dto\Goods.class
+com\zust\dto\LoginCommand.class
 com\zust\service\GoodsService.class
-com\zust\Model\LoginCommand.class
 com\zust\service\UserService.class

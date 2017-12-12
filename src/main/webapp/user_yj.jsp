@@ -155,6 +155,7 @@
       $('#navbar-notifications').perfectScrollbar();
       $('#navbar-messages').perfectScrollbar();
     });
+
   </script>
     <script>
     // -------------------------------------------------------------------------
@@ -166,5 +167,8 @@
       $('#datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
     });
   </script>
+
+
+
 </body>
 </html>

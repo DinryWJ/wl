@@ -1,19 +1,10 @@
-package com.zust.entity;
+package com.zust.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.zust.entity.Tuser;
 
-@Entity
-@Table(name="t_goods")
-public class Tgoods {
-
+public class Goods {
 	private int goodsId;
 	
 	private String code;
@@ -25,8 +16,8 @@ public class Tgoods {
 	private String intro;
 
 	private int weight;
-
-//	private int sUserId;
+	
+	private int sUserId;
 	
 	private String sUserName;
 	
@@ -43,11 +34,7 @@ public class Tgoods {
 	private Date createtime;
 
 	private Date updatetime;
-	
-	private Tuser user;
-	
-	@Id
-	@Column(name="goods_id")
+
 	public int getGoodsId() {
 		return goodsId;
 	}
@@ -55,8 +42,7 @@ public class Tgoods {
 	public void setGoodsId(int goodsId) {
 		this.goodsId = goodsId;
 	}
-	
-	@Column
+
 	public String getCode() {
 		return code;
 	}
@@ -64,8 +50,7 @@ public class Tgoods {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
-	@Column
+
 	public String getName() {
 		return name;
 	}
@@ -74,7 +59,6 @@ public class Tgoods {
 		this.name = name;
 	}
 
-	@Column
 	public String getType() {
 		return type;
 	}
@@ -83,7 +67,6 @@ public class Tgoods {
 		this.type = type;
 	}
 
-	@Column
 	public String getIntro() {
 		return intro;
 	}
@@ -92,7 +75,6 @@ public class Tgoods {
 		this.intro = intro;
 	}
 
-	@Column
 	public int getWeight() {
 		return weight;
 	}
@@ -101,16 +83,14 @@ public class Tgoods {
 		this.weight = weight;
 	}
 
-//	@Column(name="s_user_id")
-//	public int getsUserId() {
-//		return sUserId;
-//	}
-//
-//	public void setsUserId(int sUserId) {
-//		this.sUserId = sUserId;
-//	}
-	
-	@Column(name="s_user_name")
+	public int getsUserId() {
+		return sUserId;
+	}
+
+	public void setsUserId(int sUserId) {
+		this.sUserId = sUserId;
+	}
+
 	public String getsUserName() {
 		return sUserName;
 	}
@@ -119,7 +99,6 @@ public class Tgoods {
 		this.sUserName = sUserName;
 	}
 
-	@Column(name="s_user_address")
 	public String getsUserAddress() {
 		return sUserAddress;
 	}
@@ -128,7 +107,6 @@ public class Tgoods {
 		this.sUserAddress = sUserAddress;
 	}
 
-	@Column(name="s_user_phone")
 	public String getsUserPhone() {
 		return sUserPhone;
 	}
@@ -137,7 +115,6 @@ public class Tgoods {
 		this.sUserPhone = sUserPhone;
 	}
 
-	@Column(name="r_user_name")
 	public String getrUserName() {
 		return rUserName;
 	}
@@ -146,7 +123,6 @@ public class Tgoods {
 		this.rUserName = rUserName;
 	}
 
-	@Column(name="r_user_address")
 	public String getrUserAddress() {
 		return rUserAddress;
 	}
@@ -154,8 +130,7 @@ public class Tgoods {
 	public void setrUserAddress(String rUserAddress) {
 		this.rUserAddress = rUserAddress;
 	}
-	
-	@Column(name="r_user_phone")
+
 	public String getrUserPhone() {
 		return rUserPhone;
 	}
@@ -163,8 +138,7 @@ public class Tgoods {
 	public void setrUserPhone(String rUserPhone) {
 		this.rUserPhone = rUserPhone;
 	}
-	
-	@Column
+
 	public Date getCreatetime() {
 		return createtime;
 	}
@@ -172,8 +146,7 @@ public class Tgoods {
 	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
 	}
-	
-	@Column
+
 	public Date getUpdatetime() {
 		return updatetime;
 	}
@@ -182,15 +155,6 @@ public class Tgoods {
 		this.updatetime = updatetime;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="s_user_id")
-	public Tuser getUser() {
-		return user;
-	}
-
-	public void setUser(Tuser tuser) {
-		this.user = tuser;
-	}
 	
-
+	
 }

@@ -83,11 +83,11 @@
 
       <div class="tab-pane fade in active" id="account-profile">
         <div class="row">
-          <form action="" class="col-md-8 col-lg-9">
+          <form action="updateperson.html" class="col-md-8 col-lg-9">
             <div class="p-x-1">
               <fieldset class="form-group form-group-lg">
                 <label for="account-name">Name</label>
-                <input type="text" class="form-control" id="account-name" value="" name="name" >
+                <input type="text" class="form-control" id="account-name" value="${sessionScope.user.name}" name="name" >
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-gender">gender</label>
@@ -102,25 +102,25 @@
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-email">E-mail</label>
-                <input type="email" class="form-control" id="account-email" value="" readonly="readonly" name="email">
+                <input type="email" class="form-control" id="account-email" value="${sessionScope.user.email}" readonly="readonly" name="email">
                 <small class="text-muted">注册邮箱无法修改</small>
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-phone">phone</label>
-                <input type="text" class="form-control" id="account-phone" value="" name="phone">
+                <input type="text" class="form-control" id="account-phone" value="${sessionScope.user.phone}" name="phone">
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-address">Address</label>
-                <input type="text" class="form-control" id="account-address" value="" name="address">
+                <input type="text" class="form-control" id="account-address" value="${sessionScope.user.address}" name="address">
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-type">type</label>
-                <input type="text" class="form-control" id="account-type" value="" disabled="disabled" name="type">
+                <input type="text" class="form-control" id="account-type" value="${sessionScope.user.type}" disabled="disabled" name="type">
                <!--  <small class="text-muted">Your home page, blog or company site, e.g. <strong>http://website.com</strong></small> -->
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-createtime">注册时间</label>
-                <input type="text" class="form-control" id="account-createtime" value="" disabled="disabled" name="createtime">
+                <input type="text" class="form-control" id="account-createtime" value="${sessionScope.user.createtime}" disabled="disabled" name="createtime">
               </fieldset>
               <button type="submit" class="btn btn-lg btn-primary m-t-3">Update profile</button>
               <a href="#" class="pull-xs-right text-muted p-t-4">Deactivate account</a>

@@ -1,12 +1,19 @@
 package com.zust.web;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.zust.Model.User;
+import com.zust.dto.Goods;
+import com.zust.dto.User;
 import com.zust.service.UserService;
 
 @Controller
@@ -27,8 +34,16 @@ public class UserController {
 		return "user_ts";
 	}
 	@RequestMapping(value="/user_yj.html")
-	public String userYj(){
-		return "user_yj";
+	public ModelAndView userYj(HttpServletRequest request) throws IllegalAccessException, InvocationTargetException{
+		User user  = (User) request.getSession().getAttribute("user");
+		 
+		int id =user.getUserId(); 
+
+		List<Goods> goods = userService.getMyYj(id);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("user_yj");
+		mav.addObject("goods",goods);
+		return mav;
 	}
 	@RequestMapping(value="/user_person.html")
 	public String userPerson(){
@@ -45,4 +60,15 @@ public class UserController {
 		userService.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
 		return "user_index";
 	}
+	@RequestMapping(value="/updateperson.html")
+	public  ModelAndView updateperson(HttpServletRequest request,String email,String name,String phone,String address) throws IllegalAccessException, InvocationTargetException{
+		
+		userService.updateUser(email, name, address, phone);
+		int id = userService.getUserIdByEmail(email);
+		User user = userService.getUserById(id);
+		request.getSession().setAttribute("user", user);
+		return new ModelAndView("redirect:user_person.html");	
+		}	
+	
+
 }

@@ -1,14 +1,18 @@
 package com.zust.service;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zust.Model.User;
+import com.zust.dto.Goods;
+import com.zust.dto.User;
 import com.zust.dao.UserDAO;
+import com.zust.entity.Tgoods;
 import com.zust.entity.Tuser;
 @Transactional
 @Service
@@ -40,6 +44,23 @@ public class UserService {
 			String intro, String rname, String rphone, String raddress) {
 		// TODO Auto-generated method stub
 		userDAO.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
+	}
+	public List<Goods> getMyYj(int id) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		List<Tgoods> listOrigin = userDAO.getMyYj(id);
+
+	    List<Goods> listDestination= new ArrayList<Goods>(); 
+
+	     for (Object source: listOrigin ) {
+	    	Goods target= new Goods();
+	        BeanUtils.copyProperties(target,source);
+	        listDestination.add(target);
+	     }
+		return listDestination;
+	}
+	public void updateUser(String email,String name,String address,String phone){
+		
+		userDAO.updateUser(email,name,phone,address);
 	}
 
 }

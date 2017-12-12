@@ -1,4 +1,4 @@
-package com.zust.Model;
+package com.zust.dto;
 
 import java.util.Date;
 
