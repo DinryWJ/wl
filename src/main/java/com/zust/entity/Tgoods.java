@@ -39,6 +39,8 @@ public class Tgoods {
 	private String rUserAddress;
 	
 	private String rUserPhone;
+	
+	private boolean status;
 
 	private Date createtime;
 
@@ -164,6 +166,15 @@ public class Tgoods {
 		this.rUserPhone = rUserPhone;
 	}
 	
+	@Column
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Column
 	public Date getCreatetime() {
 		return createtime;

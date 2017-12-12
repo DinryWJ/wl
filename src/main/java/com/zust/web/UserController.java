@@ -14,12 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zust.dto.Goods;
 import com.zust.dto.User;
-import com.zust.service.UserService;
+import com.zust.service.GoodsServiceI;
+import com.zust.service.UserServiceI;
 
 @Controller
 public class UserController {
 	@Autowired
-	private UserService userService;
+	private UserServiceI userService;
+	
+
 	
 	@RequestMapping(value="/user_index.html")
 	public String userIndex(){
@@ -34,17 +37,10 @@ public class UserController {
 		return "user_ts";
 	}
 	@RequestMapping(value="/user_yj.html")
-	public ModelAndView userYj(HttpServletRequest request) throws IllegalAccessException, InvocationTargetException{
-		User user  = (User) request.getSession().getAttribute("user");
-		 
-		int id =user.getUserId(); 
-
-		List<Goods> goods = userService.getMyYj(id);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user_yj");
-		mav.addObject("goods",goods);
-		return mav;
+	public String userYj(){
+		return "user_yj";
 	}
+	
 	@RequestMapping(value="/user_person.html")
 	public String userPerson(){
 		return "user_person";
@@ -53,13 +49,7 @@ public class UserController {
 	public String userJj(){
 		return "user_jj";
 	}
-	@RequestMapping(value="/jj.html")
-	public String userJjPage(HttpServletRequest request,String sname,String sphone,String saddress,String name,String type,int weight,String intro,String rname,String rphone,String raddress){
-		User user  = (User) request.getSession().getAttribute("user");
-		int id = user.getUserId();
-		userService.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
-		return "user_index";
-	}
+	
 	@RequestMapping(value="/updateperson.html")
 	public  ModelAndView updateperson(HttpServletRequest request,String email,String name,String phone,String address) throws IllegalAccessException, InvocationTargetException{
 		
@@ -69,6 +59,20 @@ public class UserController {
 		request.getSession().setAttribute("user", user);
 		return new ModelAndView("redirect:user_person.html");	
 		}	
-	
+	@RequestMapping(value="/updatepassword.html")
+	public  ModelAndView updatepassword(HttpServletRequest request,String email,String oldPassword,String newPassword,String reNewPassword) throws IllegalAccessException, InvocationTargetException{
+		User user  = (User) request.getSession().getAttribute("user");
+		email = user.getEmail();
+ 
+		if(request.getSession().getAttribute("password")==request.getParameter(oldPassword)&&request.getParameter(newPassword)==request.getParameter(reNewPassword))
+		{
+			userService.updatePassword(email, newPassword);
+			request.getSession().setAttribute("user", user);
+			return new ModelAndView("redirect:user_person.html");	
+		}else
+		return new ModelAndView("redirect:user_person.html");	
+		
+}
+
 
 }

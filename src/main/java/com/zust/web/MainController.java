@@ -11,16 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zust.dto.LoginCommand;
 import com.zust.dto.User;
-import com.zust.dao.UserDAO;
-
-import com.zust.service.UserService;
+import com.zust.service.UserServiceI;
 
 
 @Controller
 
 public class MainController {
 	@Autowired
-	private UserService userService;
+	private UserServiceI userService;
 	
 	@RequestMapping(value="/index.html")
 	public String loginPage(){

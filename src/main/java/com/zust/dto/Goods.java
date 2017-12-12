@@ -30,6 +30,8 @@ public class Goods {
 	private String rUserAddress;
 	
 	private String rUserPhone;
+	
+	private boolean status;
 
 	private Date createtime;
 
@@ -137,6 +139,15 @@ public class Goods {
 
 	public void setrUserPhone(String rUserPhone) {
 		this.rUserPhone = rUserPhone;
+	}
+	
+	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	public Date getCreatetime() {

@@ -62,7 +62,7 @@
       <div class="panel-body">
 
         <div class="table-primary">
-          <table class="table table-striped table-bordered" id="datatables">
+          <table class="table table-striped table-bordered" id="datatables" display: none;>
             <thead>
               <tr>
                     <th>Goods ID</th>
@@ -73,22 +73,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="odd gradeX">
-                <td>Trident</td>
-                <td>Internet
-                   Explorer 4.0</td>
-                <td>Win 95+</td>
-                <td class="center"> 4</td>
-                <td class="center">X</td>
+              <tr id="cloneTr">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="center"></td>
+                <td class="center"></td>
               </tr>
-              <tr class="even gradeC">
-                <td>Trident</td>
-                <td>Internet
-                   Explorer 5.0</td>
-                <td>Win 95+</td>
-                <td class="center">5</td>
-                <td class="center">C</td>
-              </tr>
+
           
             
             </tbody>
@@ -166,6 +158,56 @@
       $('#datatables_wrapper .table-caption').text('我的邮件');
       $('#datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
     });
+
+	$.ajax({    
+	    type: "post",    
+	    url:'myYJ.html',    
+	    cache: false,    
+	    dataType : "json",    
+	    success: function(objects){        		
+		var tr = $("#cloneTr");
+	    	$.each(objects, function(index,item){                              
+                             //克隆tr，每次遍历都可以产生新的tr                              
+                               var clonedTr = tr.clone();  
+                               var _index = index;  
+                              
+                               //循环遍历cloneTr的每一个td元素，并赋值  
+                               clonedTr.children("td").each(function(inner_index){  
+                                  
+                                      //根据索引为每一个td赋值  
+                                            switch(inner_index){  
+                                                  case(0):   
+                                                     $(this).html(item.goodsId);  
+                                                     break;  
+                                                  case(1):  
+                                                     $(this).html(item.code);  
+                                                     break;  
+                                                 case(2):  
+                                                     $(this).html(item.sUserAddress);  
+                                                     break;  
+                                                 case(3):  
+                                                     $(this).html(item.rUserAddress);  
+                                                     break;  
+                                		 		case(4):  
+                                                     $(this).html(item.status.toString());  
+                                                     break; 	
+                                           }//end switch                          
+                            });//end children.each  
+                          
+                           //把克隆好的tr追加原来的tr后面  
+                           clonedTr.insertAfter(tr);  
+                        });//end $each  
+                        $("#cloneTr").hide();
+						$("#datatables").show(); 
+	         } ,
+	             error : function(XMLHttpRequest, textStatus, errorThrown) {
+	             	alert(XMLHttpRequest.responseText); 
+	                alert(XMLHttpRequest.status);
+	                alert(XMLHttpRequest.readyState);
+	                alert(textStatus); 
+	            }
+	});   
+
   </script>
 
 

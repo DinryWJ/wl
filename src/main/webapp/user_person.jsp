@@ -191,7 +191,7 @@
       <!-- Password tab -->
 
       <div class="tab-pane fade" id="account-password">
-        <form action="" class="p-x-1">
+        <form action="updatepassword.html" class="p-x-1">
           <fieldset class="form-group form-group-lg">
             <label for="account-password">Old password</label>
             <input type="password" class="form-control" id="account-password" name="oldPassword">
