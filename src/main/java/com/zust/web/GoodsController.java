@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.zust.dto.Goods;
 import com.zust.dto.User;
@@ -25,6 +27,9 @@ public class GoodsController {
 		User user  = (User) request.getSession().getAttribute("user");
 		int id =user.getUserId(); 
 		List<Goods> goods = goodsService.getMyYj(id);
+		if(goods.isEmpty()){
+			return null;
+		}
 		return goods;
 	}
 	@RequestMapping(value="/jj.html")
@@ -33,5 +38,24 @@ public class GoodsController {
 		int id = user.getUserId();
 		goodsService.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
 		return "user_index";
+	}
+	
+	@RequestMapping(value="/user_sh.html")
+	public ModelAndView goodsSearch(HttpServletRequest request, @RequestParam(value = "s", required = false)String s) throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("user_sh");
+		if(s!=null){
+			List<Goods> list = goodsService.search(s);
+			mav.addObject("goods", list);
+		}
+		return mav;	
+	}
+	@RequestMapping(value="/user_yj.html")
+	public String userYj(){
+		return "user_yj";
+	}
+	@RequestMapping(value="/user_yj2.html")
+	public String userYj2(){
+		return "user_yj2";
 	}
 }

@@ -53,7 +53,7 @@
       <h1>我要投诉</h1>
     </div>
 
-    <form action="" class="panel form-horizontal form-bordered">
+    <form action="tousu.html" class="panel form-horizontal form-bordered">
           <div class="panel-heading">
             <span class="panel-title">投诉</span>
           </div>

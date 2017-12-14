@@ -25,6 +25,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
             			<list>
                 			<value>com.zust.entity.Tuser</value>
 							<value>com.zust.entity.Tgoods</value>
+							<value>com.zust.entity.Tcomplaint</value>
             			</list>
         			</property>
         			<property name="hibernateProperties">

@@ -1,5 +1,7 @@
 com\zust\dao\UserDaoI.class
 com\zust\service\StationServiceI.class
+com\zust\service\ComplaintServiceI.class
+com\zust\dao\Impl\ComplaintDaoImpl.class
 com\zust\dao\GoodsDaoI.class
 com\zust\dao\Impl\BaseDaoImpl.class
 com\zust\dao\Impl\UserDAOImpl.class
@@ -7,10 +9,14 @@ com\zust\service\Impl\ComplaintServiceImpl.class
 com\zust\entity\Tstation.class
 com\zust\dao\Impl\GoodsDaoImpl.class
 com\zust\web\MainController.class
+com\zust\entity\Tcomplaint.class
+com\zust\dto\Complaint.class
 com\zust\entity\Tgoods.class
 com\zust\dto\User.class
 com\zust\dto\LoginCommand.class
 com\zust\service\Impl\UserServiceImpl.class
+com\zust\dao\ComplaintDaoI.class
+com\zust\web\ComplaintController.class
 com\zust\web\GoodsController.class
 com\zust\dao\BaseDaoI.class
 com\zust\service\GoodsServiceI.class

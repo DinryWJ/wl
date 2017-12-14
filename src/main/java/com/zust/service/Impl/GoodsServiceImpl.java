@@ -28,14 +28,31 @@ public class GoodsServiceImpl implements GoodsServiceI {
 		// TODO Auto-generated method stub
 		List<Tgoods> listOrigin = goodsDao.getMyYj(id);
 
-	    List<Goods> listDestination= new ArrayList<Goods>(); 
+	    List<Goods> listDestination= entity2dto(listOrigin);
 
-	     for (Object source: listOrigin ) {
-	    	Goods target= new Goods();
-	        BeanUtils.copyProperties(target,source);
-	        listDestination.add(target);
-	     }
 		return listDestination;
+	}
+	public List<Goods> search(String s) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		List<Tgoods> tgoods =  goodsDao.search(s);
+		if(tgoods.isEmpty()) return null;
+		else {
+			List<Goods> listDestination= entity2dto(tgoods);
+
+			return listDestination;
+		}
+
+		
+	}
+	
+	public List<Goods> entity2dto(List<Tgoods> listOrigin) throws IllegalAccessException, InvocationTargetException{
+		List<Goods> listDestination= new ArrayList<Goods>(); 
+		 for (Object source: listOrigin ) {
+		    	Goods target= new Goods();
+		        BeanUtils.copyProperties(target,source);
+		        listDestination.add(target);
+		     }
+			return listDestination;
 	}
 
 }

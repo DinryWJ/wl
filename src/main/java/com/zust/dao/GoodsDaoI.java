@@ -9,4 +9,5 @@ public interface GoodsDaoI extends BaseDaoI<Tgoods>{
 			String intro, String rname, String rphone, String raddress);
 	public String getNewCode();
 	public List<Tgoods> getMyYj(int id);
+	public List<Tgoods> search(String s);
 }

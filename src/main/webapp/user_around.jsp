@@ -37,14 +37,16 @@
       <li class="px-nav-item">
         <a href="user_jj.html"><i class="px-nav-icon fa ion-android-create"></i><span class="px-nav-label">我要寄件</span></a>
       </li>
-      <li class="px-nav-item">
+      <li class="px-nav-item px-nav-dropdown">
         <a href="user_yj.html"><i class="px-nav-icon fa fa-envelope-o"></i><span class="px-nav-label">我的邮件</span></a>
+        <ul class="px-nav-dropdown-menu">
+          <li class="px-nav-item"><a href="user_yj.html"><span class="px-nav-label">所有邮件</span></a></li>
+
+          <li class="px-nav-item"><a href="user_sh.html"><span class="px-nav-label">邮件搜索</span></a></li>
+        </ul>
       </li>
       <li class="px-nav-item">
         <a href="user_ts.html"><i class="px-nav-icon fa fa-times-circle-o"></i><span class="px-nav-label">我要投诉</span></a>
-      </li>
-      <li class="px-nav-item">
-        <a href="user_sh.html"><i class="px-nav-icon fa fa-search"></i><span class="px-nav-label">邮件搜索</span></a>
       </li>
       <li class="px-nav-item">
         <a href="user_person.html"><i class="px-nav-icon fa fa-id-card"></i><span class="px-nav-label">个人设置</span></a>

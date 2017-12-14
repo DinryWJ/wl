@@ -54,5 +54,12 @@ public class GoodsDaoImpl extends BaseDaoImpl<Tgoods> implements GoodsDaoI {
 		List<Tgoods> tgoods = getCurrentSession().createQuery(hql).setParameter(0, tuser.getUserId()).list();
 		return tgoods;
 	}
+	public List<Tgoods> search(String s) {
+		// TODO Auto-generated method stub
+		String hql = "FROM Tgoods WHERE code =?";
+		List<Tgoods> list = getCurrentSession().createQuery(hql).setParameter(0, s).list();
+		return list;
+
+	}	
 	
 }

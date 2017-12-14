@@ -31,7 +31,7 @@ public class Tuser {
 
 	private boolean type;
 
-	private int status;
+	private boolean status;
 
 	private Date updatetime;
 
@@ -112,12 +112,13 @@ public class Tuser {
 		this.type = type;
 	}
 
+
 	@Column
-	public int getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

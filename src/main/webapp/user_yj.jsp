@@ -153,11 +153,6 @@
     // -------------------------------------------------------------------------
     // Initialize DataTables
 
-    $(function() {
-      $('#datatables').dataTable();
-      $('#datatables_wrapper .table-caption').text('我的邮件');
-      $('#datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-    });
 
 	$.ajax({    
 	    type: "post",    
@@ -180,7 +175,8 @@
                                                      $(this).html(item.goodsId);  
                                                      break;  
                                                   case(1):  
-                                                     $(this).html(item.code);  
+                                                	  var a = "user_sh.html?s="+item.code;
+                                                     $(this).html(item.code).wrap("<a href='"+a+"' ></a>");;  
                                                      break;  
                                                  case(2):  
                                                      $(this).html(item.sUserAddress);  
@@ -199,13 +195,7 @@
                         });//end $each  
                         $("#cloneTr").hide();
 						$("#datatables").show(); 
-	         } ,
-	             error : function(XMLHttpRequest, textStatus, errorThrown) {
-	             	alert(XMLHttpRequest.responseText); 
-	                alert(XMLHttpRequest.status);
-	                alert(XMLHttpRequest.readyState);
-	                alert(textStatus); 
-	            }
+	         }
 	});   
 
   </script>

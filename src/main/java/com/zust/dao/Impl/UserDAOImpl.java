@@ -32,7 +32,7 @@ public class UserDAOImpl extends BaseDaoImpl<Tuser> implements UserDaoI{
 		user.setPhone("00000000000");
 		user.setAddress("地球");
 		user.setType(false);
-		user.setStatus(0);
+		user.setStatus(false);
 		user.setCreatetime(new Date());
 		user.setUpdatetime(new Date());
 		save(user);
