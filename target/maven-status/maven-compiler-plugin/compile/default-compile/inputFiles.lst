@@ -1,4 +1,5 @@
 D:\workspace\wl\src\main\java\com\zust\web\ComplaintController.java
+D:\workspace\wl\src\main\java\com\zust\web\StaffController.java
 D:\workspace\wl\src\main\java\com\zust\dao\Impl\GoodsDaoImpl.java
 D:\workspace\wl\src\main\java\com\zust\dao\GoodsDaoI.java
 D:\workspace\wl\src\main\java\com\zust\web\MainController.java
@@ -8,9 +9,12 @@ D:\workspace\wl\src\main\java\com\zust\dto\User.java
 D:\workspace\wl\src\main\java\com\zust\dto\Complaint.java
 D:\workspace\wl\src\main\java\com\zust\entity\Tuser.java
 D:\workspace\wl\src\main\java\com\zust\dao\Impl\UserDAOImpl.java
+D:\workspace\wl\src\main\java\com\zust\dao\Impl\StaffDaoImpl.java
+D:\workspace\wl\src\main\java\com\zust\dto\Staff.java
 D:\workspace\wl\src\main\java\com\zust\dao\Impl\ComplaintDaoImpl.java
 D:\workspace\wl\src\main\java\com\zust\dto\Goods.java
 D:\workspace\wl\src\main\java\com\zust\web\UserController.java
+D:\workspace\wl\src\main\java\com\zust\entity\Tstaff.java
 D:\workspace\wl\src\main\java\com\zust\entity\Tgoods.java
 D:\workspace\wl\src\main\java\com\zust\service\StaffServiceI.java
 D:\workspace\wl\src\main\java\com\zust\dao\UserDaoI.java
@@ -24,6 +28,8 @@ D:\workspace\wl\src\main\java\com\zust\entity\Tstation.java
 D:\workspace\wl\src\main\java\com\zust\service\ComplaintServiceI.java
 D:\workspace\wl\src\main\java\com\zust\entity\Tcomplaint.java
 D:\workspace\wl\src\main\java\com\zust\dao\ComplaintDaoI.java
+D:\workspace\wl\src\main\java\com\zust\dao\StaffDaoI.java
 D:\workspace\wl\src\main\java\com\zust\service\UserServiceI.java
 D:\workspace\wl\src\main\java\com\zust\dto\LoginCommand.java
+D:\workspace\wl\src\main\java\com\zust\service\Impl\StaffServiceImpl.java
 D:\workspace\wl\src\main\java\com\zust\service\StationServiceI.java
