@@ -93,19 +93,7 @@
                         </div>
                       </div>
       <div class="panel-body">
-        <textarea id="markdown" name="content" class="form-control" rows="10">### Hello there
-How are you?
-
-I have bellow task for you :
-
-Select from this text...
-Click the bold on THIS WORD and make THESE ONE italic
-Link GOOGLE to google.com
-Test to insert image (and try to tab after write the image description)
-Test Preview
-And ending here... Click "List"
-
-Enjoy!</textarea>
+        <textarea id="markdown" name="content" class="form-control" rows="10"></textarea>
       </div>
     </div>
                 </div>
@@ -179,21 +167,21 @@ Enjoy!</textarea>
     $(function() {
       $('#markdown').markdown({
         iconlibrary: 'fa',
-        footer:      '<div id="md-character-footer"></div><small id="md-character-counter" class="text-muted">350 character left</small>',
+        footer:      '<div id="md-character-footer"></div><small id="md-character-counter" class="text-muted">100 character left</small>',
 
         onChange: function(e) {
           var contentLength = e.getContent().length;
 
-          if (contentLength > 350) {
+          if (contentLength > 100) {
             $('#md-character-counter')
               .removeClass('text-muted')
               .addClass('text-danger')
-              .html((contentLength - 350) + ' character surplus.');
+              .html((contentLength - 100) + ' character surplus.');
           } else {
             $('#md-character-counter')
               .removeClass('text-danger')
               .addClass('text-muted')
-              .html((350 - contentLength) + ' character left.');
+              .html((100 - contentLength) + ' character left.');
           }
         },
       });

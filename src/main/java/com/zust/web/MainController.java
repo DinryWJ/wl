@@ -3,6 +3,7 @@ package com.zust.web;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,11 @@ public class MainController {
 			
 		}	
 	}
-
+    @RequestMapping("/toLogin.html")
+    public String execute(HttpSession session){
+        session.invalidate();
+        return "user_signin";
+    }
 	@RequestMapping(value="/user_signup.html")
 	public String loginUpPage(){
 		return "user_signup";

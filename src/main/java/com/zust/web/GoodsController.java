@@ -32,6 +32,7 @@ public class GoodsController {
 		}
 		return goods;
 	}
+	
 	@RequestMapping(value="/jj.html")
 	public String userJjPage(HttpServletRequest request,String sname,String sphone,String saddress,String name,String type,int weight,String intro,String rname,String rphone,String raddress){
 		User user  = (User) request.getSession().getAttribute("user");

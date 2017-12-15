@@ -19,12 +19,12 @@
       <li class="px-nav-box p-a-3 b-b-1" id="demo-px-nav-box">
         <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <img src="assets/demo/avatars/1.jpg" alt="" class="pull-xs-left m-r-2 border-round" style="width: 54px; height: 54px;">
-        <div class="font-size-16"><span class="font-weight-light">Welcome, </span><strong>John</strong></div>
+        <div class="font-size-16"><span class="font-weight-light"></span><strong>${sessionScope.staff.name}</strong></div>
         <div class="btn-group" style="margin-top: 4px;">
           <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-envelope"></i></a>
           <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-user"></i></a>
           <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-cog"></i></a>
-          <a href="#" class="btn btn-xs btn-danger btn-outline"><i class="fa fa-power-off"></i></a>
+          <a href="/stafftoLogin.html" class="btn btn-xs btn-danger btn-outline"><i class="fa fa-power-off"></i></a>
         </div>
       </li>
       <li class="px-nav-item">
@@ -56,7 +56,7 @@
   <nav class="navbar px-navbar">
     <!-- Header -->
     <div class="navbar-header">
-      <a class="navbar-brand px-demo-brand" href="staff.html"><span class="px-demo-logo bg-primary"><span class="px-demo-logo-1"></span><span class="px-demo-logo-2"></span><span class="px-demo-logo-3"></span><span class="px-demo-logo-4"></span><span class="px-demo-logo-5"></span><span class="px-demo-logo-6"></span><span class="px-demo-logo-7"></span><span class="px-demo-logo-8"></span><span class="px-demo-logo-9"></span></span>工作人员界面</a>
+      <a class="navbar-brand px-demo-brand" href="staff_index.html"><span class="px-demo-logo bg-primary"><span class="px-demo-logo-1"></span><span class="px-demo-logo-2"></span><span class="px-demo-logo-3"></span><span class="px-demo-logo-4"></span><span class="px-demo-logo-5"></span><span class="px-demo-logo-6"></span><span class="px-demo-logo-7"></span><span class="px-demo-logo-8"></span><span class="px-demo-logo-9"></span></span>工作人员界面</a>
     </div>
 
     <!-- Navbar togglers -->

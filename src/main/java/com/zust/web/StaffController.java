@@ -3,6 +3,7 @@ package com.zust.web;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,11 @@ public class StaffController {
 			
 		}	
 	}
+    @RequestMapping("/stafftoLogin.html")
+    public String execute(HttpSession session){
+        session.invalidate();
+        return "staff_signin";
+    }
 	
 	@RequestMapping(value="staff_index.html")
 	public String staffIndex(){
