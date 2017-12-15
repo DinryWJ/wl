@@ -36,7 +36,7 @@ public class StaffController {
     @RequestMapping("/stafftoLogin.html")
     public String execute(HttpSession session){
         session.invalidate();
-        return "staff_signin";
+        return "redirect:/staff_signin.html";
     }
 	
 	@RequestMapping(value="staff_index.html")

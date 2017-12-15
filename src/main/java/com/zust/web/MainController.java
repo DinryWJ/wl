@@ -43,7 +43,7 @@ public class MainController {
     @RequestMapping("/toLogin.html")
     public String execute(HttpSession session){
         session.invalidate();
-        return "user_signin";
+        return "redirect:/index.html";
     }
 	@RequestMapping(value="/user_signup.html")
 	public String loginUpPage(){
