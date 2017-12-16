@@ -30,6 +30,7 @@ com\zust\service\LogisticsServiceI.class
 com\zust\service\Impl\GoodsServiceImpl.class
 com\zust\web\UserController.class
 com\zust\dto\Staff.class
+com\zust\dto\Station.class
 com\zust\service\UserServiceI.class
 com\zust\dto\Goods.class
 com\zust\service\StaffServiceI.class

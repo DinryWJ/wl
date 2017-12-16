@@ -31,6 +31,7 @@ public class GoodsDaoImpl extends BaseDaoImpl<Tgoods> implements GoodsDaoI {
 		tgoods.setrUserPhone(rphone);
 		tgoods.setrUserAddress(raddress);
 		tgoods.setStatus(false);
+		tgoods.setStatus2(false);
 		tgoods.setCreatetime(new Date());
 		tgoods.setUpdatetime(new Date());
 		tgoods.setCode(getNewCode());
@@ -54,12 +55,24 @@ public class GoodsDaoImpl extends BaseDaoImpl<Tgoods> implements GoodsDaoI {
 		List<Tgoods> tgoods = getCurrentSession().createQuery(hql).setParameter(0, tuser.getUserId()).list();
 		return tgoods;
 	}
-	public List<Tgoods> search(String s) {
+	public Tgoods search(String s) {
 		// TODO Auto-generated method stub
 		String hql = "FROM Tgoods WHERE code =?";
-		List<Tgoods> list = getCurrentSession().createQuery(hql).setParameter(0, s).list();
-		return list;
+		Tgoods tgood = (Tgoods) getCurrentSession().createQuery(hql).setParameter(0, s).uniqueResult();
+		return tgood;
 
+	}
+	public List<Tgoods> getUncheckedYJ() {
+		// TODO Auto-generated method stub
+		String hql ="FROM Tgoods WHERE status2=false";
+		List<Tgoods> list = getCurrentSession().createQuery(hql).list();
+		return list;
+	}
+	public List<Tgoods> getAllYJ() {
+		// TODO Auto-generated method stub
+		String hql ="FROM Tgoods";
+		List<Tgoods> list = getCurrentSession().createQuery(hql).list();
+		return list;
 	}	
 	
 }

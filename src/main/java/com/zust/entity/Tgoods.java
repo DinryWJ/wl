@@ -40,8 +40,10 @@ public class Tgoods {
 	
 	private String rUserPhone;
 	
-	private boolean status;
-
+	private boolean status; //是否完成
+	
+	private boolean status2;//是否上门取件
+	
 	private Date createtime;
 
 	private Date updatetime;
@@ -173,6 +175,15 @@ public class Tgoods {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@Column
+	public boolean isStatus2() {
+		return status2;
+	}
+
+	public void setStatus2(boolean status2) {
+		this.status2 = status2;
 	}
 
 	@Column

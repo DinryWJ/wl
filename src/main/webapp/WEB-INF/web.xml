@@ -25,7 +25,16 @@
   		<servlet-name>wl</servlet-name>
   		<url-pattern>*.html</url-pattern>
   </servlet-mapping>
-  
+  	<!-- 找不到页错误转向 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+	<!-- 系统内部错误转向 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.jsp</location>
+	</error-page>
   
   
   </web-app>

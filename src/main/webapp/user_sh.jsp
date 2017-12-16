@@ -76,7 +76,7 @@
       <!-- Pages -->
 
       <div class="tab-pane fade in active" id="results-pages">
-		<c:forEach var="good" items="${goods}"><!---->
+<c:if test="${good.code!=null}">
         <div class="panel">
           <div class="panel-body">      
             <div class="font-weight-semibold font-size-16"><a href="#"><c:out value="${good.name}"></c:out></a></div>
@@ -93,7 +93,7 @@
           
         </div>
 		
-       </c:forEach>
+</c:if>
        
 
 

@@ -23,6 +23,6 @@ public class ComplaintController {
 	public String tousu(HttpServletRequest request,String name,String email,String content){
 		int id = complaintService.getUserIdByEmail(email);
 		complaintService.createComplaint(id, name, content);
-		return("user_ts");	
+		return "redirect:/user_index.html";	
 		}	
 }

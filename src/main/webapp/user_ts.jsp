@@ -53,7 +53,7 @@
       <h1>我要投诉</h1>
     </div>
 
-    <form action="tousu.html" class="panel form-horizontal form-bordered">
+    <form action="tousu.html" class="panel form-horizontal form-bordered"  onsubmit="return check()">
           <div class="panel-heading">
             <span class="panel-title">投诉</span>
           </div>
@@ -62,7 +62,7 @@
               <div class="row">
                 <label class="col-sm-4 control-label">Name:</label>
                 <div class="col-sm-8">
-                  <input type="text" name="name" class="form-control">
+                  <input type="text" name="name" class="form-control" value="${sessionScope.user.name }">
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@
               <div class="row">
                 <label class="col-sm-4 control-label">Email:</label>
                 <div class="col-sm-8">
-                  <input type="email" name="email" class="form-control">
+                  <input type="email" name="email" class="form-control" value="${sessionScope.user.email }">
                 </div>
               </div>
             </div>
@@ -92,18 +92,20 @@
                           </label>
                         </div>
                       </div>
-      <div class="panel-body">
-        <textarea id="markdown" name="content" class="form-control" rows="10"></textarea>
-      </div>
-    </div>
+			     <div class="panel-body">
+			        <textarea id="markdown" name="content" class="form-control" rows="6"></textarea>
+			     </div>
+			    </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="panel-footer text-right">
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-xl btn-success btn-3d" >提交</button>
           </div>
-        </form>
+	</form>
+
+
   </div>
 
 
@@ -203,5 +205,8 @@
       });
     });
     </script>
+      <script>
+
+  </script>
 </body>
 </html>

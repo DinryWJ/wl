@@ -149,44 +149,9 @@
 
       <!-- / Profile tab -->
 
-      <!-- Social tab -->
+   
 
-   <!--    <div class="tab-pane fade" id="account-social">
-        <form action="" class="p-x-1">
-          <fieldset class="form-group form-group-lg">
-            <label for="account-social-facebook">Facebook</label>
-            <div class="form-group form-group-lg">
-              <button type="button" class="btn btn-success"><span class="btn-label-icon left fa fa-facebook"></span>Connect to Facebook</button>
-            </div>
-          </fieldset>
-          <fieldset class="form-group form-group-lg">
-            <label for="account-social-twitter">Twitter&nbsp;&nbsp;&nbsp;&nbsp;<small class="text-success font-weight-normal"><i class="fa fa-check"></i>&nbsp;Connected</small></label>
-            <div class="input-group input-group-lg">
-              <input type="text" class="form-control" id="account-social-twitter" value="@jdoe" disabled>
-              <a href="#" class="input-group-addon text-muted"><i class="fa fa-times"></i></a>
-            </div>
-          </fieldset>
-          <fieldset class="form-group form-group-lg">
-            <label for="account-social-instagram">Instagram</label>
-            <input type="text" class="form-control" id="account-social-instagram">
-          </fieldset>
-          <fieldset class="form-group form-group-lg">
-            <label for="account-social-pinterest">Pinterest</label>
-            <input type="text" class="form-control" id="account-social-pinterest" value="@jdoe">
-          </fieldset>
-          <fieldset class="form-group form-group-lg">
-            <label for="account-social-github">Github</label>
-            <input type="text" class="form-control" id="account-social-github">
-          </fieldset>
-          <fieldset class="form-group form-group-lg">
-            <label for="account-social-linkedin">LinkedIn</label>
-            <input type="text" class="form-control" id="account-social-linkedin">
-          </fieldset>
-          <button type="submit" class="btn btn-lg btn-primary m-t-3">Save changes</button>
-        </form>
-      </div> -->
-
-      <!-- / Social tab -->
+ 
 
       <!-- Password tab -->
 
@@ -211,71 +176,7 @@
 
       <!-- / Password tab -->
 
-      <!-- Notifications tab -->
-
-     <!--  <div class="tab-pane fade" id="account-notifications">
-        <form action="" class="row">
-          <div class="col-md-6">
-            <div class="panel bg-transparent">
-              <div class="panel-title"><strong>Activity Notifications</strong></div>
-              <hr class="m-y-0">
-              <div class="panel-body">
-                <p>Email me when:</p>
-
-                <label class="custom-control custom-checkbox m-t-2">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  Someone comments on my article
-                </label>
-
-                <label class="custom-control custom-checkbox m-t-2">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  Someone answers on my forum thread
-                </label>
-
-                <label class="custom-control custom-checkbox m-t-2">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  Someone follows me
-                </label>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="panel bg-transparent">
-              <div class="panel-title"><strong>PixelAdmin Emails</strong></div>
-              <hr class="m-y-0">
-              <div class="panel-body">
-                <label class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  News
-                </label>
-                <small class="text-muted">Periodic news and announcements</small>
-
-                <label class="custom-control custom-checkbox m-t-2">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  Weekly product updates
-                </label>
-
-                <label class="custom-control custom-checkbox m-t-2">
-                  <input type="checkbox" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  Blog digest
-                </label>
-                <small class="text-muted">Get weekly blog digest emails</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xs-12"><button type="submit" class="btn btn-lg btn-primary m-t-3">Update notifications</button></div>
-        </form>
-      </div> -->
-
-      <!-- / Notifications tab -->
+   
 
     </div>
   </div>

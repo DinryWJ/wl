@@ -37,8 +37,12 @@
           <li class="px-nav-item"><a href="staff_shenhe2.html"><span class="px-nav-label">修改</span></a></li>
         </ul>
       </li>
-      <li class="px-nav-item">
-        <a href="staff_tongzhi.html"><i class="px-nav-icon fa fa-bell-o"></i><span class="px-nav-label">通知上门取件</span></a>
+      <li class="px-nav-item px-nav-dropdown">
+        <a href="staff_tongzhi.html"><i class="px-nav-icon fa fa-archive"></i><span class="px-nav-label">上门取件管理</span></a>
+      	 <ul class="px-nav-dropdown-menu">
+          <li class="px-nav-item"><a href="staff_tongzhi.html"><span class="px-nav-label">未处理订单</span></a></li>
+          <li class="px-nav-item"><a href="staff_tongzhi2.html"><span class="px-nav-label">通知上门取件</span></a></li>
+        </ul>
       </li>
       <li class="px-nav-item">
         <a href="staff_zhongzhuan.html"><i class="px-nav-icon fa fa-map-marker"></i><span class="px-nav-label">中转信息录入</span></a>

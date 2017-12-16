@@ -38,7 +38,7 @@ public class GoodsController {
 		User user  = (User) request.getSession().getAttribute("user");
 		int id = user.getUserId();
 		goodsService.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
-		return "user_index";
+		return "redirect:/user_index.html";
 	}
 	
 	@RequestMapping(value="/user_sh.html")
@@ -46,8 +46,8 @@ public class GoodsController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("user_sh");
 		if(s!=null){
-			List<Goods> list = goodsService.search(s);
-			mav.addObject("goods", list);
+			Goods good = goodsService.search(s);
+			mav.addObject("good", good);
 		}
 		return mav;	
 	}

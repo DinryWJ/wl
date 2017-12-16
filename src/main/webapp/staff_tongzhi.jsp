@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-  <title>通知 工作人员端 物流信息管理平台</title>
+  <title>未处理订单 工作人员端 物流信息管理平台</title>
 
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
   <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
@@ -47,103 +47,71 @@
 </head>
 <body>
 <jsp:include page="staff_around.jsp"></jsp:include>
-  <div class="px-content">
-    <div class="page-header">
-      <h1><span class="text-muted font-weight-light"><i class="page-header-icon ion-ios-keypad"></i>订单管理 / </span>通知上门取件</h1>
-    </div>
+<div class="px-content">
 
-    <form action="" class="panel form-horizontal form-bordered">
-          <div class="panel-heading">
-            <span class="panel-title">取件信息</span>
-          </div>
-          <div class="panel-body no-padding-hr">
-            <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-              <div class="row">
-                <label class="col-sm-4 control-label">编号:</label>
-                <div class="col-sm-8">
-                  <input type="text" name="GoodsNum" class="form-control">
-                </div>
-              </div>
-            </div>
-            <div class="form-group no-margin-hr no-margin-b panel-padding-h">
-              <div class="row">
-                <label class="col-sm-4 control-label">选择中转站:</label>
-                <div class="col-sm-8">
-                  <div class="m-b-2">
-                    <select class="form-control select2-example select2-hidden-accessible" style="width: 100%" data-allow-clear="true" tabindex="-1" aria-hidden="true" name="station">
-                      <option></option>
-                      <option value="AK">Alaska</option>
-                      <option value="HI">Hawaii</option>
-                      <option value="CA">California</option>
-                      <option value="NV">Nevada</option>
-                      <option value="OR">Oregon</option>
-                      <option value="WA">Washington</option>
-                      <option value="AZ">Arizona</option>
-                      <option value="CO">Colorado</option>
-                      <option value="ID">Idaho</option>
-                      <option value="MT">Montana</option>
-                      <option value="NE">Nebraska</option>
-                      <option value="NM">New Mexico</option>
-                      <option value="ND">North Dakota</option>
-                      <option value="UT">Utah</option>
-                      <option value="WY">Wyoming</option>
-                      <option value="AL">Alabama</option>
-                      <option value="AR">Arkansas</option>
-                      <option value="IL">Illinois</option>
-                      <option value="IA">Iowa</option>
-                      <option value="KS">Kansas</option>
-                      <option value="KY">Kentucky</option>
-                      <option value="LA">Louisiana</option>
-                      <option value="MN">Minnesota</option>
-                      <option value="MS">Mississippi</option>
-                      <option value="MO">Missouri</option>
-                      <option value="OK">Oklahoma</option>
-                      <option value="SD">South Dakota</option>
-                      <option value="TX">Texas</option>
-                      <option value="TN">Tennessee</option>
-                      <option value="WI">Wisconsin</option>
-                      <option value="CT">Connecticut</option>
-                      <option value="DE">Delaware</option>
-                      <option value="FL">Florida</option>
-                      <option value="GA">Georgia</option>
-                      <option value="IN">Indiana</option>
-                      <option value="ME">Maine</option>
-                      <option value="MD">Maryland</option>
-                      <option value="MA">Massachusetts</option>
-                      <option value="MI">Michigan</option>
-                      <option value="NH">New Hampshire</option>
-                      <option value="NJ">New Jersey</option>
-                      <option value="NY">New York</option>
-                      <option value="NC">North Carolina</option>
-                      <option value="OH">Ohio</option>
-                      <option value="PA">Pennsylvania</option>
-                      <option value="RI">Rhode Island</option>
-                      <option value="SC">South Carolina</option>
-                      <option value="VT">Vermont</option>
-                      <option value="VA">Virginia</option>
-                      <option value="WV">West Virginia</option>
-                    </select>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="form-group no-margin-hr no-margin-b panel-padding-h">
-              <div class="row">
-                <label class="col-sm-4 control-label">备注:</label>
-                <div class="col-sm-8">
-                  <textarea placeholder="备注" name="extra" class="form-control"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-footer text-right">
-            <button class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+    <div class="page-header p-y-4">
+      <div class="box m-a-0 bg-transparent">
+        <h1 class="box-cell col-md-7 col-lg-8 col-xl-9 font-weight-bold"><i class="page-header-icon ion-chatbubbles"></i>未处理订单</h1>
 
+        <!-- Spacer -->
+        <hr class="visible-xs visible-sm">
+
+        <div class="box-cell col-md-5 col-lg-4 col-xl-3">
+          <form action="" method="GET" class="input-group">
+            <input type="text" name="s" class="form-control" placeholder="搜索寄件编号">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+            </span>
+          </form>
+        </div>
+      </div>
     </div>
+<c:forEach var="good" items="${goods}">
+    <div class="page-forums-list-item box panel p-y-2 p-x-3">
+      <div class="box-row">
+        <div class="page-forums-list-title box-cell col-md-7 col-lg-8 col-xl-9 p-r-4">
+          <strong>编号：</strong><span id="code"><c:out value="${good.code}"></c:out></a></span>
+          <div>
+            <strong>名称：</strong><span id="GoodsName"><c:out value="${good.name}"></c:out></span>
+          </div>
+          <div>
+            <strong>发货地址：</strong><span id="GoodsSAddress"><c:out value="${good.sUserAddress}"></c:out></span>
+          </div>
+          <div>
+            <strong>发件人：</strong><span id="GoodsSAddress"><c:out value="${good.sUserName}"></c:out></span>
+          </div>
+        </div>
+
+        <!-- Spacer -->
+        <hr class="visible-xs visible-sm m-y-2">
+
+        <div class="box-cell col-md-5 col-lg-4 col-xl-3 valign-middle text-md-center">
+          <!-- Reset container's height by wrapping in a div -->
+          <div class="pull-md-right">
+            <div class="box-container width-md-auto valign-middle">
+              <div class="box-cell ">
+                <div class="font-size-11 text-muted">时间</div>
+                <div class="font-size-14 line-height-1"><span class="font-size-12" id="createtime"><c:out value="${good.createtime}"></c:out></span>&nbsp;</div>
+              </div>
+              <div class="box-cell p-x-1">
+                <a class="btn btn-primary"  href="/staff_tongzhi2.html?code=${good.code}">通知</a>
+
+              </div>
+              <div class="box-cell">
+
+                <button class="bootbox-confirm btn btn-danger" >删除</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</c:forEach>
+
+
   </div>
+
 
 
 
@@ -199,30 +167,21 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
+  <script>
+  var code =$('#code').html();
+  $('.bootbox-confirm').on('click', function() {
+      bootbox.confirm({
+        message:   'Are you sure?',
+        className: 'bootbox-sm',
 
-   <script>
-    // -------------------------------------------------------------------------
-    // Initialize DataTables
-
-    $(function() {
-      $('#datatables').dataTable();
-      $('#datatables_wrapper .table-caption').text('Some header text');
-      $('#datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-    });
-  </script>
-
-    <script>
-    // -------------------------------------------------------------------------
-    // Initialize Select2
-
-    $(function() {
-      $('.select2-example').select2({
-        placeholder: 'Select value',
+        callback: function(result) {
+          if(true==result){
+        	window.location.href="/staff_tongzhi2.html?delcode="+code;
+        	
+          }
+        },
       });
     });
-
-    // -------------------------------------------------------------------------
-   
   </script>
 </body>
 </html>

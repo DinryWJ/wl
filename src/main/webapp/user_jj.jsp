@@ -53,7 +53,7 @@
       <h1>寄件</h1>
     </div>
 
-    <form action="jj.html" class="panel form-horizontal">
+    <form action="jj.html" class="panel form-horizontal" >
       <div class="panel-heading">
         <span class="panel-title">寄件人信息</span>
       </div>
@@ -143,10 +143,11 @@
           </div>
         </div><!-- row -->
       </div>
-      <div class="panel-footer text-right">
-        <button class="btn btn-primary">提交订单</button>
+       <div class="panel-footer text-right">
+	 	<button class="bootbox-confirm btn btn-xl btn-success btn-3d" >提交</button>
       </div>
     </form>
+
   </div>
 
 
@@ -203,5 +204,6 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
+
 </body>
 </html>

@@ -66,13 +66,19 @@
         </div>
       </div>
     </div>
-
-    <div class="page-forums-list-item box panel p-y-2 p-x-3">
+<c:forEach var="good" items="${goods}">
+     <div class="page-forums-list-item box panel p-y-2 p-x-3">
       <div class="box-row">
         <div class="page-forums-list-title box-cell col-md-7 col-lg-8 col-xl-9 p-r-4">
-          <strong>编号：</strong><a href="staff_shenhe2.html" class="font-size-15 font-weight-bold" id="GoodsNum">11233321</a><!-- 信息名 -->
+          <strong>编号：</strong><c:out value="${good.code}"></c:out></a><!-- 信息名 -->
           <div>
-            <strong>名称：</strong><span id="GoodsName">adidas 男鞋</span>
+            <strong>名称：</strong><span id="GoodsName"><c:out value="${good.name}"></c:out></span>
+          </div>
+          <div>
+            <strong>发货地址：</strong><span id="GoodsSAddress"><c:out value="${good.sUserAddress}"></c:out></span>
+          </div>
+          <div>
+            <strong>发件人：</strong><span id="GoodsSAddress"><c:out value="${good.sUserName}"></c:out></span>
           </div>
         </div>
 
@@ -83,21 +89,22 @@
           <!-- Reset container's height by wrapping in a div -->
           <div class="pull-md-right">
             <div class="box-container width-md-auto valign-middle">
-              <div class="box-cell p-x-1">
-                <div class="font-size-14"><strong id="sUserId">和风听雨lala</strong></div>
-                <div class="font-size-11 text-muted line-height-1">发件人</div>
-              </div>
               <div class="box-cell ">
                 <div class="font-size-11 text-muted">时间</div>
-                <div class="font-size-14 line-height-1"><span class="font-size-12" id="createtime">2017-12-12 15:30:12</span>&nbsp;</div>
+                <div class="font-size-14 line-height-1"><span class="font-size-12" id="createtime"><c:out value="${good.createtime}"></c:out></span>&nbsp;</div>
               </div>
+ 
               <div class="box-cell p-x-1">
-                <button type="button" class="btn btn-primary">编辑</button>
-
+                
+				<c:if test="${good.status2 == 'false' }">  
+					<a class="btn btn-primary"  href="/staff_tongzhi2.html?code=${good.code}">通知</a>
+				</c:if>  
+				<c:if test="${good.status2 == 'true' }">  
+					<a class="btn btn-success" >已通知</a>
+				</c:if>  
               </div>
               <div class="box-cell">
-
-                <button type="button" class="btn btn-danger">删除</button>
+                <a class="btn btn-info" href="/staff_shenhe2.html?code=${good.code}">编辑</a>
               </div>
             </div>
           </div>
@@ -105,7 +112,7 @@
 
       </div>
     </div>
-
+</c:forEach>
 
 
   </div>

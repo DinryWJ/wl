@@ -54,18 +54,20 @@
     </div>
     
 
-    <form action="" class="panel form-horizontal">
+    <form action="/staff_shenhe2Modify.html" class="panel form-horizontal" onsubmit="return check()">
       <div class="panel-heading">
-        <span class="panel-title">寄件人信息</span>
+        <span class="panel-title"></span>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-md-4">
-            <input type="hidden" name="GoodsId" class="form-control form-group-margin">
+           
           </div>
           <div class="col-md-4">
+
+
             <label class="control-label">订单编号</label>
-            <input type="text" name="GoodsNum" value="11223344"  class="form-control form-group-margin" readonly="true">
+            <input type="text" name="code" value="${goods.code }" class="form-control form-group-margin" readonly="true" >
           </div>
 
         </div><!-- row -->       
@@ -78,15 +80,15 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">寄件人姓名</label>
-            <input type="text" name="name" placeholder="寄件人姓名" class="form-control form-group-margin">
+            <input type="text" name="sUserName" placeholder="寄件人姓名" class="form-control form-group-margin" value="${goods.sUserName }">
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="phone" placeholder="手机号" class="form-control form-group-margin">
+            <input type="text" name="sUserPhone" placeholder="手机号" class="form-control form-group-margin" value="${goods.sUserPhone}">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
-            <input type="text" name="address" placeholder="详细地址" class="form-control form-group-margin">
+            <input type="text" name="sUserAddress" placeholder="详细地址" class="form-control form-group-margin" value="${goods.sUserAddress}">
           </div>
         </div><!-- row -->       
       </div>
@@ -98,32 +100,32 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">名字</label>
-            <input type="text" name="weight" placeholder="物品名称" class="form-control form-group-margin">
+            <input type="text" name="name" placeholder="物品名称" class="form-control form-group-margin" value="${goods.name}">
           </div>
           <div  class="col-md-4">
           <label  class="col-sm-2 control-label">类型</label>
               <div class="col-sm-10">
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" class="px" checked="">
+                    <input type="radio" name="type" id="optionsRadios1" value="option1" class="px" checked="">
                     <span class="lbl">服饰</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" class="px">
+                    <input type="radio" name="type" id="optionsRadios2" value="option2" class="px">
                     <span class="lbl">电子产品</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" class="px">
+                    <input type="radio" name="type" id="optionsRadios3" value="option3" class="px">
                     <span class="lbl">食品</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios4" value="option4" class="px">
+                    <input type="radio" name="type" id="optionsRadios4" value="option4" class="px">
                     <span class="lbl">书籍</span>
                   </label>
                 </div> <!-- / .radio -->
@@ -131,11 +133,11 @@
           </div>
           <div class="col-md-4">
             <label class="control-label">重量</label>
-            <input type="text" name="weight" placeholder="预估重量" class="form-control form-group-margin">
+            <input type="text" name="weight" placeholder="预估重量" class="form-control form-group-margin" value="${goods.weight}">
           </div>
         </div><!-- row -->
         <label class="control-label">备注</label>
-        <textarea class="form-control" rows="5" name="intro" placeholder="Message"></textarea>
+        <textarea class="form-control" rows="5" name="intro" placeholder="Message" >${goods.intro}</textarea>
       </div>
       
       <div class="panel-heading">
@@ -145,20 +147,20 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">收件人姓名</label>
-            <input type="text" name="s_user_id" placeholder="收件人姓名" class="form-control form-group-margin">
+            <input type="text" name="rUserName" placeholder="收件人姓名" class="form-control form-group-margin" value="${goods.rUserName}">
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="sphone" placeholder="手机号" class="form-control form-group-margin">
+            <input type="text" name="rUserPhone" placeholder="手机号" class="form-control form-group-margin" value="${goods.rUserPhone}">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
-            <input type="text" name="e_address" placeholder="详细地址" class="form-control form-group-margin">
+            <input type="text" name="rUserAddress" placeholder="详细地址" class="form-control form-group-margin" value="${goods.rUserAddress}">
           </div>
         </div><!-- row -->
       </div>
       <div class="panel-footer text-right">
-        <button class="btn btn-primary">提交订单</button>
+        <button class="btn btn-danger">修改订单</button>
       </div>
     </form>
  
@@ -217,6 +219,19 @@
       $('#navbar-notifications').perfectScrollbar();
       $('#navbar-messages').perfectScrollbar();
     });
+  </script>
+  <script>
+  	$("input[name=type][value=${goods.type}]").attr("checked",true);
+	function check() {
+		// body...
+		var code=$(" input[ name='code' ] ").val()
+		if (code=="") {
+			alert("请先选择邮件");	
+			return false;	
+		}else{
+			return true;
+		}
+	}
   </script>
 </body>
 </html>

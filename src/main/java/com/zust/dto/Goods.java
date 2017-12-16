@@ -32,6 +32,8 @@ public class Goods {
 	private String rUserPhone;
 	
 	private boolean status;
+	
+	private boolean status2;
 
 	private Date createtime;
 
@@ -148,6 +150,14 @@ public class Goods {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public boolean isStatus2() {
+		return status2;
+	}
+
+	public void setStatus2(boolean status2) {
+		this.status2 = status2;
 	}
 
 	public Date getCreatetime() {
