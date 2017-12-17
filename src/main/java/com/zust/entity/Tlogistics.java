@@ -16,7 +16,9 @@ public class Tlogistics {
 	
 	private String mAddress;
 	
-	private Date mTime;
+	private String mTime;
+	
+	private String intro;
 	
 	private Tgoods tgoods;
 
@@ -40,13 +42,22 @@ public class Tlogistics {
 	}
 
 	@Column(name="m_time")
-	public Date getmTime() {
+	public String getmTime() {
 		return mTime;
 	}
 
-	public void setmTime(Date mTime) {
+	public void setmTime(String mTime) {
 		this.mTime = mTime;
 	}
+	@Column
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="goods_id")
 	public Tgoods getTgoods() {

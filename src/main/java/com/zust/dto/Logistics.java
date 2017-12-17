@@ -15,6 +15,8 @@ public class Logistics {
 	
 	private String goodsNum;
 	
+	private String intro;
+	
 	public int getLogisticsId() {
 		return logisticsId;
 	}
@@ -61,6 +63,14 @@ public class Logistics {
 
 	public void setGoodsNum(String goodsNum) {
 		this.goodsNum = goodsNum;
+	}
+
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
 	}
 	
 	

@@ -57,6 +57,20 @@
           <li class="px-nav-item"><a href="staff_tousu2.html"><span class="px-nav-label">反馈</span></a></li>
         </ul>
       </li>
+      <li class="px-nav-item px-nav-dropdown">
+        <a href=""><i class="px-nav-icon fa fa-times-circle-o"></i><span class="px-nav-label">用户管理</span></a>
+         <ul class="px-nav-dropdown-menu">
+          <li class="px-nav-item"><a href=""><span class="px-nav-label">搜索用户</span></a></li>
+          <li class="px-nav-item"><a href=""><span class="px-nav-label">修改用户信息</span></a></li>
+        </ul>
+      </li>
+      <li class="px-nav-item px-nav-dropdown">
+        <a href=""><i class="px-nav-icon fa fa-times-circle-o"></i><span class="px-nav-label">中转站管理</span></a>
+         <ul class="px-nav-dropdown-menu">
+          <li class="px-nav-item"><a href=""><span class="px-nav-label">新增中转站</span></a></li>
+          <li class="px-nav-item"><a href=""><span class="px-nav-label">修改中转站信息</span></a></li>
+        </ul>
+      </li>
     </ul>
   </nav>
 

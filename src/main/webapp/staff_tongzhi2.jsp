@@ -52,7 +52,7 @@
       <h1><span class="text-muted font-weight-light"><i class="page-header-icon ion-ios-keypad"></i>订单管理 / </span>通知上门取件</h1>
     </div>
 
-    <form action="" class="panel form-horizontal form-bordered">
+    <form action="/setLogistics.html" class="panel form-horizontal form-bordered">
           <div class="panel-heading">
             <span class="panel-title">取件信息</span>
           </div>
@@ -61,7 +61,7 @@
               <div class="row">
                 <label class="col-sm-4 control-label">编号:</label>
                 <div class="col-sm-8">
-                  <input type="text" name="GoodsNum" class="form-control"  value="${good.code}">
+                  <input type="text" name="goodsNum" class="form-control"  value="${good.code}">
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@
                 <label class="col-sm-4 control-label">选择中转站:</label>
                 <div class="col-sm-8">
                   <div class="m-b-2">
-                    <select class="form-control select2-example select2-hidden-accessible" style="width: 100%" data-allow-clear="true" tabindex="-1" aria-hidden="true" name="station">
+                    <select class="form-control select2-example select2-hidden-accessible" style="width: 100%" data-allow-clear="true" tabindex="-1" aria-hidden="true" name="mAddress">
                       <option></option>
                       <option value="AK">Alaska</option>
                       <option value="HI">Hawaii</option>
@@ -132,7 +132,7 @@
               <div class="row">
                 <label class="col-sm-4 control-label">备注:</label>
                 <div class="col-sm-8">
-                  <textarea placeholder="备注" name="extra" class="form-control"></textarea>
+                  <textarea placeholder="备注" name="intro" class="form-control"></textarea>
                 </div>
               </div>
             </div>

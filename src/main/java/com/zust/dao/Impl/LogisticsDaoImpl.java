@@ -37,7 +37,7 @@ public class LogisticsDaoImpl extends BaseDaoImpl<Tlogistics> implements Logisti
 		
 		System.out.println("8出"+nowaddress);
 		tlogistics.setmAddress(nowaddress);
-		tlogistics.setmTime(new Date());
+		tlogistics.setmTime(new Date().toString());
 	}
 
 }

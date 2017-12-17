@@ -11,4 +11,5 @@ public interface LogisticsServiceI {
 	public Logistics entity2dto(Tlogistics tlogistics) throws IllegalAccessException, InvocationTargetException;
 	public String getgoodsName(String goodsNum);
 	public void updatelocal(String goodsNum,String nowaddress);
+	public void setLoginstics(Logistics logistic);
 }

@@ -1,7 +1,9 @@
 package com.zust.service.Impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -9,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zust.dao.GoodsDaoI;
 import com.zust.dao.LogisticsDaoI;
 import com.zust.dto.Logistics;
+import com.zust.entity.Tgoods;
 import com.zust.entity.Tlogistics;
 import com.zust.service.LogisticsServiceI;
 @Transactional
@@ -19,6 +23,9 @@ public class LogisticsServiceImpl implements LogisticsServiceI{
 
 	@Autowired
 	private LogisticsDaoI logisticsDao;
+	
+	@Autowired
+	private GoodsDaoI goodsDao;
 	
 //	public Logistics entity2dto(Tlogistics listOrigin)
 //			throws IllegalAccessException, InvocationTargetException {
@@ -53,4 +60,19 @@ public class LogisticsServiceImpl implements LogisticsServiceI{
 		  logisticsDao.updatelocal(goodsNum,nowaddress);
 		
 	}
+	public void setLoginstics(Logistics logistic) {
+		// TODO Auto-generated method stub
+		Date date = new Date();
+		String d = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
+		Tgoods tgoods = goodsDao.search(logistic.getGoodsNum());
+		tgoods.setStatus2(true);
+		tgoods.setUpdatetime(new Date());
+		Tlogistics tlogistics = new Tlogistics();
+		tlogistics.setmAddress(logistic.getmAddress());
+		tlogistics.setmTime(d);
+		tlogistics.setIntro(logistic.getIntro());
+		tlogistics.setTgoods(tgoods);
+		logisticsDao.save(tlogistics);
+	}
+
 }
