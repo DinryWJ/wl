@@ -56,21 +56,14 @@
         <!-- Spacer -->
         <hr class="visible-xs visible-sm">
 
-        <div class="box-cell col-md-5 col-lg-4 col-xl-3">
-          <form action="" method="GET" class="input-group">
-            <input type="text" name="s" class="form-control" placeholder="搜索寄件编号">
-            <span class="input-group-btn">
-              <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-            </span>
-          </form>
-        </div>
+
       </div>
     </div>
 <c:forEach var="good" items="${goods}">
      <div class="page-forums-list-item box panel p-y-2 p-x-3">
       <div class="box-row">
         <div class="page-forums-list-title box-cell col-md-7 col-lg-8 col-xl-9 p-r-4">
-          <strong>编号：</strong><c:out value="${good.code}"></c:out></a><!-- 信息名 -->
+          <strong>编号：</strong><span id="code"><c:out value="${good.code}"></c:out></a></span>
           <div>
             <strong>名称：</strong><span id="GoodsName"><c:out value="${good.name}"></c:out></span>
           </div>

@@ -30,6 +30,9 @@
       <li class="px-nav-item">
         <a href="staff_index.html"><i class="px-nav-icon ion-ios-pulse-strong"></i><span class="px-nav-label">首页</span></a>
       </li>
+      <li class="px-nav-item">
+         <a href="staff_sh.html"><i class="px-nav-icon fa fa-play"></i><span class="px-nav-label">邮件搜索</span></a>
+      </li>
       <li class="px-nav-item px-nav-dropdown">
         <a href="shenhe.html"><i class="px-nav-icon fa fa-archive"></i><span class="px-nav-label">寄件信息管理</span></a>
         <ul class="px-nav-dropdown-menu">

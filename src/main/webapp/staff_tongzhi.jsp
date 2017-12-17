@@ -56,14 +56,7 @@
         <!-- Spacer -->
         <hr class="visible-xs visible-sm">
 
-        <div class="box-cell col-md-5 col-lg-4 col-xl-3">
-          <form action="" method="GET" class="input-group">
-            <input type="text" name="s" class="form-control" placeholder="搜索寄件编号">
-            <span class="input-group-btn">
-              <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-            </span>
-          </form>
-        </div>
+
       </div>
     </div>
 <c:forEach var="good" items="${goods}">

@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-  <title>中转 工作人员端 物流信息管理平台</title>
+  <title>搜索 用户端 物流信息管理平台</title>
 
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
   <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
@@ -45,109 +45,99 @@
   <script src="assets/pace/pace.min.js"></script>
 
   <script src="assets/demo/demo.js"></script>
-  <style>
-    .box,
-    .box-cell {
-      overflow: visible !important;
-      -webkit-mask-image: none !important;
-    }
-
-    .page-forum-thread-title .label {
-      vertical-align: text-bottom;
-      font-weight: bold;
-    }
-
-    .page-forum-thread-actions .btn.btn-outline {
-      opacity: .4;
-    }
-
-    .page-forum-thread-actions .btn.btn-outline:hover,
-    .page-forum-thread-actions .btn.btn-outline:focus,
-    .page-forum-thread-actions .btn.btn-outline:active,
-    .page-forum-thread-actions .btn.btn-outline.active {
-      opacity: 1;
-    }
-
-    #summernote-forum-thread-reply + .note-editor {
-      border-radius: 0;
-      border: none;
-      margin: 0;
-    }
-
-    @media (min-width: 768px) {
-      .page-forum-thread-counters {
-        border-left-style: solid;
-        border-left-width: 1px;
-      }
-
-      html[dir="rtl"] .page-forum-thread-counters {
-        border-left: 0;
-        border-right-style: solid;
-        border-right-width: 1px;
-      }
-    }
-  </style>
 </head>
 <body>
-<jsp:include page="staff_around.jsp"></jsp:include>
+	<jsp:include page="staff_around.jsp"></jsp:include>
+ 
   <div class="px-content">
-    <div class="page-header">
-      <h1>中转站</h1>
+    <!-- Header -->
+
+    <div class="page-header panel m-b-0 p-y-0 b-a-0 border-radius-0">
+      <form action="" method="GET" class="input-group input-group-lg p-y-3">
+        <input type="text" name="s" class="form-control input-group-lg p-y-3"  placeholder="输入邮件编号">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+        </span>
+      </form>
+
+      <hr class="page-wide-block m-y-0">
+
+      <ul class="search-nav nav nav-tabs nav-tabs-simple nav-sm page-block b-b-0">
+        <li class="active"><a href="#results-pages" data-toggle="tab">结果</a></li>
+      </ul>
     </div>
-    <div class="page-header p-y-4">
-      <div class="box m-a-0 bg-transparent">
-        <div class="box-cell col-md-7 col-lg-8 col-xl-9">
-          <div class="font-size-12 text-muted  font-weight-bold"><a href="pages-forum-forums-list.html">FORUMS</a> /</div>
-          <h1 class="font-weight-bold text-default"><a href="pages-forum-topics.html">General Web Design</a></h1>
+
+    <hr class="page-wide-block m-t-0 b-t-2">
+
+    <!-- / Header -->
+
+    <div class="tab-content p-y-0">
+
+      <!-- Pages -->
+
+      <div class="tab-pane fade in active" id="results-pages">
+<c:if test="${good.code!=null}">
+        <div class="page-forums-list-item box panel p-y-2 p-x-3">
+      <div class="box-row">
+        <div class="page-forums-list-title box-cell col-md-7 col-lg-8 col-xl-9 p-r-4">
+          <strong>编号：</strong><c:out value="${good.code}"></c:out></a><!-- 信息名 -->
+          <div>
+            <strong>名称：</strong><span id="GoodsName"><c:out value="${good.name}"></c:out></span>
+          </div>
+          <div>
+            <strong>发货地址：</strong><span id="GoodsSAddress"><c:out value="${good.sUserAddress}"></c:out></span>
+          </div>
+          <div>
+            <strong>发件人：</strong><span id="GoodsSAddress"><c:out value="${good.sUserName}"></c:out></span>
+          </div>
         </div>
 
         <!-- Spacer -->
-        <hr class="visible-xs visible-sm">
+        <hr class="visible-xs visible-sm m-y-2">
 
-        <div class="box-cell col-md-5 col-lg-4 col-xl-3 valign-middle">
-          <form action="findgoods.html" method="POST" class="input-group">
-            <input type="text" name="s" class="form-control" placeholder="Search">
-            <span class="input-group-btn">
-              <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-            </span>
-          </form>
+        <div class="box-cell col-md-5 col-lg-4 col-xl-3 valign-middle text-md-center">
+          <!-- Reset container's height by wrapping in a div -->
+          <div class="pull-md-right">
+            <div class="box-container width-md-auto valign-middle">
+              <div class="box-cell ">
+                <div class="font-size-11 text-muted">时间</div>
+                <div class="font-size-14 line-height-1"><span class="font-size-12" id="createtime"><c:out value="${good.createtime}"></c:out></span>&nbsp;</div>
+              </div>
+ 
+              <div class="box-cell p-x-1">
+                
+				<c:if test="${good.status2 == 'false' }">  
+					<a class="btn btn-primary"  href="/staff_tongzhi2.html?code=${good.code}">通知</a>
+				</c:if>  
+				<c:if test="${good.status2 == 'true' }">  
+					<a class="btn btn-success" >已通知</a>
+				</c:if>  
+              </div>
+              <div class="box-cell">
+                <a class="btn btn-info" href="/staff_shenhe2.html?code=${good.code}">编辑</a>
+              </div>
+              <div class="box-cell">
+               <button class="bootbox-confirm btn btn-danger" >删除</button>
+              </div>
+             
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
-    <div class="panel">
-      <div class="panel-heading">
-        <div class="panel-title">物品信息</div>
-      </div>
-      <div class="panel-body">
-        <form action="updatelocal.html" class="form-inline">
-          <div class="form-group">
-            <label for="form-inline-input-1">Name</label>
-            <input value="${logistics.name}" name="" type="text" class="form-control" id="form-inline-input-1" placeholder="物品名称">
-          </div>
-          <div class="form-group">
-            <label for="form-inline-input-2">&nbsp;&nbsp;num</label>
-            <input value="${logistics.goodsNum}" name="goods_num" type="text" class="form-control" id="form-inline-input-2" placeholder="编号">
-          </div>
-          <div class="form-group">
-            <label for="form-inline-input-2">&nbsp;&nbsp;address</label>
-            <input value="${logistics.mAddress}" name="address" type="text" class="form-control" id="form-inline-input-2" placeholder="现在地址">
-          </div>
-          
+		
+</c:if>
        
 
-        <hr class="page-wide-block">
-        
-        
-          
-            <div class="input-group">   
-              <input name="maddress" type="text" class="form-control" id="form-inline-input-8" placeholder="更新地址">
-            </div>
-          
-          <button type="submit" class="btn btn-primary">确定</button>
-        </form>
+
       </div>
+
+    
+
+    </div>
   </div>
+
 
 
 
@@ -201,6 +191,30 @@
 
       $('#navbar-notifications').perfectScrollbar();
       $('#navbar-messages').perfectScrollbar();
+    });
+  </script>
+    <script>
+    // -------------------------------------------------------------------------
+    // Initialize page components
+
+    $(function() {
+      $('.nav-tabs').pxTabResize();
+    });
+  </script>
+    <script>
+  var code =$('#code').html();
+  $('.bootbox-confirm').on('click', function() {
+      bootbox.confirm({
+        message:   'Are you sure?',
+        className: 'bootbox-sm',
+
+        callback: function(result) {
+          if(true==result){
+        	window.location.href="/staff_tongzhi2.html?delcode="+code;
+        	
+          }
+        },
+      });
     });
   </script>
 </body>
