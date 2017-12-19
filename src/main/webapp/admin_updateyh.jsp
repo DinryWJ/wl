@@ -46,7 +46,7 @@
   <script src="assets/demo/demo.js"></script>
 </head>
 <body>
- <jsp:include page="staff_around.jsp"></jsp:include>
+ 
   <div class="px-content">
     <div class="page-header">
       <h1>修改工作人员</h1>

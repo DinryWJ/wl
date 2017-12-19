@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.zust.dto.Complaint;
 import com.zust.dto.Goods;
 import com.zust.dto.Logistics;
+import com.zust.dto.Staff;
+import com.zust.dto.Station;
 import com.zust.entity.Tlogistics;
+import com.zust.service.GoodsServiceI;
 import com.zust.service.LogisticsServiceI;
+import com.zust.service.StationServiceI;
 
 
 
@@ -24,44 +29,38 @@ public class LogisticsController {
 	@Autowired
 	private LogisticsServiceI logisticsService;
 	
+	@Autowired
+	private GoodsServiceI goodsService;
+	
+	@Autowired
+	private StationServiceI stationService;
+	
 	@RequestMapping(value="/setLogistics.html")
 	public String setLoginstics(Logistics logistic){
-		logisticsService.setLoginstics(logistic);
+		logisticsService.setLogistics(logistic);
 		return "redirect:/staff_tongzhi.html";
 	}
 	
-//	@RequestMapping(value="/findgoods.html")
-//	public Logistics findgoods(HttpServletRequest request) throws IllegalAccessException, InvocationTargetException{
-//		String goodsNums= request.getParameter("s");
-//		String goodsNum = goodsNums.replaceAll(" ","");
-//		Logistics logistics = logisticsService.getgoods(goodsNum);
-//		return logistics;
-//	}
-	@RequestMapping(value="/findgoods.html")
-	public ModelAndView findgoods(HttpServletRequest request) throws IllegalAccessException, InvocationTargetException{
-		String goodsNums= request.getParameter("s");
-		//System.out.println(goodsNums);
-		String goodsNum = goodsNums.replaceAll(" ","");
+	@RequestMapping(value="staff_zhongzhuan.html")
+	public ModelAndView staffZhongzhuan(HttpServletRequest request,@RequestParam(value="code",required=false)String code) throws IllegalAccessException, InvocationTargetException{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("staff_zhongzhuan");
-		Logistics logistics = logisticsService.getgoods(goodsNum);
-		String name = logisticsService.getgoodsName(goodsNum);
-		logistics.setName(name);
-		logistics.setGoodsNum(goodsNum);
-		mav.addObject("logistics",logistics);
-		return mav;			
+		if(code!=null){
+			Goods goods = goodsService.search(code);
+			Logistics logistics = logisticsService.getLogisticsByGoodsId(goods.getGoodsId());
+			Staff staff =  (Staff) request.getSession().getAttribute("staff");
+			int id = staff.getStationId();
+			Station station = stationService.getStationById(id);
+			mav.addObject("station", station);
+			mav.addObject("goods", goods);
+			mav.addObject("logistics", logistics);
+			
+		}
+		return mav;
 	}
-	@RequestMapping(value="/updatelocal.html")
-	public ModelAndView updatelocal(HttpServletRequest request,String nowaddress) throws IllegalAccessException, InvocationTargetException{
-		String goodsNum=request.getParameter("goods_num");
-		String goodsNum1 = goodsNum.replaceAll(" ","");
-		System.out.println("3处"+goodsNum1);
-		
-		nowaddress=request.getParameter("maddress");
-		String nowaddress1 = nowaddress.replaceAll(" ","");
-		System.out.println("3处"+nowaddress1);
-		logisticsService.updatelocal(goodsNum1,nowaddress1);
-		return new ModelAndView("redirect:findgoods.html?s="+goodsNum1);
+	@RequestMapping(value="/setZhongzhuan.html")
+	public String setZhongzhuan(int goodsId,String address){
+		logisticsService.setZhongzhuan(goodsId,address);
+		return "staff_zhongzhuan";
 	}
-	
 }

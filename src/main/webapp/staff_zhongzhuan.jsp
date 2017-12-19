@@ -45,90 +45,120 @@
   <script src="assets/pace/pace.min.js"></script>
 
   <script src="assets/demo/demo.js"></script>
-  <style>
-    .box,
-    .box-cell {
-      overflow: visible !important;
-      -webkit-mask-image: none !important;
-    }
-
-    .page-forum-thread-title .label {
-      vertical-align: text-bottom;
-      font-weight: bold;
-    }
-
-    .page-forum-thread-actions .btn.btn-outline {
-      opacity: .4;
-    }
-
-    .page-forum-thread-actions .btn.btn-outline:hover,
-    .page-forum-thread-actions .btn.btn-outline:focus,
-    .page-forum-thread-actions .btn.btn-outline:active,
-    .page-forum-thread-actions .btn.btn-outline.active {
-      opacity: 1;
-    }
-
-    #summernote-forum-thread-reply + .note-editor {
-      border-radius: 0;
-      border: none;
-      margin: 0;
-    }
-
-    @media (min-width: 768px) {
-      .page-forum-thread-counters {
-        border-left-style: solid;
-        border-left-width: 1px;
-      }
-
-      html[dir="rtl"] .page-forum-thread-counters {
-        border-left: 0;
-        border-right-style: solid;
-        border-right-width: 1px;
-      }
-    }
-  </style>
+  
 </head>
 <body>
 <jsp:include page="staff_around.jsp"></jsp:include>
-  <div class="px-content">
+ <div class="px-content" style="padding-bottom: 210px;">
     <div class="page-header">
-      <h1>中转站</h1>
+      <h1>物流信息</h1>
+      <a href="pages-invoice-print.html" class="pull-right btn btn-primary" target="_blank"><i class="fa fa-print"></i>&nbsp;&nbsp;Print version</a>
     </div>
-   
-    <div class="panel">
-      <div class="panel-heading">
-        <div class="panel-title">物品信息</div>
-      </div>
-      <div class="panel-body">
-        <form action="updatelocal.html" class="form-inline">
-          <div class="form-group">
-            <label for="form-inline-input-1">Name</label>
-            <input value="${logistics.name}" name="" type="text" class="form-control" id="form-inline-input-1" placeholder="物品名称">
-          </div>
-          <div class="form-group">
-            <label for="form-inline-input-2">&nbsp;&nbsp;num</label>
-            <input value="${logistics.goodsNum}" name="goods_num" type="text" class="form-control" id="form-inline-input-2" placeholder="编号">
-          </div>
-          <div class="form-group">
-            <label for="form-inline-input-2">&nbsp;&nbsp;address</label>
-            <input value="${logistics.mAddress}" name="address" type="text" class="form-control" id="form-inline-input-2" placeholder="现在地址">
-          </div>
-          
-       
 
-        <hr class="page-wide-block">
-        
-        
-          
-            <div class="input-group">   
-              <input name="maddress" type="text" class="form-control" id="form-inline-input-8" placeholder="更新地址">
+    <div class="panel">
+
+      <div class="panel-body p-a-4 b-b-4 bg-white darken">
+        <div class="box m-a-0 border-radius-0 bg-white darken">
+          <div class="box-row valign-middle">
+
+            <div class="box-cell col-md-8">
+              <div class="display-inline-block px-demo-brand px-demo-brand-lg valign-middle">
+                <span class="px-demo-logo m-y-0 m-r-2 bg-primary"><span class="px-demo-logo-1"></span><span class="px-demo-logo-2"></span><span class="px-demo-logo-3"></span><span class="px-demo-logo-4"></span><span class="px-demo-logo-5"></span><span class="px-demo-logo-6"></span><span class="px-demo-logo-7"></span><span class="px-demo-logo-8"></span><span class="px-demo-logo-9"></span></span>
+              </div>
+
+              <div class="display-inline-block m-r-3 valign-middle">
+                <div class="text-muted"><strong>订单</strong></div>
+                <div class="font-size-18 font-weight-bold line-height-1">编号 #${goods.code}</div>
+              </div>
+
+              <!-- Spacer -->
+              <div class="m-t-3 visible-xs visible-sm"></div>
+
+              <div class="display-inline-block p-l-1 b-l-3 valign-middle font-size-12 text-muted">
+                <div>${goods.rUserName}<STRONG>(发货人)</STRONG></div>
+                <div>${goods.rUserAddress}<STRONG>(发货地址)</STRONG></div>
+                <div>${goods.rUserPhone}<STRONG>(手机号)</STRONG></div>
+              </div>
             </div>
-          
-          <button type="submit" class="btn btn-primary">确定</button>
-        </form>
+
+            <!-- Spacer -->
+            <div class="m-t-3 visible-xs visible-sm"></div>
+
+            <div class="box-cell col-md-4">
+              <div class="pull-md-right font-size-15">
+                <div class="text-muted font-size-13 line-height-1"><strong>Date</strong></div>
+                <strong>${goods.createtime}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <div class="panel-body p-a-4 bg-white b-b-2">
+        <div class="box m-a-0 border-radius-0">
+          <div class="box-row valign-middle">
+            <div class="box-cell col-md-6 font-size-14">
+              <div><strong>${goods.rUserName}</strong><STRONG>(收货人)</STRONG></div>
+              <div>${goods.rUserAddress}<STRONG>(发货地址)</STRONG></div>
+              <div>${goods.rUserPhone}<STRONG>(手机号)</STRONG></div>
+            </div>
+
+            <!-- Spacer -->
+            <div class="m-t-3 visible-xs visible-sm"></div>
+
+            <div class="box-cell col-md-6 bg-white darken p-x-3 p-y-2">
+              <div class="pull-xs-left m-y-1 font-size-12 text-muted"><strong>当前状态</strong></div>
+              <div class="pull-xs-right font-size-24"><strong>
+              	<c:if test="${goods.status == 'false' }">  
+					正在运输
+				</c:if>  
+				<c:if test="${goods.status == 'true' }">  
+					已完成
+				</c:if>  
+              </strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body p-a-4">
+        <div class="table-responsive">
+          <table class="table m-a-0">
+            <thead>
+              <tr class="bg-white darken">
+                <th class="p-x-2">
+                  物流信息
+                </th>
+                <th class="p-x-2">
+                  时间
+                </th>
+
+              </tr>
+            </thead>
+            <tbody class="font-size-14" id="tbd">
+              <!-- js 填充 -->
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+    <c:if test="${goods.status ==false}">
+    <form class="form-inline" method="post" action="/setZhongzhuan.html">
+          <div class="form-group">
+            <label class="sr-only" for="form-inline-input-8"></label>
+            <div class="input-group">
+              <div class="input-group-addon">当前地址</div>
+              <input type="hidden" name="goodsId" value="${goods.goodsId}"/>
+              <input type="text" class="form-control" id="form-inline-input-8" value="${station.address}"  readonly="readonly" name="address">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">录入物流信息</button>
+      </form>
+      </c:if>
   </div>
-</div>
 
 
 
@@ -182,6 +212,22 @@
       $('#navbar-notifications').perfectScrollbar();
       $('#navbar-messages').perfectScrollbar();
     });
+  </script>
+  <script>
+
+  	var a = "${logistics.mAddress}";
+  	var b ="${logistics.mTime}";
+  	var aa = a.split(",");
+  	var bb = b.split(",");
+
+
+  	for(var i=0;i<aa.length;i++){
+  		var a2 =aa[i];
+  		var b2 = bb[i];
+  		$("#tbd").append('<tr><td class="p-a-2"><div class="font-weight-semibold">'+a2+'</div><div class="font-size-12 text-muted"></div></td><td class="p-a-2"><strong>'+b2+'</strong></td></tr>');
+  	}
+  	
+  	
   </script>
 </body>
 </html>

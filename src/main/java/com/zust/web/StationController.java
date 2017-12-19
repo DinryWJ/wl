@@ -67,8 +67,8 @@ public class StationController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/getZZZName.html")
-	public List<SimStation> getZZZName() throws IllegalAccessException, InvocationTargetException{
-		List<SimStation> sst = stationService.getZZZName();
+	public List<Object[]> getZZZName() throws IllegalAccessException, InvocationTargetException{
+		List<Object[]> sst = stationService.getZZZName();
 		return sst;
 		
 	}

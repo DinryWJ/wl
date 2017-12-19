@@ -23,7 +23,6 @@ public interface StationServiceI {
 	
 	Station entity2dto(Tstation t) throws IllegalAccessException, InvocationTargetException;
 	
-	List<SimStation> entity2dto2(List<Tstation> listOrigin) throws IllegalAccessException, InvocationTargetException;
 
-	List<SimStation> getZZZName() throws IllegalAccessException, InvocationTargetException;
+	List<Object[]> getZZZName();
 }

@@ -113,13 +113,38 @@ public class StaffController {
 	public String staffTousu2(){
 		return "staff_tousu2";
 	}
-	@RequestMapping(value="staff_zhongzhuan.html")
-	public String staffZhongzhuan(){
-		return "staff_zhongzhuan";
-	}
+
 	@RequestMapping(value="/staff_seachyh.html")
 	public String staffSeachyh(){
 		return "staff_seachyh";
+	}
+	@RequestMapping(value="/staff_person.html")
+	public String staffPerson(){
+		return "staff_person";
+	}
+	
+	@RequestMapping(value="/updatestaff.html")
+	public  ModelAndView updatestaff(HttpServletRequest request,
+			Staff staff) throws IllegalAccessException, InvocationTargetException{
+		staffService.updateStaff(staff);
+		request.getSession().setAttribute("staff", staff);
+		return new ModelAndView("redirect:staff_person.html");	
+		}	
+
+	
+	@RequestMapping(value="/updatestaffpassword.html")
+	public  ModelAndView updatepassword(HttpServletRequest request,String email,String oldPassword,String newPassword,String reNewPassword) throws IllegalAccessException, InvocationTargetException{
+		Staff staff  = (Staff) request.getSession().getAttribute("staff");
+		email = staff.getEmail();
+ 
+		if(request.getSession().getAttribute("password")==request.getParameter(oldPassword)&&request.getParameter(newPassword)==request.getParameter(reNewPassword))
+		{
+			staffService.updatePassword(email, newPassword);
+			request.getSession().setAttribute("staff", staff);
+			return new ModelAndView("redirect:staff_person.html");	
+		}else
+		return new ModelAndView("redirect:staff_person.html");	
+		
 	}
 
 }

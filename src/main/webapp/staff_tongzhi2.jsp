@@ -72,8 +72,6 @@
                   <div class="m-b-2">
                     <select id="centerNameSelect" class="form-control select2-example select2-hidden-accessible" style="width: 100%" data-allow-clear="true" tabindex="-1" aria-hidden="true" name="mAddress">
                       <option></option>
-                      <option value="AK">Alaska</option>
-
                     </select>
                   </div>
                   
@@ -179,9 +177,9 @@
 	    dataType : "json",    
 	    success: function(data){        		
 	    	$.each(data, function(index,item){                              
-	    		 var id = data[index].id; 
-                 var text = data[index].text; 
-                 $("#centerNameSelect").append("<option value='"+id+"'>"+text+"</option>");
+	    		 
+
+                 $("#centerNameSelect").append("<option value='"+item+"'>"+item+"</option>");
 	         })
 	    }
 	});   

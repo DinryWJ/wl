@@ -12,6 +12,7 @@ com\zust\dto\Logistics.class
 com\zust\dto\User.class
 com\zust\dao\StaffDaoI.class
 com\zust\service\Impl\UserServiceImpl.class
+com\zust\web\AdminController.class
 com\zust\web\StationController.class
 com\zust\web\ComplaintController.class
 com\zust\web\GoodsController.class

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +21,7 @@ public class Tlogistics {
 	
 	private String intro;
 	
-	private Tgoods tgoods;
+	private Tgoods goods;
 
 	@Id
 	@Column(name="logistics_id")
@@ -57,16 +58,17 @@ public class Tlogistics {
 	public void setIntro(String intro) {
 		this.intro = intro;
 	}
-
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="goods_id")
-	public Tgoods getTgoods() {
-		return tgoods;
+	public Tgoods getGoods() {
+		return goods;
 	}
 
-	public void setTgoods(Tgoods tgoods) {
-		this.tgoods = tgoods;
+	public void setGoods(Tgoods goods) {
+		this.goods = goods;
 	}
+
+
 	
 	
 }

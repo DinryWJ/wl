@@ -14,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zust.dao.GoodsDaoI;
 import com.zust.dao.LogisticsDaoI;
 import com.zust.dto.Logistics;
+import com.zust.dto.Staff;
 import com.zust.entity.Tgoods;
 import com.zust.entity.Tlogistics;
+import com.zust.entity.Tstaff;
 import com.zust.service.LogisticsServiceI;
 @Transactional
 @Service
@@ -26,44 +28,33 @@ public class LogisticsServiceImpl implements LogisticsServiceI{
 	
 	@Autowired
 	private GoodsDaoI goodsDao;
-	
-//	public Logistics entity2dto(Tlogistics listOrigin)
-//			throws IllegalAccessException, InvocationTargetException {
-//		Logistics listDestination= new ArrayList<Logistics>(); 
-//		 for (Object source: listOrigin ) {
-//			 Logistics target= new Logistics();
-//		        BeanUtils.copyProperties(target,source);
-//		        listDestination.add(target);
-//		     }
-//			return listDestination;
-//	}
+
+	public Logistics getLogisticsByGoodsId(int goodsId) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		Tlogistics tlogistics = logisticsDao.findLogisticsByGoodsId(goodsId);
+		Logistics logistics = entity2dto(tlogistics);
+		return logistics;
+	}
 	
 	public Logistics entity2dto(Tlogistics tlogistics) throws IllegalAccessException, InvocationTargetException{
 		Logistics logistics = new Logistics();
 		BeanUtils.copyProperties(logistics, tlogistics);
-		return logistics;	
-	}
-	public Logistics getgoods(String goodsNum)  throws IllegalAccessException, InvocationTargetException{
-		// TODO Auto-generated method stub
-		
-		int goodsId = logisticsDao.findGoodsIdBynum(goodsNum);
-		Tlogistics tlogistics =  logisticsDao.getgoods(goodsId);
-		Logistics logistics  = entity2dto(tlogistics);
+		logistics.setGoodsId(tlogistics.getGoods().getGoodsId());
 		return logistics;
-		
 	}
-	public String getgoodsName(String goodsNum) {
-		String goodsname = logisticsDao.findGoodsName(goodsNum);
-		return goodsname;
-	}
-	public void updatelocal(String goodsNum,String nowaddress) {
-		  logisticsDao.updatelocal(goodsNum,nowaddress);
-		
-	}
-	public void setLoginstics(Logistics logistic) {
+
+	public void setZhongzhuan(int goodsId, String address) {
 		// TODO Auto-generated method stub
 		Date date = new Date();
-		String d = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
+		String d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		Tlogistics tlogistics = logisticsDao.findLogisticsByGoodsId(goodsId);
+		tlogistics.setmAddress(tlogistics.getmAddress()+","+address);
+		tlogistics.setmTime(tlogistics.getmTime()+","+d);
+	}
+	public void setLogistics(Logistics logistic) {
+		// TODO Auto-generated method stub
+		Date date = new Date();
+		String d = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 		Tgoods tgoods = goodsDao.search(logistic.getGoodsNum());
 		tgoods.setStatus2(true);
 		tgoods.setUpdatetime(new Date());
@@ -71,8 +62,11 @@ public class LogisticsServiceImpl implements LogisticsServiceI{
 		tlogistics.setmAddress(logistic.getmAddress());
 		tlogistics.setmTime(d);
 		tlogistics.setIntro(logistic.getIntro());
-		tlogistics.setTgoods(tgoods);
+		tlogistics.setGoods(tgoods);
 		logisticsDao.save(tlogistics);
 	}
+
+
+
 
 }

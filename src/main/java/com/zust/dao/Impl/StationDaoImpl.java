@@ -15,10 +15,12 @@ import com.zust.entity.Tstation;
 public class StationDaoImpl extends BaseDaoImpl<Tstation> implements StationDaoI {
 
 	
-	public void getZZZname() {
+	public List<Object[]> getZZZname() {
 		// TODO Auto-generated method stub
-		String hql = "SELECT stationId,name FROM Tstation";
-		getCurrentSession().createQuery(hql).list();
+		String hql = "SELECT name FROM Tstation";
+		 List<Object[]>  list  = getCurrentSession().createQuery(hql).list();
+		 
+		return list;
 	}
 
 	

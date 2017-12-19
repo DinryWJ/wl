@@ -7,7 +7,7 @@ public class Logistics {
 	
 	private String mAddress;
 	
-	private Date mTime;
+	private String mTime;
 	
 	private int goodsId;
 
@@ -33,11 +33,11 @@ public class Logistics {
 		this.mAddress = mAddress;
 	}
 
-	public Date getmTime() {
+	public String getmTime() {
 		return mTime;
 	}
 
-	public void setmTime(Date mTime) {
+	public void setmTime(String mTime) {
 		this.mTime = mTime;
 	}
 

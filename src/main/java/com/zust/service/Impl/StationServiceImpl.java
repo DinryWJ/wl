@@ -49,15 +49,7 @@ public class StationServiceImpl implements StationServiceI {
 		     }
 			return listDestination;
 	}
-	public List<SimStation> entity2dto2(List<Tstation> listOrigin) throws IllegalAccessException, InvocationTargetException{
-		List<SimStation> listDestination= new ArrayList<SimStation>(); 
-		 for (Object source: listOrigin ) {
-			 SimStation target= new SimStation();
-		        BeanUtils.copyProperties(target,source);
-		        listDestination.add(target);
-		     }
-			return listDestination;
-	}
+
 	public Station entity2dto(Tstation t) throws IllegalAccessException, InvocationTargetException{
 		Station s = new Station();
 		BeanUtils.copyProperties(s, t);
@@ -92,13 +84,19 @@ public class StationServiceImpl implements StationServiceI {
 		
 	}
 
-	public List<SimStation> getZZZName() throws IllegalAccessException, InvocationTargetException {
+	public List<Object[]> getZZZName(){
 		// TODO Auto-generated method stub
 		
 
 
-		 stationDao.getZZZname();
-
-		return null;
+		List<Object[]> list = stationDao.getZZZname();
+//		System.out.println(list.size());
+//		for(Object[] object : list){    
+//            int id = Integer.parseInt(object[0].toString());    
+//            String name = (String)object[1];            
+//            System.out.println("id="+id+","+"name="+name);    
+//
+//        }  
+		return list;
 	}
 }

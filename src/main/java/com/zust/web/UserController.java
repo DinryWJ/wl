@@ -71,49 +71,27 @@ public class UserController {
 	@RequestMapping("/staff_seachyh1.html")
 	public ModelAndView staffSeachyh(HttpServletRequest request,String s,String page) throws IllegalAccessException, InvocationTargetException{
 		String i =request.getParameter("page");
-		s = request.getParameter("findby");
-		if(page==null){
-			page = "1";
-			int page1 = Integer.parseInt(page);
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("staff_seachyh");
-			
-			boolean status = s.contains("@");
-				if(status){
-					List<User> user  = userService.searchByemail(s,page1);
-					List wpage = userService.getPageall(s);
-					mav.addObject("user", user);
-					mav.addObject("pageall", wpage);
-				}
-				else{
-					List<User> user = userService.searchByname(s,page1);
-					List wpage = userService.getPageall(s);
-					mav.addObject("user", user);
-					mav.addObject("pageall", wpage);
-				}
-				return mav;	
-		}
-		else{
-			int page1 = Integer.parseInt(page);
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("staff_seachyh");
-			boolean status = s.contains("@");
-				if(status){
-					List<User> user  = userService.searchByemail(s,page1);
-					List wpage = userService.getPageall(s);
-					mav.addObject("email",s);
-					mav.addObject("pageall", wpage);
-					mav.addObject("user", user);
-				}
-				else{
-					List<User> user = userService.searchByname(s,page1);
-					List wpage = userService.getPageall(s);
-					mav.addObject("email",s);
-					mav.addObject("pageall", wpage);
-					mav.addObject("user", user);
-				}
-				return mav;	
-		}			
+		s = request.getParameter("findby");		
+		int page1 = Integer.parseInt(page);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("staff_seachyh");
+		boolean status = s.contains("@");
+			if(status){
+				List<User> user  = userService.searchByemail(s,page1);
+				List wpage = userService.getPageall(s);
+				mav.addObject("email",s);
+				mav.addObject("pageall", wpage);
+				mav.addObject("user", user);
+			}
+			else{
+				List<User> user = userService.searchByname(s,page1);
+				List wpage = userService.getPageall(s);
+				mav.addObject("email",s);
+				mav.addObject("pageall", wpage);
+				mav.addObject("user", user);
+			}
+			return mav;	
+					
 	}
 	@RequestMapping("/staff_getyh.html")
 	public ModelAndView staffgetyh(HttpServletRequest request, 
