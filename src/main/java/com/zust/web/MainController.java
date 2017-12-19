@@ -63,8 +63,5 @@ public class MainController {
 	public String staffloginUpPage(){
 		return "staff_signup";
 	}
-	@RequestMapping(value="/admin_newZZZ.html")
-	public String adminNewZZZ(){
-		return "admin_newZZZ";
-	}
+
 }

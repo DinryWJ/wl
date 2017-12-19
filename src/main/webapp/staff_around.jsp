@@ -21,9 +21,9 @@
         <img src="assets/demo/avatars/1.jpg" alt="" class="pull-xs-left m-r-2 border-round" style="width: 54px; height: 54px;">
         <div class="font-size-16"><span class="font-weight-light"></span><strong>${sessionScope.staff.name}</strong></div>
         <div class="btn-group" style="margin-top: 4px;">
-          <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-envelope"></i></a>
-          <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-user"></i></a>
-          <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-cog"></i></a>
+          <a href="/staff_tousu.html" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-envelope"></i></a>
+          <a href="/staff_person.html" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-user"></i></a>
+          <a href="/staff_person.html" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-cog"></i></a>
           <a href="/stafftoLogin.html" class="btn btn-xs btn-danger btn-outline"><i class="fa fa-power-off"></i></a>
         </div>
       </li>
@@ -31,7 +31,10 @@
         <a href="staff_index.html"><i class="px-nav-icon ion-ios-pulse-strong"></i><span class="px-nav-label">首页</span></a>
       </li>
       <li class="px-nav-item">
-         <a href="staff_sh.html"><i class="px-nav-icon fa fa-play"></i><span class="px-nav-label">邮件搜索</span></a>
+         <a href="staff_sh.html"><i class="px-nav-icon fa fa-search"></i><span class="px-nav-label">邮件搜索</span></a>
+      </li>
+       <li class="px-nav-item">
+         <a href="staff_person.html"><i class="px-nav-icon fa fa-cog"></i><span class="px-nav-label">个人设置</span></a>
       </li>
       <li class="px-nav-item px-nav-dropdown">
         <a href="shenhe.html"><i class="px-nav-icon fa fa-archive"></i><span class="px-nav-label">寄件信息管理</span></a>
@@ -41,7 +44,7 @@
         </ul>
       </li>
       <li class="px-nav-item px-nav-dropdown">
-        <a href="staff_tongzhi.html"><i class="px-nav-icon fa fa-archive"></i><span class="px-nav-label">上门取件管理</span></a>
+        <a href="staff_tongzhi.html"><i class="px-nav-icon fa fa-telegram"></i><span class="px-nav-label">上门取件管理</span></a>
       	 <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="staff_tongzhi.html"><span class="px-nav-label">未处理订单</span></a></li>
           <li class="px-nav-item"><a href="staff_tongzhi2.html"><span class="px-nav-label">通知上门取件</span></a></li>
@@ -57,18 +60,20 @@
           <li class="px-nav-item"><a href="staff_tousu2.html"><span class="px-nav-label">反馈</span></a></li>
         </ul>
       </li>
-      <li class="px-nav-item px-nav-dropdown">
+		<li class="px-nav-item px-nav-dropdown">
         <a href=""><i class="px-nav-icon fa fa-times-circle-o"></i><span class="px-nav-label">用户管理</span></a>
          <ul class="px-nav-dropdown-menu">
-          <li class="px-nav-item"><a href=""><span class="px-nav-label">搜索用户</span></a></li>
-          <li class="px-nav-item"><a href=""><span class="px-nav-label">修改用户信息</span></a></li>
+          <li class="px-nav-item"><a href="staff_seachyh.html"><span class="px-nav-label">搜索用户</span></a></li>
+          <li class="px-nav-item"><a href="staff_getyh.html"><span class="px-nav-label">修改用户信息</span></a></li>
         </ul>
       </li>
+
       <li class="px-nav-item px-nav-dropdown">
-        <a href=""><i class="px-nav-icon fa fa-times-circle-o"></i><span class="px-nav-label">中转站管理</span></a>
+        <a href="admin_newZZZ.html"><i class="px-nav-icon fa fa-building"></i><span class="px-nav-label">中转站管理</span></a>
          <ul class="px-nav-dropdown-menu">
-          <li class="px-nav-item"><a href="/admin_newZZZ.html"><span class="px-nav-label">新增中转站</span></a></li>
-          <li class="px-nav-item"><a href=""><span class="px-nav-label">修改中转站信息</span></a></li>
+          <li class="px-nav-item"><a href="admin_allZZZ.html"><span class="px-nav-label">所有中转站</span></a></li>
+          <li class="px-nav-item"><a href="admin_newZZZ.html"><span class="px-nav-label">新增中转站</span></a></li>
+          <li class="px-nav-item"><a href="admin_modifyZZZ.html"><span class="px-nav-label">修改中转站信息</span></a></li>
         </ul>
       </li>
     </ul>

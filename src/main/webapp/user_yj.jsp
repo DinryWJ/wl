@@ -62,7 +62,7 @@
       <div class="panel-body">
 
         <div class="table-primary">
-          <table class="table table-striped table-bordered" id="datatables" display: none;>
+          <table class="table table-striped table-bordered" id="datatables" display: none>
             <thead>
               <tr>
                     <th>Goods ID</th>
@@ -160,40 +160,40 @@
 	    cache: false,    
 	    dataType : "json",    
 	    success: function(objects){        		
-		var tr = $("#cloneTr");
+			var tr = $("#cloneTr");
 	    	$.each(objects, function(index,item){                              
-                             //克隆tr，每次遍历都可以产生新的tr                              
-                               var clonedTr = tr.clone();  
-                               var _index = index;  
-                              
-                               //循环遍历cloneTr的每一个td元素，并赋值  
-                               clonedTr.children("td").each(function(inner_index){  
-                                  
-                                      //根据索引为每一个td赋值  
-                                            switch(inner_index){  
-                                                  case(0):   
-                                                     $(this).html(item.goodsId);  
-                                                     break;  
-                                                  case(1):  
-                                                	  var a = "user_sh.html?s="+item.code;
-                                                     $(this).html(item.code).wrap("<a href='"+a+"' ></a>");;  
-                                                     break;  
-                                                 case(2):  
-                                                     $(this).html(item.sUserAddress);  
-                                                     break;  
-                                                 case(3):  
-                                                     $(this).html(item.rUserAddress);  
-                                                     break;  
-                                		 		case(4):  
-                                                     $(this).html(item.status.toString());  
-                                                     break; 	
-                                           }//end switch                          
-                            });//end children.each  
-                          
-                           //把克隆好的tr追加原来的tr后面  
-                           clonedTr.insertAfter(tr);  
-                        });//end $each  
-                        $("#cloneTr").hide();
+	                            //克隆tr，每次遍历都可以产生新的tr                              
+	                              var clonedTr = tr.clone();  
+	                              var _index = index;  
+	                             
+	                              //循环遍历cloneTr的每一个td元素，并赋值  
+	                              clonedTr.children("td").each(function(inner_index){  
+	                                 
+	                                     //根据索引为每一个td赋值  
+	                                           switch(inner_index){  
+	                                                 case(0):   
+	                                                    $(this).html(item.goodsId);  
+	                                                    break;  
+	                                                 case(1):  
+	                                               	  var a = "user_sh.html?s="+item.code;
+	                                                    $(this).html(item.code).wrap("<a href='"+a+"' ></a>");;  
+	                                                    break;  
+	                                                case(2):  
+	                                                    $(this).html(item.sUserAddress);  
+	                                                    break;  
+	                                                case(3):  
+	                                                    $(this).html(item.rUserAddress);  
+	                                                    break;  
+	                               		 		case(4):  
+	                                                    $(this).html(item.status.toString());  
+	                                                    break; 	
+	                                          }//end switch                          
+	                           });//end children.each  
+	                         
+	                          //把克隆好的tr追加原来的tr后面  
+	                          clonedTr.insertAfter(tr);  
+	                       });//end $each  
+	                       $("#cloneTr").hide();
 						$("#datatables").show(); 
 	         }
 	});   

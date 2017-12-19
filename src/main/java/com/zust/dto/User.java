@@ -19,7 +19,7 @@ public class User {
 
 	private boolean type;
 
-	private int status;
+	private boolean status;
 
 	private Date updatetime;
 
@@ -89,11 +89,11 @@ public class User {
 		this.type = type;
 	}
 
-	public int getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

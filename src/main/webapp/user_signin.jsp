@@ -120,7 +120,7 @@
 				<small><c:if test ="${!empty error}" ><font color="red"><c:out value="${error}"></c:out></font></c:if></small>
                 <fieldset class="page-signin-form-group form-group form-group-lg">
                   <div class="page-signin-icon text-muted"><i class="ion-person"></i></div>
-                  <input type="text" class="page-signin-form-control form-control" placeholder="你的邮箱" name="email">
+                  <input type="email" class="page-signin-form-control form-control" placeholder="你的邮箱" name="email">
                 </fieldset>
 
                 <fieldset class="page-signin-form-group form-group form-group-lg">

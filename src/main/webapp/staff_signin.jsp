@@ -100,7 +100,7 @@
 <small><c:if test ="${!empty error}" ><font color="red"><c:out value="${error}"></c:out></font></c:if></small>
     <form action="staffloginCheck.html" class="panel p-a-4">
       <fieldset class=" form-group form-group-lg">
-        <input type="text" class="form-control" placeholder="Your Email" name="email">
+        <input type="email" class="form-control" placeholder="Your Email" name="email">
       </fieldset>
 
       <fieldset class=" form-group form-group-lg">

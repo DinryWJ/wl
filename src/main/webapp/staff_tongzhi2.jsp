@@ -70,58 +70,10 @@
                 <label class="col-sm-4 control-label">选择中转站:</label>
                 <div class="col-sm-8">
                   <div class="m-b-2">
-                    <select class="form-control select2-example select2-hidden-accessible" style="width: 100%" data-allow-clear="true" tabindex="-1" aria-hidden="true" name="mAddress">
+                    <select id="centerNameSelect" class="form-control select2-example select2-hidden-accessible" style="width: 100%" data-allow-clear="true" tabindex="-1" aria-hidden="true" name="mAddress">
                       <option></option>
                       <option value="AK">Alaska</option>
-                      <option value="HI">Hawaii</option>
-                      <option value="CA">California</option>
-                      <option value="NV">Nevada</option>
-                      <option value="OR">Oregon</option>
-                      <option value="WA">Washington</option>
-                      <option value="AZ">Arizona</option>
-                      <option value="CO">Colorado</option>
-                      <option value="ID">Idaho</option>
-                      <option value="MT">Montana</option>
-                      <option value="NE">Nebraska</option>
-                      <option value="NM">New Mexico</option>
-                      <option value="ND">North Dakota</option>
-                      <option value="UT">Utah</option>
-                      <option value="WY">Wyoming</option>
-                      <option value="AL">Alabama</option>
-                      <option value="AR">Arkansas</option>
-                      <option value="IL">Illinois</option>
-                      <option value="IA">Iowa</option>
-                      <option value="KS">Kansas</option>
-                      <option value="KY">Kentucky</option>
-                      <option value="LA">Louisiana</option>
-                      <option value="MN">Minnesota</option>
-                      <option value="MS">Mississippi</option>
-                      <option value="MO">Missouri</option>
-                      <option value="OK">Oklahoma</option>
-                      <option value="SD">South Dakota</option>
-                      <option value="TX">Texas</option>
-                      <option value="TN">Tennessee</option>
-                      <option value="WI">Wisconsin</option>
-                      <option value="CT">Connecticut</option>
-                      <option value="DE">Delaware</option>
-                      <option value="FL">Florida</option>
-                      <option value="GA">Georgia</option>
-                      <option value="IN">Indiana</option>
-                      <option value="ME">Maine</option>
-                      <option value="MD">Maryland</option>
-                      <option value="MA">Massachusetts</option>
-                      <option value="MI">Michigan</option>
-                      <option value="NH">New Hampshire</option>
-                      <option value="NJ">New Jersey</option>
-                      <option value="NY">New York</option>
-                      <option value="NC">North Carolina</option>
-                      <option value="OH">Ohio</option>
-                      <option value="PA">Pennsylvania</option>
-                      <option value="RI">Rhode Island</option>
-                      <option value="SC">South Carolina</option>
-                      <option value="VT">Vermont</option>
-                      <option value="VA">Virginia</option>
-                      <option value="WV">West Virginia</option>
+
                     </select>
                   </div>
                   
@@ -220,7 +172,19 @@
         placeholder: 'Select value',
       });
     });
-
+    $.ajax({    
+	    type: "post",    
+	    url:'getZZZName.html',    
+	    cache: false,    
+	    dataType : "json",    
+	    success: function(data){        		
+	    	$.each(data, function(index,item){                              
+	    		 var id = data[index].id; 
+                 var text = data[index].text; 
+                 $("#centerNameSelect").append("<option value='"+id+"'>"+text+"</option>");
+	         })
+	    }
+	});   
     // -------------------------------------------------------------------------
    
   </script>

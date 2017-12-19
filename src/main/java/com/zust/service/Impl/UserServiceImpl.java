@@ -50,6 +50,50 @@ public class UserServiceImpl implements UserServiceI{
 		Tuser tuser = userDao.getUserById(id);
 		userDao.updatePassword(tuser,newPassword);
 	}
+	public User entity2dto(Tuser tuser) throws IllegalAccessException, InvocationTargetException{
+		User user = new User();
+		BeanUtils.copyProperties(user, tuser);
+		return user;
+	}
+	
+	public List<User> entity2dto(List<Tuser> listOrigin) throws IllegalAccessException, InvocationTargetException{
+		List<User> listDestination= new ArrayList<User>(); 
+		 for (Object source: listOrigin ) {
+			 User target= new User();
+		        BeanUtils.copyProperties(target,source);
+		        listDestination.add(target);
+		     }
+			return listDestination;
+	}
+	
+	public List<User> searchByemail(String s,int page) throws IllegalAccessException, InvocationTargetException {
+		if(s!=null){
+		List<Tuser> tuser =  userDao.searchByemail(s,page);
+		List<User> user = entity2dto(tuser);
+		return user;
+		}
+		return null;
+	}
+	public List<User> searchByname(String s,int page) throws IllegalAccessException, InvocationTargetException {
+		if(s!=null){
+		List<Tuser> tuser = userDao.searchByname(s,page);
+		List<User> user= entity2dto(tuser);
+		return user;
+		}
+	return null;
+	}
+	public List getPageall(String s) {
+		return userDao.getPageall(s);
+	}
+	public User getUserByemail(String email) throws IllegalAccessException, InvocationTargetException {
+		Tuser tuser = userDao.getUserByemail(email);
+	     User user= entity2dto(tuser);
+		return user;
+	}
+	public void supdateUser(String email, String name, String password, String phone, String address, String createtime,
+			String updatetime,boolean gender,boolean status) {
+		userDao.supdateUser(email, name, password,phone,address,createtime,updatetime, gender,status);
+	}
 
 
 }

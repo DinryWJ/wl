@@ -2,14 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-  <title>中转 工作人员端 物流信息管理平台</title>
+  <title>首页 工作人员端 物流信息管理平台</title>
 
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
   <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
@@ -45,90 +44,73 @@
   <script src="assets/pace/pace.min.js"></script>
 
   <script src="assets/demo/demo.js"></script>
-  <style>
-    .box,
-    .box-cell {
-      overflow: visible !important;
-      -webkit-mask-image: none !important;
-    }
-
-    .page-forum-thread-title .label {
-      vertical-align: text-bottom;
-      font-weight: bold;
-    }
-
-    .page-forum-thread-actions .btn.btn-outline {
-      opacity: .4;
-    }
-
-    .page-forum-thread-actions .btn.btn-outline:hover,
-    .page-forum-thread-actions .btn.btn-outline:focus,
-    .page-forum-thread-actions .btn.btn-outline:active,
-    .page-forum-thread-actions .btn.btn-outline.active {
-      opacity: 1;
-    }
-
-    #summernote-forum-thread-reply + .note-editor {
-      border-radius: 0;
-      border: none;
-      margin: 0;
-    }
-
-    @media (min-width: 768px) {
-      .page-forum-thread-counters {
-        border-left-style: solid;
-        border-left-width: 1px;
-      }
-
-      html[dir="rtl"] .page-forum-thread-counters {
-        border-left: 0;
-        border-right-style: solid;
-        border-right-width: 1px;
-      }
-    }
-  </style>
 </head>
 <body>
 <jsp:include page="staff_around.jsp"></jsp:include>
-  <div class="px-content">
+ <div class="px-content">
     <div class="page-header">
-      <h1>中转站</h1>
+      <h1>修改</h1>
     </div>
-   
-    <div class="panel">
-      <div class="panel-heading">
-        <div class="panel-title">物品信息</div>
-      </div>
-      <div class="panel-body">
-        <form action="updatelocal.html" class="form-inline">
-          <div class="form-group">
-            <label for="form-inline-input-1">Name</label>
-            <input value="${logistics.name}" name="" type="text" class="form-control" id="form-inline-input-1" placeholder="物品名称">
+      <div class="col-md-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <span class="panel-title">Modify</span>
           </div>
-          <div class="form-group">
-            <label for="form-inline-input-2">&nbsp;&nbsp;num</label>
-            <input value="${logistics.goodsNum}" name="goods_num" type="text" class="form-control" id="form-inline-input-2" placeholder="编号">
-          </div>
-          <div class="form-group">
-            <label for="form-inline-input-2">&nbsp;&nbsp;address</label>
-            <input value="${logistics.mAddress}" name="address" type="text" class="form-control" id="form-inline-input-2" placeholder="现在地址">
-          </div>
-          
-       
-
-        <hr class="page-wide-block">
-        
-        
-          
-            <div class="input-group">   
-              <input name="maddress" type="text" class="form-control" id="form-inline-input-8" placeholder="更新地址">
+          <form action="/checkModify.html" class="panel-body form-horizontal form-bordered p-y-0" onSubmit="return check();" method="post">
+             <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Id:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="stationId" class="form-control" value="${station.stationId }" readonly="readonly" >
+                </div>
+              </div>
             </div>
-          
-          <button type="submit" class="btn btn-primary">确定</button>
-        </form>
+            <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Name:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="name" class="form-control" value="${station.name }">
+                </div>
+              </div>
+            </div>
+            <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Address:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="address" class="form-control" value="${station.address }">
+                </div>
+              </div>
+            </div>
+            <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Intro:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="intro" class="form-control"  value="${station.intro }">
+                </div>
+              </div>
+            </div>
+            <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Phone:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="phone" class="form-control" value="${station.phone }">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-offset-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+          </div>
+          </form>
+             
+        </div>
       </div>
+
   </div>
-</div>
+
+
+
 
 
 
@@ -182,6 +164,26 @@
       $('#navbar-notifications').perfectScrollbar();
       $('#navbar-messages').perfectScrollbar();
     });
+  </script>
+    <script>
+  
+	function check() {
+		// body...
+		var phone = $(" input[ name='phone' ] ").val();
+		var name = $(" input[ name='name' ] ").val();
+		var address = $(" input[ name='address' ] ").val();
+		var intro = $(" input[ name='intro' ] ").val();
+		var code=$(" input[ name='stationId' ] ").val();
+		if (code=="") {
+			alert("请先选择中转站");	
+			return false;	
+		}else if(name==""||phone==""||address==""||intro==""){
+			alert("不能有空值");
+			return false;
+		}else{
+			return true;
+		}
+	}
   </script>
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,7 +67,77 @@ public class UserController {
 		}else
 		return new ModelAndView("redirect:user_person.html");	
 		
-}
+	}
+	@RequestMapping("/staff_seachyh1.html")
+	public ModelAndView staffSeachyh(HttpServletRequest request,String s,String page) throws IllegalAccessException, InvocationTargetException{
+		String i =request.getParameter("page");
+		s = request.getParameter("findby");
+		if(page==null){
+			page = "1";
+			int page1 = Integer.parseInt(page);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("staff_seachyh");
+			
+			boolean status = s.contains("@");
+				if(status){
+					List<User> user  = userService.searchByemail(s,page1);
+					List wpage = userService.getPageall(s);
+					mav.addObject("user", user);
+					mav.addObject("pageall", wpage);
+				}
+				else{
+					List<User> user = userService.searchByname(s,page1);
+					List wpage = userService.getPageall(s);
+					mav.addObject("user", user);
+					mav.addObject("pageall", wpage);
+				}
+				return mav;	
+		}
+		else{
+			int page1 = Integer.parseInt(page);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("staff_seachyh");
+			boolean status = s.contains("@");
+				if(status){
+					List<User> user  = userService.searchByemail(s,page1);
+					List wpage = userService.getPageall(s);
+					mav.addObject("email",s);
+					mav.addObject("pageall", wpage);
+					mav.addObject("user", user);
+				}
+				else{
+					List<User> user = userService.searchByname(s,page1);
+					List wpage = userService.getPageall(s);
+					mav.addObject("email",s);
+					mav.addObject("pageall", wpage);
+					mav.addObject("user", user);
+				}
+				return mav;	
+		}			
+	}
+	@RequestMapping("/staff_getyh.html")
+	public ModelAndView staffgetyh(HttpServletRequest request, 
+			@RequestParam(value = "email", required = false)String email) 
+					throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("staff_updateyh");
+		if(email!=null){
+			User user = userService.getUserByemail(email);
+			mav.addObject("user", user);
+		}
+		return mav;
+	}
+	@RequestMapping("/staff_updateyh.html")
+	public ModelAndView staffupdateyh(HttpServletRequest request, 
+			String email,String name,String password,String phone,String address,
+			String createtime,String updatetime,boolean gender,boolean status)
+					throws IllegalAccessException, InvocationTargetException{
+		System.out.println("开始gende"+gender);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("staff_updateyh");
+			userService.supdateUser(email, name, password,phone,address,createtime,updatetime, gender,status);
+			return new ModelAndView("redirect:staff_getyh.html?email="+email+"");
+	}
 
 
 }

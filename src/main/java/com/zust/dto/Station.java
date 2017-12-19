@@ -11,8 +11,7 @@ public class Station {
 	private String intro;
 
 	private String phone;
-	
-	private String sStaffId;
+
 
 	public int getStationId() {
 		return stationId;
@@ -54,12 +53,6 @@ public class Station {
 		this.phone = phone;
 	}
 
-	public String getsStaffId() {
-		return sStaffId;
-	}
 
-	public void setsStaffId(String sStaffId) {
-		this.sStaffId = sStaffId;
-	}
 	
 }

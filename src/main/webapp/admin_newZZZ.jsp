@@ -47,12 +47,58 @@
 </head>
 <body>
 <jsp:include page="staff_around.jsp"></jsp:include>
-  <div class="px-content">
+ <div class="px-content">
     <div class="page-header">
-      <h1>admin 首页</h1>
+      <h1>新增中转站</h1>
     </div>
+      <div class="col-md-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <span class="panel-title">new</span>
+          </div>
+          <form action="/newZZZ.html" class="panel-body form-horizontal form-bordered p-y-0" onSubmit="return check(this);" method="post">
+            <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Name:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="name" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Address:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="address" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Intro:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="intro" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group panel-block">
+              <div class="row">
+                <label class="col-sm-4 control-label">Phone:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="phone" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-offset-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+          </div>
+          </form>
+             
+        </div>
+      </div>
 
-    <div>Content</div>
   </div>
 
 
@@ -108,6 +154,33 @@
       $('#navbar-notifications').perfectScrollbar();
       $('#navbar-messages').perfectScrollbar();
     });
+  </script>
+  <script type="text/javascript">
+    function check() {
+      // body...
+      var name = $(" input[ name='name' ] ").val();
+      var address = $(" input[ name='address' ] ").val();
+      var intro = $(" input[ name='intro' ] ").val();
+      var phone = $(" input[ name='phone' ] ").val();
+      if(''==name){
+        alert('name不能为空');
+        return false;
+      }
+      if (''==address) {
+        alert('address不能为空');
+        return false;
+      }
+      if (''==intro) {
+        alert('intro不能为空');
+        return false;
+      }
+      if (''==phone) {
+        alert('phone不能为空');
+        return false;
+      }
+      
+      return true;
+    }
   </script>
 </body>
 </html>

@@ -51,6 +51,11 @@ public class StaffController {
 	public String staffIndex(){
 		return "staff_index";
 	}
+	@RequestMapping(value="staff_person.html")
+	public String staffPserson(){
+		return "staff_person";
+	}
+	
 	@RequestMapping(value="staff_shenhe.html")
 	public ModelAndView staffShenhe() throws IllegalAccessException, InvocationTargetException{
 		List<Goods> list = goodsService.getAllYJ();
@@ -112,4 +117,9 @@ public class StaffController {
 	public String staffZhongzhuan(){
 		return "staff_zhongzhuan";
 	}
+	@RequestMapping(value="/staff_seachyh.html")
+	public String staffSeachyh(){
+		return "staff_seachyh";
+	}
+
 }
