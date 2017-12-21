@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zust.dto.Goods;
+import com.zust.dto.Logistics;
+import com.zust.dto.Staff;
+import com.zust.dto.Station;
 import com.zust.dto.User;
 import com.zust.service.GoodsServiceI;
 
@@ -21,36 +24,17 @@ public class GoodsController {
 	@Autowired
 	private GoodsServiceI goodsService;
 	
-	@ResponseBody
-	@RequestMapping(value="/myYJ.html")
-	public List<Goods> userYj(HttpServletRequest request) throws IllegalAccessException, InvocationTargetException{
-		User user  = (User) request.getSession().getAttribute("user");
-		int id =user.getUserId(); 
-		List<Goods> goods = goodsService.getMyYj(id);
-		if(goods.isEmpty()){
-			return null;
-		}
-		return goods;
-	}
+
 	
 	@RequestMapping(value="/jj.html")
-	public String userJjPage(HttpServletRequest request,String sname,String sphone,String saddress,String name,String type,int weight,String intro,String rname,String rphone,String raddress){
+	public String userJjPage(HttpServletRequest request,Goods goods){
 		User user  = (User) request.getSession().getAttribute("user");
 		int id = user.getUserId();
-		goodsService.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
+		goodsService.userJjPage(id,goods);
 		return "redirect:/user_index.html";
 	}
 	
-	@RequestMapping(value="/user_sh.html")
-	public ModelAndView goodsSearch(HttpServletRequest request, @RequestParam(value = "s", required = false)String s) throws IllegalAccessException, InvocationTargetException{
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user_sh");
-		if(s!=null){
-			Goods good = goodsService.search(s);
-			mav.addObject("good", good);
-		}
-		return mav;	
-	}
+
 	@RequestMapping(value="/staff_sh.html")
 	public ModelAndView goodsSearch2(HttpServletRequest request, @RequestParam(value = "s", required = false)String s) throws IllegalAccessException, InvocationTargetException{
 		ModelAndView mav = new ModelAndView();
@@ -62,8 +46,24 @@ public class GoodsController {
 		return mav;	
 	}
 	@RequestMapping(value="/user_yj.html")
-	public String userYj(){
-		return "user_yj";
+	public ModelAndView userYj(HttpServletRequest request,@RequestParam(value="pageNum",required=false)String pageNum)throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		User user  = (User) request.getSession().getAttribute("user");
+		int id =user.getUserId(); 
+		
+		int num=1;	
+		int total = goodsService.getYJPageNum(id,5);	
+		if(pageNum==null){
+			num=1;		
+		}else{
+			num = Integer.parseInt(pageNum);
+		}
+		List<Goods> goods = goodsService.getMyYj(id,num,5);
+		mav.addObject("goods", goods);
+		mav.setViewName("user_yj");
+		mav.addObject("spageNum", num);
+		mav.addObject("total", total);
+		return mav;
 	}
 	@RequestMapping(value="/user_yj2.html")
 	public String userYj2(){

@@ -53,7 +53,7 @@
       <h1>寄件</h1>
     </div>
 
-    <form action="jj.html" class="panel form-horizontal" >
+    <form action="jj.html" class="panel form-horizontal"  method="post">
       <div class="panel-heading">
         <span class="panel-title">寄件人信息</span>
       </div>
@@ -61,15 +61,15 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">寄件人姓名</label>
-            <input type="text" name="sname" placeholder="寄件人姓名" class="form-control form-group-margin">
+            <input type="text" name="sUserName" placeholder="寄件人姓名" class="form-control form-group-margin">
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="sphone" placeholder="手机号" class="form-control form-group-margin">
+            <input type="text" name="sUserPhone" placeholder="手机号" class="form-control form-group-margin">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
-            <input type="text" name="saddress" placeholder="详细地址" class="form-control form-group-margin">
+            <input type="text" name="sUserAddress" placeholder="详细地址" class="form-control form-group-margin">
           </div>
         </div><!-- row -->
         
@@ -131,15 +131,15 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">收件人姓名</label>
-            <input type="text" name="rname" placeholder="收件人姓名" class="form-control form-group-margin">
+            <input type="text" name="rUserName" placeholder="收件人姓名" class="form-control form-group-margin">
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="rphone" placeholder="手机号" class="form-control form-group-margin">
+            <input type="text" name="rUserPhone" placeholder="手机号" class="form-control form-group-margin">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
-            <input type="text" name="raddress" placeholder="详细地址" class="form-control form-group-margin">
+            <input type="text" name="rUserAddress" placeholder="详细地址" class="form-control form-group-margin">
           </div>
         </div><!-- row -->
       </div>

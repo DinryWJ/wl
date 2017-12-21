@@ -200,7 +200,10 @@
 		var n = Number(x)+Number(1);
 		var a="/admin_allZZZ.html?pageNum="+p;
 		var b="/admin_allZZZ.html?pageNum="+n;
-		if(p>0&&n<=t){
+		if(t==1){
+			document.getElementById('xg1').setAttribute('class','previous disabled');
+			document.getElementById('xg2').setAttribute('class','next disabled');
+		}else if(p>0&&n<=t){
 			$('#pre').attr("href",a);
 			$('#nex').attr("href",b);
 		}else if(p<=0){

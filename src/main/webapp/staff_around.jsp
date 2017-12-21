@@ -81,7 +81,7 @@
         <a href="#"><i class="px-nav-icon fa fa-building"></i><span class="px-nav-label">工作人员管理</span></a>
          <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="admin_searchyh.html"><span class="px-nav-label">所有工作人员</span></a></li>
-          <li class="px-nav-item"><a href="admin_updateyh.html"><span class="px-nav-label">修改工作人员</span></a></li>
+          <li class="px-nav-item"><a href="admin_getyh.html"><span class="px-nav-label">修改工作人员</span></a></li>
          </ul>
       </li>
     </ul>

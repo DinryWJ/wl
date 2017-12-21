@@ -1,7 +1,7 @@
 <%@ page isELIgnored="false"  language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -55,7 +55,7 @@
     <!-- Header -->
 
     <div class="page-header panel m-b-0 p-y-0 b-a-0 border-radius-0">
-      <form action="admin_seachyh1.html?page=1" method="POST" class="input-group input-group-lg p-y-3">
+      <form action="admin_searchyh1.html?page=1" method="POST" class="input-group input-group-lg p-y-3">
         <input type="text" name="findby" class="form-control" placeholder="Search for...">
         <span class="input-group-btn">
           <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
@@ -77,13 +77,13 @@
       <!-- Pages -->
 
       <div class="tab-pane fade in active" id="results-pages">
-	<c:forEach var="s" items="${staff}"> 
+	<c:forEach var="sta" items="${staffs}"> 
         <div class="panel">
           <div class="panel-body">
             <div class="font-weight-semibold font-size-16">
-            <a href="admin_getyh.html?email=${s.email}">
-            	<c:out value="${s.email}"/>&nbsp;&nbsp;
-            	<c:out value="${s.name}"/>
+            <a href="admin_getyh.html?email=${sta.email}">
+            	<c:out value="${sta.email}"/>&nbsp;&nbsp;
+            	<c:out value="${sta.name}"/>
             </a></div>
           </div>
         </div>
@@ -93,15 +93,15 @@
         <nav class="pagination pagination-sm m-a-0">
            <c:forEach var="p"  items="${pageall}" varStatus="stat">
             <c:if test="${stat.first}" >
-          <li><a href="admin_seachyh1.html?page=${p}&findby=${email}" onclick="changactive()">«</a></li>
+          <li><a href="admin_searchyh1.html?page=${p}&findby=${email}" onclick="changactive()">«</a></li>
           </c:if>
           </c:forEach>
            <c:forEach var="p"  items="${pageall}">
-          <li><a href="admin_seachyh1.html?page=${p}&findby=${email}" onclick="changactive()">${p}</a></li>
+          <li><a href="admin_searchyh1.html?page=${p}&findby=${email}" onclick="changactive()">${p}</a></li>
           </c:forEach>
          <c:forEach var="p" items="${pageall}" varStatus="stat">
            <c:if test="${stat.last}" >
-          <li><a href="admin_seachyh1.html?page=${p}&findby=${email}" onclick="changactive()">»</a></li>
+          <li><a href="admin_searchyh1.html?page=${p}&findby=${email}" onclick="changactive()">»</a></li>
           </c:if>
           </c:forEach>
         </nav>

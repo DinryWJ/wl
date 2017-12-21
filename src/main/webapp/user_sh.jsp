@@ -76,24 +76,98 @@
       <!-- Pages -->
 
       <div class="tab-pane fade in active" id="results-pages">
-<c:if test="${good.code!=null}">
-        <div class="panel">
-          <div class="panel-body">      
-            <div class="font-weight-semibold font-size-16"><a href="#"><c:out value="${good.name}"></c:out></a></div>
-            <div class="p-b-1">编号：<span><c:out value="${good.code}"></c:out></span></div>    
-            <div>发件人姓名  <c:out value="${good.sUserName}"></c:out></div>     
-            <div>发件人地址  <c:out value="${good.sUserAddress}"></c:out></div> 
-            <div>发件人电话  <c:out value="${good.sUserPhone}"></c:out></div> 
-            <div>收件人姓名  <c:out value="${good.rUserName}"></c:out></div> 
-            <div>收件人地址  <c:out value="${good.rUserAddress}"></c:out></div> 
-            <div>收件人电话  <c:out value="${good.rUserPhone}"></c:out></div> 
-            <div>邮件信息     <c:out value="${good.intro}"></c:out></div> 
-            <div class="p-b-1">时间  <c:out value="${good.createtime}"></c:out></div>     
-          </div>  
-          
+      
+      <!--                -->
+    <div class="panel">
+
+      <div class="panel-body p-a-4 b-b-4 bg-white darken">
+        <div class="box m-a-0 border-radius-0 bg-white darken">
+          <div class="box-row valign-middle">
+
+            <div class="box-cell col-md-8">
+              <div class="display-inline-block px-demo-brand px-demo-brand-lg valign-middle">
+                <span class="px-demo-logo m-y-0 m-r-2 bg-primary"><span class="px-demo-logo-1"></span><span class="px-demo-logo-2"></span><span class="px-demo-logo-3"></span><span class="px-demo-logo-4"></span><span class="px-demo-logo-5"></span><span class="px-demo-logo-6"></span><span class="px-demo-logo-7"></span><span class="px-demo-logo-8"></span><span class="px-demo-logo-9"></span></span>
+              </div>
+
+              <div class="display-inline-block m-r-3 valign-middle">
+                <div class="text-muted"><strong>订单</strong></div>
+                <div class="font-size-18 font-weight-bold line-height-1">编号 #${goods.code}</div>
+              </div>
+
+              <!-- Spacer -->
+              <div class="m-t-3 visible-xs visible-sm"></div>
+
+              <div class="display-inline-block p-l-1 b-l-3 valign-middle font-size-12 text-muted">
+                <div>${goods.rUserName}<STRONG>(发货人)</STRONG></div>
+                <div>${goods.rUserAddress}<STRONG>(发货地址)</STRONG></div>
+                <div>${goods.rUserPhone}<STRONG>(手机号)</STRONG></div>
+              </div>
+            </div>
+
+            <!-- Spacer -->
+            <div class="m-t-3 visible-xs visible-sm"></div>
+
+            <div class="box-cell col-md-4">
+              <div class="pull-md-right font-size-15">
+                <div class="text-muted font-size-13 line-height-1"><strong>Date</strong></div>
+                <strong>${goods.createtime}</strong>
+              </div>
+            </div>
+          </div>
         </div>
-		
-</c:if>
+      </div>
+
+      <div class="panel-body p-a-4 bg-white b-b-2">
+        <div class="box m-a-0 border-radius-0">
+          <div class="box-row valign-middle">
+            <div class="box-cell col-md-6 font-size-14">
+              <div><strong>${goods.rUserName}</strong><STRONG>(收货人)</STRONG></div>
+              <div>${goods.rUserAddress}<STRONG>(收货地址)</STRONG></div>
+              <div>${goods.rUserPhone}<STRONG>(手机号)</STRONG></div>
+            </div>
+
+            <!-- Spacer -->
+            <div class="m-t-3 visible-xs visible-sm"></div>
+
+            <div class="box-cell col-md-6 bg-white darken p-x-3 p-y-2">
+              <div class="pull-xs-left m-y-1 font-size-12 text-muted"><strong>当前状态</strong></div>
+              <div class="pull-xs-right font-size-24"><strong>
+              	<c:if test="${goods.status == 'false' }">  
+					正在运输
+				</c:if>  
+				<c:if test="${goods.status == 'true' }">  
+					已完成
+				</c:if>  
+              </strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body p-a-4">
+        <div class="table-responsive">
+          <table class="table m-a-0">
+            <thead>
+              <tr class="bg-white darken">
+                <th class="p-x-2">
+                  物流信息
+                </th>
+                <th class="p-x-2">
+                  时间
+                </th>
+
+              </tr>
+            </thead>
+            <tbody class="font-size-14" id="tbd">
+              <!-- js 填充 -->
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
        
 
 
@@ -166,6 +240,22 @@
     $(function() {
       $('.nav-tabs').pxTabResize();
     });
+  </script>
+    <script>
+
+  	var a = "${logistics.mAddress}";
+  	var b ="${logistics.mTime}";
+  	var aa = a.split(",");
+  	var bb = b.split(",");
+
+
+  	for(var i=0;i<aa.length;i++){
+  		var a2 =aa[i];
+  		var b2 = bb[i];
+  		$("#tbd").append('<tr><td class="p-a-2"><div class="font-weight-semibold">'+a2+'</div><div class="font-size-12 text-muted"></div></td><td class="p-a-2"><strong>'+b2+'</strong></td></tr>');
+  	}
+  	
+  	
   </script>
 </body>
 </html>

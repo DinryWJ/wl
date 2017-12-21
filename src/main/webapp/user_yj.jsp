@@ -51,7 +51,7 @@
 	<jsp:include page="user_around.jsp"></jsp:include>
   <div class="px-content">
     <div class="page-header">
-      <h1>Header</h1>
+      <h1></h1>
     </div>
 
 
@@ -65,26 +65,46 @@
           <table class="table table-striped table-bordered" id="datatables" display: none>
             <thead>
               <tr>
-                    <th>Goods ID</th>
-                    <th>Goods Num</th>
-                    <th>Start Address</th>
-                    <th>destination</th>
-                    <th>Status</th>
+           
+                    <th>编号</th>
+                    <th>起始地</th>
+                    <th>目的地</th>
+                    <th>状态</th>
+                    <th>物流信息</th>
+        
               </tr>
             </thead>
             <tbody>
+             <c:forEach var="good" items="${goods}">
               <tr id="cloneTr">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="center"></td>
-                <td class="center"></td>
+         
+                <td><c:out value="${good.code}"></c:out></td>
+                <td><c:out value="${good.sUserAddress}"></c:out></td>
+                <td class="center"><c:out value="${good.rUserAddress}"></c:out></td>
+                <c:if test="${good.status==true }">
+                	<td>已完成</td>
+                </c:if>
+                <c:if test="${good.status==false }">
+                	<td>进行中</td>
+                </c:if>
+                <c:if test="${good.status2==true }">
+                <td><a class="btn btn-primary btn-3d"  href="/user_sh.html?s=<c:out value="${good.code}"></c:out>">查看</a></td>
+              	</c:if>
+              	 <c:if test="${good.status2==false }">
+                <td><a class="btn btn-info btn-3d" >等待中</a></td>
+              	</c:if>
               </tr>
 
           
-            
+             </c:forEach>
             </tbody>
           </table>
+          		<nav>
+            <ul class="pager">
+              <li class="previous" id="xg1"><a id="pre">← Preview</a></li>
+              <strong id="pageNum" class="font-size-28" >${spageNum}</strong>/<strong id="total">${total }</strong><li class="next" id="xg2"><a id="nex" >Next →</a></li>
+            </ul>
+          </nav>
         </div>
 
       </div>
@@ -149,56 +169,27 @@
     });
 
   </script>
-    <script>
-    // -------------------------------------------------------------------------
-    // Initialize DataTables
-
-
-	$.ajax({    
-	    type: "post",    
-	    url:'myYJ.html',    
-	    cache: false,    
-	    dataType : "json",    
-	    success: function(objects){        		
-			var tr = $("#cloneTr");
-	    	$.each(objects, function(index,item){                              
-	                            //克隆tr，每次遍历都可以产生新的tr                              
-	                              var clonedTr = tr.clone();  
-	                              var _index = index;  
-	                             
-	                              //循环遍历cloneTr的每一个td元素，并赋值  
-	                              clonedTr.children("td").each(function(inner_index){  
-	                                 
-	                                     //根据索引为每一个td赋值  
-	                                           switch(inner_index){  
-	                                                 case(0):   
-	                                                    $(this).html(item.goodsId);  
-	                                                    break;  
-	                                                 case(1):  
-	                                               	  var a = "user_sh.html?s="+item.code;
-	                                                    $(this).html(item.code).wrap("<a href='"+a+"' ></a>");;  
-	                                                    break;  
-	                                                case(2):  
-	                                                    $(this).html(item.sUserAddress);  
-	                                                    break;  
-	                                                case(3):  
-	                                                    $(this).html(item.rUserAddress);  
-	                                                    break;  
-	                               		 		case(4):  
-	                                                    $(this).html(item.status.toString());  
-	                                                    break; 	
-	                                          }//end switch                          
-	                           });//end children.each  
-	                         
-	                          //把克隆好的tr追加原来的tr后面  
-	                          clonedTr.insertAfter(tr);  
-	                       });//end $each  
-	                       $("#cloneTr").hide();
-						$("#datatables").show(); 
-	         }
-	});   
-
-  </script>
+ 	<script>
+		var x = $('#pageNum').text();	
+		var t = Number($('#total').text());
+		var p = Number(x)-Number(1);
+		var n = Number(x)+Number(1);
+		var a="/user_yj.html?pageNum="+p;
+		var b="/user_yj.html?pageNum="+n;
+		if(t==1){
+			document.getElementById('xg1').setAttribute('class','previous disabled');
+			document.getElementById('xg2').setAttribute('class','next disabled');
+		}else if(p>0&&n<=t){
+			$('#pre').attr("href",a);
+			$('#nex').attr("href",b);
+		}else if(p<=0){
+			document.getElementById('xg1').setAttribute('class','previous disabled');
+			$('#nex').attr("href",b);
+		}else if(n>t){
+			document.getElementById('xg2').setAttribute('class','next disabled');
+			$('#pre').attr("href",a);
+		}
+	</script>
 
 
 

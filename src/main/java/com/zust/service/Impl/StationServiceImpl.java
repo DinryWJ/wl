@@ -36,7 +36,7 @@ public class StationServiceImpl implements StationServiceI {
 	public List<Station> getAllZZZ(int pageNum) throws IllegalAccessException, InvocationTargetException {
 		// TODO Auto-generated method stub
 		String hql ="FROM Tstation";
-		List<Tstation> list = stationDao.find(hql,pageNum,2);
+		List<Tstation> list = stationDao.find(hql,pageNum,5);
 		List<Station> stations = entity2dto(list);
 		return stations;
 	}
@@ -61,8 +61,9 @@ public class StationServiceImpl implements StationServiceI {
 		String hql="select count(*) FROM Tstation";
 		Long i = stationDao.count(hql);
 		double tota = (double)i;
-		double total = Math.ceil(tota/2); 
+		double total = Math.ceil(tota/5); 
 		int total2 =(int)(total); 
+		if(total2<1)total2=1;
 		return total2;
 	}
 
@@ -86,9 +87,6 @@ public class StationServiceImpl implements StationServiceI {
 
 	public List<Object[]> getZZZName(){
 		// TODO Auto-generated method stub
-		
-
-
 		List<Object[]> list = stationDao.getZZZname();
 //		System.out.println(list.size());
 //		for(Object[] object : list){    

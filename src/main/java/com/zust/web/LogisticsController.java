@@ -47,14 +47,15 @@ public class LogisticsController {
 		mav.setViewName("staff_zhongzhuan");
 		if(code!=null){
 			Goods goods = goodsService.search(code);
-			Logistics logistics = logisticsService.getLogisticsByGoodsId(goods.getGoodsId());
-			Staff staff =  (Staff) request.getSession().getAttribute("staff");
-			int id = staff.getStationId();
-			Station station = stationService.getStationById(id);
-			mav.addObject("station", station);
-			mav.addObject("goods", goods);
-			mav.addObject("logistics", logistics);
-			
+			if(code!=null){
+				Logistics logistics = logisticsService.getLogisticsByGoodsId(goods.getGoodsId());
+				Staff staff =  (Staff) request.getSession().getAttribute("staff");
+				int id = staff.getStationId();
+				Station station = stationService.getStationById(id);
+				mav.addObject("station", station);
+				mav.addObject("goods", goods);
+				mav.addObject("logistics", logistics);
+			}
 		}
 		return mav;
 	}
@@ -62,5 +63,19 @@ public class LogisticsController {
 	public String setZhongzhuan(int goodsId,String address){
 		logisticsService.setZhongzhuan(goodsId,address);
 		return "staff_zhongzhuan";
+	}
+	@RequestMapping(value="/user_sh.html")
+	public ModelAndView goodsSearch(HttpServletRequest request, @RequestParam(value = "s", required = false)String code) throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("user_sh");
+		if(code!=null){
+			Goods goods = goodsService.search(code);
+			if(goods!=null){
+				Logistics logistics = logisticsService.getLogisticsByGoodsId(goods.getGoodsId());
+				mav.addObject("goods", goods);
+				mav.addObject("logistics", logistics);
+			}
+		}
+		return mav;	
 	}
 }

@@ -26,7 +26,7 @@ public class AdminController {
 		return "admin_searchyh";
 	}
 	
-	@RequestMapping("/admin_seachyh1.html")
+	@RequestMapping("/admin_searchyh1.html")
 	public ModelAndView staffSeachyh(HttpServletRequest request,String s,String page) throws IllegalAccessException, InvocationTargetException{
 		//s是用户输入的搜索依据
 		String i =request.getParameter("page");
@@ -34,21 +34,21 @@ public class AdminController {
 		System.out.println("输入"+s);
 		int page1 = Integer.parseInt(page);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("admin_seachyh");
+		mav.setViewName("admin_searchyh");
 		boolean status = s.contains("@");
 			if(status){
-				List<Staff> staff  = staffService.searchByemail(s,page1);
+				List<Staff> staffs  = staffService.searchByemail(s,page1);
 				List wpage = staffService.getPageall(s);
 				mav.addObject("email",s);
 				mav.addObject("pageall", wpage);
-				mav.addObject("staff", staff);
+				mav.addObject("staffs", staffs);
 			}
 			else{
-				List<Staff> staff =staffService.searchByname(s,page1);
+				List<Staff> staffs =staffService.searchByname(s,page1);
 				List wpage = staffService.getPageall(s);
 				mav.addObject("email",s);
 				mav.addObject("pageall", wpage);
-				mav.addObject("staff", staff);
+				mav.addObject("staffs", staffs);
 			}
 			return mav;				
 	}

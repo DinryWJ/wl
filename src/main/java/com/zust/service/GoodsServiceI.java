@@ -12,10 +12,8 @@ import com.zust.entity.Tgoods;
 
 public interface GoodsServiceI {
 
-	List<Goods> getMyYj(int id) throws IllegalAccessException, InvocationTargetException;
+	List<Goods> getMyYj(int id,int pageNum,int rows) throws IllegalAccessException, InvocationTargetException;
 
-	void userJjPage(int id, String sname, String sphone, String saddress, String name, String type, int weight,
-			String intro, String rname, String rphone, String raddress);
 
 	Goods search(String s) throws IllegalAccessException, InvocationTargetException;
 
@@ -30,7 +28,11 @@ public interface GoodsServiceI {
 	List<Goods> getAllYJ() throws IllegalAccessException, InvocationTargetException;
 
 	void modify(Goods goods) throws IllegalAccessException, InvocationTargetException;
+
+	int getYJPageNum(int userId,int num);
+
+	void userJjPage(int id, Goods goods);
 	
-	
+	 String getNewCode();
 	
 }

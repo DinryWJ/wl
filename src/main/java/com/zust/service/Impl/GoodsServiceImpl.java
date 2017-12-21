@@ -1,9 +1,11 @@
 package com.zust.service.Impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +28,41 @@ public class GoodsServiceImpl implements GoodsServiceI {
 	private UserDaoI userDao;
 	
 	
-	public void userJjPage(int id,String sname, String sphone, String saddress, String name, String type, int weight,
-			String intro, String rname, String rphone, String raddress) {
+	public void userJjPage(int id,Goods goods) {
 		// TODO Auto-generated method stub
-		goodsDao.userJjPage(id,sname,sphone,saddress,name,type,weight,intro,rname,rphone,raddress);
+		Tuser tuser = userDao.get(Tuser.class, id);
+		System.out.println(id);
+		Tgoods tgoods = new Tgoods();
+		tgoods.setsUserName(goods.getsUserName());
+		tgoods.setsUserPhone(goods.getsUserPhone());
+		tgoods.setsUserAddress(goods.getsUserAddress());
+		tgoods.setName(goods.getName());
+		tgoods.setType(goods.getType());
+		tgoods.setWeight(goods.getWeight());
+		tgoods.setIntro(goods.getIntro());
+		tgoods.setrUserName(goods.getrUserName());
+		tgoods.setrUserPhone(goods.getrUserPhone());
+		tgoods.setrUserAddress(goods.getrUserAddress());
+		tgoods.setStatus(false);
+		tgoods.setStatus2(false);
+		tgoods.setCreatetime(new Date());
+		tgoods.setUpdatetime(new Date());
+		tgoods.setCode(getNewCode());
+		tgoods.setUser(tuser);
+		goodsDao.save(tgoods);
 	}
-	public List<Goods> getMyYj(int id) throws IllegalAccessException, InvocationTargetException {
+	public String getNewCode(){		
+		Date date = new Date();
+		String d = new SimpleDateFormat("yyyyMMddhhmmss").format(date);
+		Random random = new Random();  
+        int rannum = (int) (random.nextDouble() * (9999 - 1000 + 1)) + 1000;
+		String d2 = d+rannum;
+		return d2;
+	}
+	public List<Goods> getMyYj(int id,int pageNum,int rows) throws IllegalAccessException, InvocationTargetException {
 		// TODO Auto-generated method stub
-		List<Tgoods> listOrigin = goodsDao.getMyYj(id);
+		String hql = "FROM Tgoods WHERE user.userId="+id;
+		List<Tgoods> listOrigin = goodsDao.find(hql, pageNum, rows);
 
 	    List<Goods> listDestination= entity2dto(listOrigin);
 
@@ -100,6 +129,16 @@ public class GoodsServiceImpl implements GoodsServiceI {
 		Goods good = new Goods();
 		BeanUtils.copyProperties(good, tgood);
 		return good;
+	}
+	public int getYJPageNum(int userId,int num) {
+		// TODO Auto-generated method stub
+		String hql="select count(*) FROM Tgoods WHERE user.userId="+userId;
+		Long i = goodsDao.count(hql);
+		double tota = (double)i;
+		double total = Math.ceil(tota/num); 
+		int total2 =(int)(total); 
+		if(total2<=1)total2=1;
+		return total2;
 	}
 
 	
