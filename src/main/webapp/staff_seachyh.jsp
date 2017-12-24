@@ -1,7 +1,7 @@
 <%@ page isELIgnored="false"  language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
   <meta charset="utf-8">
@@ -65,7 +65,7 @@
       <hr class="page-wide-block m-y-0">
 
       <ul class="search-nav nav nav-tabs nav-tabs-simple nav-sm page-block b-b-0">
-        <li class="active"><a href="#results-pages" data-toggle="tab">FIND</a></li>           
+        <li class="active"><a href="#results-pages" >FIND</a></li>           
       </ul>
     </div>
 

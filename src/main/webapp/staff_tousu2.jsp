@@ -62,7 +62,7 @@
                   <div class="box-container">
                     <div class="box-row">
                       <div class="box-cell" style="width: 40px;">
-                        <img src="assets/demo/avatars/3.jpg" alt="" class="border-round" style="width: 100%;">
+                        <img src="images/8.jpg" alt="" class="border-round" style="width: 100%;">
                       </div>
                       <div class="box-cell p-l-2">
                         <div class="font-size-14">${complaint.userId}</div>
@@ -86,23 +86,14 @@
 
             <div class="panel-body font-size-14">
               <p>${complaint.content}</p>
-					              <!-- 
-					              <blockquote>
-					                <div class="widget-products-item col-xs-12 col-sm-6 col-xl-4">
-					                  <a href="#" class="widget-products-image">
-					                    <img src="assets/demo/thumbs/1.jpg">
-					                    <span class="widget-products-overlay"></span>
-					                  </a>
-					                  </div>
-					              </blockquote>
-					              -->
+
             </div>
 
             <!-- / Message -->
 
 
             <!-- Form -->
-
+<c:if test="${complaint.status==false }">
             <div class="panel-body">
               <form action="/recall.html" class="expanding-input" id="page-messages-item-form" onSubmit="return check();" method="post">
               	<input type="hidden" name="complaintId" value="${complaint.complaintId}"/>
@@ -113,7 +104,18 @@
                 </div>
               </form>
             </div>
+</c:if>
+<hr class="m-y-0">
+<c:if test="${complaint.status==true }">
+		<div class="widget-tree-comments-item">
+回复：
+              <div class="widget-tree-comments-text">
+               	${complaint.rcontent}
+              </div>
 
+              </div>
+         
+</c:if>
             <!-- / Form -->
 
           </div>

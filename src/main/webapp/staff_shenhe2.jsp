@@ -84,7 +84,7 @@
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="sUserPhone" placeholder="手机号" class="form-control form-group-margin" value="${goods.sUserPhone}">
+            <input type="text" name="sUserPhone" placeholder="手机号" class="form-control form-group-margin" value="${goods.sUserPhone}" style="ime-mode:disabled" onkeyup="return ValidateNumber($(this),value)" maxlength="11">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
@@ -132,8 +132,8 @@
               </div> 
           </div>
           <div class="col-md-4">
-            <label class="control-label">重量</label>
-            <input type="text" name="weight" placeholder="预估重量" class="form-control form-group-margin" value="${goods.weight}">
+            <label class="control-label">重量/kg</label>
+            <input type="text" name="weight" placeholder="预估重量" class="form-control form-group-margin" value="${goods.weight}" oninput="javascript:this.value=this.value.replace(/[^\d]/g,'')" >
           </div>
         </div><!-- row -->
         <label class="control-label">备注</label>
@@ -151,7 +151,7 @@
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="rUserPhone" placeholder="手机号" class="form-control form-group-margin" value="${goods.rUserPhone}">
+            <input type="text" name="rUserPhone" placeholder="手机号" class="form-control form-group-margin" value="${goods.rUserPhone}" style="ime-mode:disabled" onkeyup="return ValidateNumber($(this),value)" maxlength="11">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
@@ -231,6 +231,12 @@
 		}else{
 			return true;
 		}
+	}
+	function ValidateNumber(e, pnumber){
+		if (!/^\d+$/.test(pnumber)){
+			$(e).val(/^\d+/.exec($(e).val()));
+		}
+		return false;
 	}
   </script>
 </body>

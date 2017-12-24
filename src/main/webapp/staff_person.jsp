@@ -79,7 +79,7 @@
             <div class="p-x-1">
               <fieldset class="form-group form-group-lg">
                 <label for="account-name">Name</label>
-                <input type="text" class="form-control" id="account-name" value="${sessionScope.staff.name}" name="name" >
+                <input type="text" class="form-control" id="name" value="${sessionScope.staff.name}" name="name" >
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-gender">gender</label>
@@ -90,20 +90,20 @@
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-phone">phone</label>
-                <input type="text" class="form-control" id="account-phone" value="${sessionScope.staff.phone}" name="phone">
+                <input type="text" class="form-control" id="phone" value="${sessionScope.staff.phone}" name="phone">
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-address">Address</label>
-                <input type="text" class="form-control" id="account-address" value="${sessionScope.staff.address}" name="address">
+                <input type="text" class="form-control" id="address" value="${sessionScope.staff.address}" name="address">
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-email">E-mail</label>
-                <input type="email" class="form-control" id="account-email" value="${sessionScope.staff.email}" readonly="readonly" name="email">
+                <input type="email" class="form-control" id="email" value="${sessionScope.staff.email}" readonly="readonly" name="email">
                 <small class="text-muted">注册邮箱无法修改</small>
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-address">职位</label>
-                <input type="text" class="form-control" id="account-address" value="${sessionScope.staff.position}" name="position" disabled="true">
+                <input type="text" class="form-control" id="position" value="${sessionScope.staff.position}" name="position" disabled="true">
               </fieldset>
 
               <button type="submit" class="btn btn-lg btn-primary m-t-3">Update profile</button>
@@ -119,7 +119,7 @@
             <div class="panel bg-transparent">
               <div class="panel-body text-xs-center">
               	
-                <img src="/images/staff.PNG" alt="" class="" style="max-width: 100%;">
+                <img src="/images/z.jpg" alt="" class="" style="max-width: 100%;">
               </div>
               <hr class="m-y-0">
               <div class="panel-body text-xs-center">

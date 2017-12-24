@@ -52,7 +52,7 @@
       <h1>修改用户</h1>
     </div>
 
-    <form action="staff_updateyh.html" class="panel form-horizontal" >
+    <form action="staff_updateyh.html" class="panel form-horizontal"  method="post">
     <div class="col-md-8">
     <div class="panel">
       <div class="panel-heading">
@@ -102,23 +102,12 @@
             <input type="text" value="${user.updatetime}" name="updatetime" placeholder="" class="form-control form-group-margin">
           </div>
            <div class="col-md-12 row">
-          <div class="col-md-4 form-group">     
-            <label class="col-md-3 control-label">性别</label>
-            <div class="col-md-9">
-               <label class="widget-messages-checkbox custom-control custom-checkbox custom-control-blank">
-<c:choose>    
-    <c:when test="${user.gender}">         
-                <input type="checkbox" value="${user.gender}" checked  name="gender" class="custom-control-input">
-    </c:when>
-    <c:otherwise>  
-                <input type="checkbox" value="${user.gender}"  name="gender" class="custom-control-input">
-  	</c:otherwise> 
- 	</c:choose>
-                <span class="custom-control-indicator"></span>
-                
-              </label>
-            </div>        
-          </div>
+           <label for="account-gender">gender</label>
+				<select class="form-control m-b-2" id="select" name="gender">
+               
+                	<option>男</option>
+                	<option>女</option>           
+              	</select>
           </div>
         </div>
         </div>
@@ -220,5 +209,12 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
+  <script type="text/javascript"> 
+  var x =${user.gender};
+  if(true==x){
+	  $("#select").val("男");
+  }else{
+	  $("#select").val("女");
+  }</script>
 </body>
 </html>

@@ -132,7 +132,7 @@
           <div class="col-md-4 col-lg-3">
             <div class="panel bg-transparent">
               <div class="panel-body text-xs-center">
-                <img src="assets/demo/avatars/1.jpg" alt="" class="" style="max-width: 100%;">
+                <img src="images/z.jpg" alt="" class="" style="max-width: 100%;">
               </div>
               <hr class="m-y-0">
               <div class="panel-body text-xs-center">

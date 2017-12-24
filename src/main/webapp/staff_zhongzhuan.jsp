@@ -145,7 +145,7 @@
       </div>
 
     </div>
-    <c:if test="${goods.status ==false}">
+    <c:if test="${goods.status ==false &&sessionScope.staff.position==1}">
     <form class="form-inline" method="post" action="/setZhongzhuan.html">
           <div class="form-group">
             <label class="sr-only" for="form-inline-input-8"></label>

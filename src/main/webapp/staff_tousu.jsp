@@ -83,11 +83,11 @@
 	                	未完成
 	                </c:if>
                 </td>
-                <td><c:out value="${complaint.handlerId}"></c:out></td>
+                <td><c:if test="${complaint.handlerId!=0}"><c:out value="${complaint.handlerId}"></c:out></c:if></td>
                 <td>                
-	                <c:if test="${complaint.status==false }">
+	             
 	               		<a class="btn btn-primary btn-3d"  href="/staff_tousu2.html?id=<c:out value="${complaint.complaintId}"></c:out>">查看</a>
-	                </c:if>
+	              
                 </td>
                	
               </tr>

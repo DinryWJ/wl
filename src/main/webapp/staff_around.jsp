@@ -19,7 +19,7 @@
       <li class="px-nav-box p-a-3 b-b-1" id="demo-px-nav-box">
         <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-       <img src="/images/staff.PNG" alt="" class="pull-xs-left m-r-2 border-round" style="width: 54px; height: 54px;">  
+       <img src="/images/z.jpg" alt="" class="pull-xs-left m-r-2 border-round" style="width: 54px; height: 54px;">  
         <div class="font-size-16"><span class="font-weight-light"></span><strong>${sessionScope.staff.name}</strong></div>
         <div class="btn-group" style="margin-top: 4px;">
           <a href="/staff_tousu.html" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-envelope"></i></a>
@@ -37,6 +37,7 @@
        <li class="px-nav-item">
          <a href="staff_person.html"><i class="px-nav-icon fa fa-cog"></i><span class="px-nav-label">个人设置</span></a>
       </li>
+<c:if test="${sessionScope.staff.position==2}">
       <li class="px-nav-item px-nav-dropdown">
         <a href="shenhe.html"><i class="px-nav-icon fa fa-archive"></i><span class="px-nav-label">寄件信息管理</span></a>
         <ul class="px-nav-dropdown-menu">
@@ -44,16 +45,20 @@
           <li class="px-nav-item"><a href="staff_shenhe2.html"><span class="px-nav-label">修改</span></a></li>
         </ul>
       </li>
+</c:if>
+<c:if test="${sessionScope.staff.position==1 }">
       <li class="px-nav-item px-nav-dropdown">
         <a href="staff_tongzhi.html"><i class="px-nav-icon fa fa-telegram"></i><span class="px-nav-label">上门取件管理</span></a>
       	 <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="staff_tongzhi.html"><span class="px-nav-label">未处理订单</span></a></li>
           <li class="px-nav-item"><a href="staff_tongzhi2.html"><span class="px-nav-label">上门取件</span></a></li>
         </ul>
-      </li>
+      </li>     
       <li class="px-nav-item">
         <a href="staff_zhongzhuan.html"><i class="px-nav-icon fa fa-map-marker"></i><span class="px-nav-label">物流信息管理</span></a>
       </li>
+</c:if>
+<c:if test="${sessionScope.staff.position==2}">
       <li class="px-nav-item px-nav-dropdown">
         <a href="staff_tousu.html"><i class="px-nav-icon fa fa-times-circle-o"></i><span class="px-nav-label">投诉管理</span></a>
          <ul class="px-nav-dropdown-menu">
@@ -61,6 +66,8 @@
           <li class="px-nav-item"><a href="staff_tousu2.html"><span class="px-nav-label">反馈</span></a></li>
         </ul>
       </li>
+</c:if>
+<c:if test="${sessionScope.staff.position==0}">
 		<li class="px-nav-item px-nav-dropdown">
         <a href=""><i class="px-nav-icon fa fa-user"></i><span class="px-nav-label">用户管理</span></a>
          <ul class="px-nav-dropdown-menu">
@@ -85,6 +92,7 @@
           <li class="px-nav-item"><a href="admin_getyh.html"><span class="px-nav-label">修改工作人员</span></a></li>
          </ul>
       </li>
+</c:if>
     </ul>
   </nav>
 
@@ -102,5 +110,6 @@
         </div><!-- /.navbar-collapse -->
   </nav>
   </body>
+  
 </html>
   
