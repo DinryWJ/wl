@@ -2,6 +2,7 @@ package com.zust.service.Impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -41,9 +42,17 @@ public class UserServiceImpl implements UserServiceI{
 		// TODO Auto-generated method stub
 		userDao.createUser(email, name, password);
 	}
-	public void updateUser(String email,String name,String address,String phone){
-		
-		userDao.updateUser(email,name,phone,address);
+	public void updateUser(String email,String name,String gender,String address,String phone){
+		int id = userDao.getUserIdByEmail(email);
+		Tuser tuser = userDao.get(Tuser.class, id);
+		tuser.setGender(true);
+		if(gender.equals("女")){
+			tuser.setGender(false);
+		}
+		tuser.setName(name);
+		tuser.setAddress(address);
+		tuser.setPhone(phone);
+		tuser.setUpdatetime(new Date());
 	}
 	public void updatePassword(String email,String newPassword){	
 		int id =userDao.getUserIdByEmail(email);

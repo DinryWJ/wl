@@ -4,7 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -79,9 +81,10 @@ public class GoodsServiceImpl implements GoodsServiceI {
 	}
 
 
-	public List<Goods> getUncheckedYJ() throws IllegalAccessException, InvocationTargetException {
+	public List<Goods> getUncheckedYJ(int pageNum,int raw) throws IllegalAccessException, InvocationTargetException {
 		// TODO Auto-generated method stub
-		List<Tgoods> tgoods = goodsDao.getUncheckedYJ();
+		String hql = "FROM Tgoods WHERE status2=false";
+		List<Tgoods> tgoods = goodsDao.find(hql, pageNum, raw);
 		if(tgoods.isEmpty()) return null;
 		else {
 			List<Goods> listDestination= entity2dto(tgoods);
@@ -89,9 +92,10 @@ public class GoodsServiceImpl implements GoodsServiceI {
 			return listDestination;
 		}
 	}
-	public List<Goods> getAllYJ() throws IllegalAccessException, InvocationTargetException {
+	public List<Goods> getAllYJ(int pageNum,int num) throws IllegalAccessException, InvocationTargetException {
 		// TODO Auto-generated method stub
-		List<Tgoods> tgoods = goodsDao.getAllYJ();
+		String hql = "FROM Tgoods";
+		List<Tgoods> tgoods = goodsDao.find(hql, pageNum, num);
 		if(tgoods.isEmpty()) return null;
 		else {
 			List<Goods> listDestination= entity2dto(tgoods);
@@ -139,6 +143,53 @@ public class GoodsServiceImpl implements GoodsServiceI {
 		int total2 =(int)(total); 
 		if(total2<=1)total2=1;
 		return total2;
+	}
+	public void setComplete(int goodsId) {
+		// TODO Auto-generated method stub
+		Tgoods tgoods = goodsDao.get(Tgoods.class, goodsId);
+		tgoods.setStatus(true);
+		tgoods.setUpdatetime(new Date());
+	}
+	public int getPageNum(int num) {
+		// TODO Auto-generated method stub
+		String hql="select count(*) FROM Tgoods ";
+		Long i = goodsDao.count(hql);
+		double tota = (double)i;
+		double total = Math.ceil(tota/num); 
+		int total2 =(int)(total); 
+		if(total2<=1)total2=1;
+		return total2;
+	}
+	public int getUncheckPageNum(int num) {
+		// TODO Auto-generated method stub
+		String hql="select count(*) FROM Tgoods WHERE status2=false";
+		Long i = goodsDao.count(hql);
+		double tota = (double)i;
+		double total = Math.ceil(tota/num); 
+		int total2 =(int)(total); 
+		if(total2<=1)total2=1;
+		return total2;
+	}
+	public Map<String, Long> getYJNums(int id) {
+		// TODO Auto-generated method stub
+		Map<String, Long> map= new HashMap<String, Long>();
+		String hq4 = "SELECT count(*) FROM Tgoods WHERE user.userId="+id;
+		Long c4 = goodsDao.count(hq4);
+		map.put("yj4", c4);
+		
+		String hql3 = "SELECT count(*) FROM Tgoods WHERE status=false AND status2=false AND user.userId="+id;
+		Long c3 = goodsDao.count(hql3);
+		map.put("yj3", c3);
+		
+		String hql2 = "SELECT count(*) FROM Tgoods WHERE status=false AND status2=true AND user.userId="+id;
+		Long c2 = goodsDao.count(hql2);
+		map.put("yj2", c2);
+		
+		String hql1 = "SELECT count(*) FROM Tgoods WHERE status=true AND status2=true AND user.userId="+id;
+		Long c1 = goodsDao.count(hql1);
+		map.put("yj1", c1);
+		
+		return map;
 	}
 
 	

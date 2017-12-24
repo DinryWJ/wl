@@ -8,14 +8,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-  <title>Blank - Pages - PixelAdmin: Responsive Bootstrap Template</title>
+   <title>投诉 工作人员端 物流信息管理平台</title>
 
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
   <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
   <!-- DEMO ONLY: Function for the proper stylesheet loading according to the demo settings -->
-  <script>function _pxDemo_loadStylesheet(a,b,c){var c=c||decodeURIComponent((new RegExp(";\\s*"+encodeURIComponent("px-demo-theme")+"\\s*=\\s*([^;]+)\\s*;","g").exec(";"+document.cookie+";")||[])[1]||"clean"),d="rtl"===document.getElementsByTagName("html")[0].getAttribute("dir");document.write(a.replace(/^(.*?)((?:\.min)?\.css)$/,'<link href="$1'+(c.indexOf("dark")!==-1&&a.indexOf("/css/")!==-1&&a.indexOf("/themes/")===-1?"-dark":"")+(!d||0!==a.indexOf("assets/css")&&0!==a.indexOf("assets/demo")?"":".rtl")+'$2" rel="stylesheet" type="text/css"'+(b?'class="'+b+'"':"")+">"))}</script>
+  <script>function _pxDemo_loadStylesheet(a,b,c){var c=c||decodeURIComponent((new RegExp(";\\s*"+encodeURIComponent("px-demo-theme")+"\\s*=\\s*([^;]+)\\s*;","g").exec(";"+document.cookie+";")||[])[1]||"purple-hills"),d="rtl"===document.getElementsByTagName("html")[0].getAttribute("dir");document.write(a.replace(/^(.*?)((?:\.min)?\.css)$/,'<link href="$1'+(c.indexOf("dark")!==-1&&a.indexOf("/css/")!==-1&&a.indexOf("/themes/")===-1?"-dark":"")+(!d||0!==a.indexOf("assets/css")&&0!==a.indexOf("assets/demo")?"":".rtl")+'$2" rel="stylesheet" type="text/css"'+(b?'class="'+b+'"':"")+">"))}</script>
 
   <!-- DEMO ONLY: Set RTL direction -->
   <script>"ltr"!==document.getElementsByTagName("html")[0].getAttribute("dir")&&"1"===decodeURIComponent((new RegExp(";\\s*"+encodeURIComponent("px-demo-rtl")+"\\s*=\\s*([^;]+)\\s*;","g").exec(";"+document.cookie+";")||[])[1]||"0")&&document.getElementsByTagName("html")[0].setAttribute("dir","rtl");</script>
@@ -29,7 +29,7 @@
 
   <!-- DEMO ONLY: Load theme -->
   <script>
-    function _pxDemo_loadTheme(a){var b=decodeURIComponent((new RegExp(";\\s*"+encodeURIComponent("px-demo-theme")+"\\s*=\\s*([^;]+)\\s*;","g").exec(";"+document.cookie+";")||[])[1]||"clean");_pxDemo_loadStylesheet(a+b+".min.css","px-demo-stylesheet-theme",b)}
+    function _pxDemo_loadTheme(a){var b=decodeURIComponent((new RegExp(";\\s*"+encodeURIComponent("px-demo-theme")+"\\s*=\\s*([^;]+)\\s*;","g").exec(";"+document.cookie+";")||[])[1]||"purple-hills");_pxDemo_loadStylesheet(a+b+".min.css","px-demo-stylesheet-theme",b)}
     _pxDemo_loadTheme('assets/css/themes/');
   </script>
 
@@ -44,133 +44,127 @@
   <script src="assets/pace/pace.min.js"></script>
 
   <script src="assets/demo/demo.js"></script>
+  <!-- Custom styling -->
+
 </head>
 <body>
  <jsp:include page="staff_around.jsp"></jsp:include>
-  <div class="px-content">
-    <div class="page-header">
-      <h1>修改工作人员</h1>
+ <div class="px-content">
+    <div class="page-header m-b-0 p-b-0 b-b-0">
+      <h1>Account <span class="text-muted font-weight-light">Settings</span></h1>
+<small><c:if test ="${!empty error}" ><font color="red"><c:out value="${error}"></c:out></font></c:if></small>
+      <ul class="nav nav-tabs page-block m-t-4" id="account-tabs">
+        <li class="active">
+          <a href="#account-profile" data-toggle="tab">
+            Profile
+          </a>
+        </li>
+
+        <li>
+          <a href="#account-password" data-toggle="tab">
+            Password
+          </a>
+        </li>
+
+      </ul>
     </div>
 
-    <form action="admin_updateyh.html" class="panel form-horizontal" >
-    <div class="col-md-8">
-    <div class="panel">
-      <div class="panel-heading">
-        <span class="panel-title">基本信息</span>
-      </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-3">
-              <label class="control-label">邮箱</label>
-              <input type="text" value="${staff.email}" name="email" placeholder="" readonly="readonly" class="form-control form-group-margin">
+    <div class="tab-content p-y-4">
+
+      <!-- Profile tab -->
+
+      <div class="tab-pane fade in active" id="account-profile">
+        <div class="row">
+          <form action="updatestaff.html" class="col-md-8 col-lg-9" onSubmit="return check(this);" method="post">
+            <div class="p-x-1">
+              <fieldset class="form-group form-group-lg">
+                <label for="account-name">Name</label>
+                <input type="text" class="form-control" id="account-name" value="${sessionScope.staff.name}" name="name" >
+              </fieldset>
+              <fieldset class="form-group form-group-lg">
+                <label for="account-gender">gender</label>
+                <select class="form-control m-b-2" id="select" name="gender">
+                	<option value=true>男</option>
+                	<option value=false>女</option>           
+              	</select>
+              </fieldset>
+              <fieldset class="form-group form-group-lg">
+                <label for="account-phone">phone</label>
+                <input type="text" class="form-control" id="account-phone" value="${sessionScope.staff.phone}" name="phone">
+              </fieldset>
+              <fieldset class="form-group form-group-lg">
+                <label for="account-address">Address</label>
+                <input type="text" class="form-control" id="account-address" value="${sessionScope.staff.address}" name="address">
+              </fieldset>
+              <fieldset class="form-group form-group-lg">
+                <label for="account-email">E-mail</label>
+                <input type="email" class="form-control" id="account-email" value="${sessionScope.staff.email}" readonly="readonly" name="email">
+                <small class="text-muted">注册邮箱无法修改</small>
+              </fieldset>
+              <fieldset class="form-group form-group-lg">
+                <label for="account-address">职位</label>
+                <input type="text" class="form-control" id="account-address" value="${sessionScope.staff.position}" name="position" disabled="true">
+              </fieldset>
+
+              <button type="submit" class="btn btn-lg btn-primary m-t-3">Update profile</button>
+              <a href="#" class="pull-xs-right text-muted p-t-4">Deactivate account</a>
             </div>
-            <div class="col-md-3">
-              <label class="control-label">用户名</label>
-              <input type="text" value="${staff.name}" name="name" placeholder="" class="form-control form-group-margin">
+          </form>
+
+          <!-- Spacer -->
+          <div class="m-t-4 visible-xs visible-sm"></div>
+
+          <!-- Avatar -->
+          <div class="col-md-4 col-lg-3">
+            <div class="panel bg-transparent">
+              <div class="panel-body text-xs-center">
+              	
+                <img src="/images/staff.PNG" alt="" class="" style="max-width: 100%;">
+              </div>
+              <hr class="m-y-0">
+              <div class="panel-body text-xs-center">
+                <button type="button" class="btn btn-primary" disabled="true">Change</button>&nbsp;
+                <button type="button" class="btn" disabled="true"><i class="fa fa-trash"></i></button>
+                <div class="m-t-2 text-muted font-size-12">JPG, GIF or PNG. Max size of 1MB</div>
+              </div>
             </div>
-            <div class="col-md-3">
-              <label class="control-label">密码</label>
-              <input type="text" value="${staff.password}" name="password" placeholder="" class="form-control form-group-margin">
-            </div>
-          </div><!-- row -->
+          </div>
         </div>
       </div>
-      </div>
-    
-     <div class="col-md-8">
-     <div class="panel">
-      <div class="panel-heading">
-        <span class="panel-title">详细信息</span>
-      </div>
-      <div class="panel-body">
-        <div class="col-md-12 row">
-           <div class="col-md-6">
-            <label class="control-label">手机号</label>
-            <input type="text" value="${staff.phone}" name="phone" placeholder="" class="form-control form-group-margin">
-          </div>
-          <div class="col-md-6">
-            <label class="control-label">地址</label>
-            <input type="text" value="${staff.address}" name="address" placeholder="" class="form-control form-group-margin">
-          </div>
 
-           <div class="col-md-6">
-            <label class="control-label">站点</label>
-            <input type="text" value="${staff.stationId}" name="stationId" placeholder="" class="form-control form-group-margin">
-          </div>
-       
-           <div class="col-md-12 row">
-          <div class="col-md-4 form-group">     
-            <label class="col-md-3 control-label">性别</label>
-            <div class="col-md-9">
-               <label class="widget-messages-checkbox custom-control custom-checkbox custom-control-blank">
-<c:choose>    
-    <c:when test="${staff.gender}">         
-                <input type="checkbox" value="${staff.gender}" checked  name="gender" class="custom-control-input">
-    </c:when>
-    <c:otherwise>  
-                <input type="checkbox" value="${staff.gender}"  name="gender" class="custom-control-input">
-  	</c:otherwise> 
- 	</c:choose>
-                <span class="custom-control-indicator"></span>
-                
-              </label>
-            </div>        
-          </div>
-          </div>
-        </div>
-        </div>
+      <!-- / Profile tab -->
 
-        <!-- row -->
-      </div>
-      </div>
-      <div class="col-md-8">
-      <div class="panel">
-      <div class="panel-heading">
-        <span class="panel-title">权限信息</span>
-      </div>
-      <div class="panel-body">
-        <table class="table table-striped" id="inputs-table">
-          
-           <tr>
-            <td>
-              权限级别
-            </td>
-            <td>
-              <div class="radio m-t-0">
-                <label>
-                  <input type="radio" name="position" value="1" checked=""> 1
-                </label>
-              </div>
-              <div class="radio m-b-0">
-                <label>
-                  <input type="radio" name="position" value="2"> 2
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="radio m-t-0">
-                <label>
-                  <input type="radio" name="position" value="3"> 3
-                </label>
-              </div>
-              <div class="radio m-b-0">
-                <label>
-                  <input type="radio" name="position" value="4" > 4
-                </label>
-              </div>
-            </td>
-          </tr>
-         </table>
-      </div>
-      
-       <div class="panel-footer text-right">
-    <button class="bootbox-confirm btn btn-xl btn-success btn-3d" >提交</button>
-      </div></div>
-      </div>
-    </form>
+   
 
+ 
+
+      <!-- Password tab -->
+
+      <div class="tab-pane fade" id="account-password">
+        <form action="/updatestaffpassword.html" class="p-x-1" onSubmit="return check2(this);" method="post">
+          <fieldset class="form-group form-group-lg">
+            <label for="account-password">Old password</label>
+            <input type="password" class="form-control" id="account-password" name="oldPassword">
+          </fieldset>
+          <fieldset class="form-group form-group-lg">
+            <label for="account-new-password">New password</label>
+            <input type="password" class="form-control" id="account-new-password" name="newPassword">
+            <small class="text-muted">Minimum 6 characters</small>
+          </fieldset>
+          <fieldset class="form-group form-group-lg">
+            <label for="account-new-password-repeat">Verify password</label>
+            <input type="password" class="form-control" id="account-new-password-repeat" name="reNewPassword">
+          </fieldset>
+          <button type="submit" class="btn btn-lg btn-primary m-t-3">Change password</button>
+        </form>
+      </div>
+
+      <!-- / Password tab -->
+
+   
+
+    </div>
   </div>
-
 
 
 
@@ -225,5 +219,50 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
+   <script>
+  
+  var x =${sessionScope.staff.gender};
+  if(true==x){
+	  $("#select").val("true");
+  }else{
+	  $("#select").val("false");
+  }
+
+  function ValidateNumber(e, pnumber){
+		if (!/^\d+$/.test(pnumber)){
+			$(e).val(/^\d+/.exec($(e).val()));
+		}
+		return false;
+	}
+  function check() {
+	    // body...
+	    var a = $(" input[ name='name' ] ").val();
+	    var b = $(" input[ name='phone' ] ").val();
+	    var c = $(" input[ name='address' ] ").val();
+
+	    if(''==a||''==b||''==c){
+	      alert('不能有空值');
+	      return false;
+	    }
+
+	    
+	    return true;
+	  }
+  function check2() {
+	    // body...
+	    var opwd = $(" input[ name='oldPassword' ] ").val();
+	    var npwd = $(" input[ name='newPassword' ] ").val();
+	    var rpwd = $(" input[ name='reNewPassword' ] ").val();
+	    if(''==opwd||''==npwd||''==rpwd){
+	      	alert('不能有空值');
+	      	return false;
+	    }
+	    
+	    return true;
+		
+	    
+	   
+	  }
+</script>
 </body>
 </html>

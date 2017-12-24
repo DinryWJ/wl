@@ -46,26 +46,31 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/updateperson.html")
-	public  ModelAndView updateperson(HttpServletRequest request,String email,String name,String phone,String address) throws IllegalAccessException, InvocationTargetException{
-		
-		userService.updateUser(email, name, address, phone);
+	public  ModelAndView updateperson(HttpServletRequest request,String email,String name,String gender,String phone,String address) throws IllegalAccessException, InvocationTargetException{
+		userService.updateUser(email, name,gender, address, phone);
 		int id = userService.getUserIdByEmail(email);
 		User user = userService.getUserById(id);
 		request.getSession().setAttribute("user", user);
-		return new ModelAndView("redirect:user_person.html");	
+		return new ModelAndView("redirect:/user_person.html");	
 		}	
 	@RequestMapping(value="/updatepassword.html")
-	public  ModelAndView updatepassword(HttpServletRequest request,String email,String oldPassword,String newPassword,String reNewPassword) throws IllegalAccessException, InvocationTargetException{
+	public  ModelAndView updatepassword(HttpServletRequest request,String oldPassword,String newPassword,String reNewPassword) throws IllegalAccessException, InvocationTargetException{
 		User user  = (User) request.getSession().getAttribute("user");
-		email = user.getEmail();
- 
-		if(request.getSession().getAttribute("password")==request.getParameter(oldPassword)&&request.getParameter(newPassword)==request.getParameter(reNewPassword))
-		{
-			userService.updatePassword(email, newPassword);
-			request.getSession().setAttribute("user", user);
-			return new ModelAndView("redirect:user_person.html");	
-		}else
-		return new ModelAndView("redirect:user_person.html");	
+		String email = user.getEmail();
+		
+		if(user.getPassword().equals(oldPassword)){
+			if(newPassword.equals(reNewPassword)){
+				userService.updatePassword(email, newPassword);
+				int id = userService.getUserIdByEmail(email);
+				User user2 = userService.getUserById(id);
+				request.getSession().setAttribute("user", user2);
+				return new ModelAndView("redirect:/user_person.html");	
+			}else{
+				return new ModelAndView("user_person","error","两次密码不同");	
+			}
+			
+		}
+		return new ModelAndView("user_person","error","旧密码错误");	
 		
 	}
 	@RequestMapping("/staff_seachyh1.html")

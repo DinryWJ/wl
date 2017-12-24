@@ -42,13 +42,11 @@ public class StaffDaoImpl extends BaseDaoImpl<Tstaff> implements StaffDaoI {
 		int id = getStaffIdByEmail(staff.getEmail());
 		Tstaff tstaff = (Tstaff)get(Tstaff.class,id);
 		tstaff.setName(staff.getName());
-//		tuser.setGender(gender);
+		tstaff.setGender(staff.isGender());
 		tstaff.setPhone(staff.getPhone());
 		tstaff.setAddress(staff.getAddress());
 		tstaff.setPosition(staff.getPosition());
-		String hql =" FROM Tstation WHERE station_id = ?";
-		Tstation tstation =  (Tstation) getCurrentSession().createQuery(hql).setParameter(0, staff.getStationId()).uniqueResult();
-		tstaff.setStation(tstation);
+
 	}
 
 

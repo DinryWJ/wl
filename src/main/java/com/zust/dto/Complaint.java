@@ -9,7 +9,7 @@ public class Complaint {
 	private int complaintId;
 	private int userId;
 	private String content;
-
+	private String rcontent;
 	private Date time;
 
 	private boolean status;
@@ -32,14 +32,18 @@ public class Complaint {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	public String getRcontent() {
+		return rcontent;
+	}
+	public void setRcontent(String rcontent) {
+		this.rcontent = rcontent;
+	}
 	public Date getTime() {
 		return time;
 	}
 	public void setTime(Date time) {
 		this.time = time;
 	}
-
 	public boolean isStatus() {
 		return status;
 	}

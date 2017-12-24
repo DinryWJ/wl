@@ -2,6 +2,7 @@ package com.zust.web;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zust.dto.Complaint;
 import com.zust.dto.Goods;
 import com.zust.dto.LoginCommand;
 import com.zust.dto.Staff;
+import com.zust.dto.Station;
+import com.zust.service.ComplaintServiceI;
 import com.zust.service.GoodsServiceI;
 import com.zust.service.StaffServiceI;
+import com.zust.service.StationServiceI;
 
 @Controller
 public class StaffController {
@@ -26,6 +31,12 @@ public class StaffController {
 	
 	@Autowired
 	private GoodsServiceI goodsService;
+	
+	@Autowired
+	private ComplaintServiceI complaintService;
+	
+	@Autowired
+	private StationServiceI stationService;
 	
 	@RequestMapping(value="/staffloginCheck.html")
 	public  ModelAndView userloginCheck(HttpServletRequest request,LoginCommand loginCommand) throws IllegalAccessException, InvocationTargetException{
@@ -48,20 +59,35 @@ public class StaffController {
     }
 	
 	@RequestMapping(value="staff_index.html")
-	public String staffIndex(){
+	public String staffIndex(HttpServletRequest request) throws IllegalAccessException, InvocationTargetException{	
+		Staff staff = (Staff) request.getSession().getAttribute("staff");
+		int id = staff.getStationId();
+		Station station = stationService.getStationById(id);
+		request.setAttribute("station", station);
 		return "staff_index";
 	}
+
+	
 	@RequestMapping(value="staff_person.html")
 	public String staffPserson(){
 		return "staff_person";
 	}
 	
 	@RequestMapping(value="staff_shenhe.html")
-	public ModelAndView staffShenhe() throws IllegalAccessException, InvocationTargetException{
-		List<Goods> list = goodsService.getAllYJ();
+	public ModelAndView staffShenhe(@RequestParam(value="pageNum",required=false)String pageNum) throws IllegalAccessException, InvocationTargetException{		
 		ModelAndView mav = new ModelAndView();
+		int num=1;
+		int total = goodsService.getPageNum(10);
+		if(pageNum==null){
+			num=1;		
+		}else{
+			num = Integer.parseInt(pageNum);
+		}
+		List<Goods> list = goodsService.getAllYJ(num,10);
 		mav.setViewName("staff_shenhe");
 		mav.addObject("goods",list);
+		mav.addObject("spageNum", num);
+		mav.addObject("total", total);
 		return mav;
 
 	}
@@ -83,11 +109,20 @@ public class StaffController {
 	}
 	
 	@RequestMapping(value="staff_tongzhi.html")
-	public ModelAndView staffTongzhi() throws IllegalAccessException, InvocationTargetException{
-		List<Goods> list = goodsService.getUncheckedYJ();
+	public ModelAndView staffTongzhi(@RequestParam(value="pageNum",required=false)String pageNum) throws IllegalAccessException, InvocationTargetException{
 		ModelAndView mav = new ModelAndView();
+		int num=1;
+		int total = goodsService.getUncheckPageNum(10);
+		if(pageNum==null){
+			num=1;		
+		}else{
+			num = Integer.parseInt(pageNum);
+		}
+		List<Goods> list = goodsService.getUncheckedYJ(num,10);
 		mav.setViewName("staff_tongzhi");
 		mav.addObject("goods",list);
+		mav.addObject("spageNum", num);
+		mav.addObject("total", total);
 		return mav;
 	}
 
@@ -106,14 +141,43 @@ public class StaffController {
 		return mav;
 	}
 	@RequestMapping(value="staff_tousu.html")
-	public String staffTousu(){
-		return "staff_tousu";
+	public ModelAndView staffTousu(@RequestParam(value="pageNum",required=false)String pageNum) throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		int num=1;	
+		int total = complaintService.getPageNum(5);
+		if(pageNum==null){
+			num=1;		
+		}else{
+			num = Integer.parseInt(pageNum);
+		}
+		List<Complaint> complaints = complaintService.getAllComplaints(num,5);
+		mav.addObject("complaints", complaints);
+		mav.addObject("spageNum", num);
+		mav.addObject("total", total);
+		mav.setViewName("staff_tousu");
+		return mav;
 	}
 	@RequestMapping(value="staff_tousu2.html")
-	public String staffTousu2(){
-		return "staff_tousu2";
+	public ModelAndView staffTousu2(@RequestParam(value="id",required=false)String scomplaintId) throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		if(scomplaintId!=null){
+		
+			int complaintId = Integer.parseInt(scomplaintId);
+			Complaint complaint = complaintService.getComplaintById(complaintId);
+			mav.addObject("complaint", complaint);
+		}
+		
+		mav.setViewName("staff_tousu2");
+		return mav;
 	}
-
+	@RequestMapping(value="recall.html")
+	public String recall(HttpServletRequest request,String recall,int complaintId){
+		Staff staff  = (Staff) request.getSession().getAttribute("staff");
+		int handlerId = staff.getStaffId();
+		complaintService.recall(handlerId,recall,complaintId);
+		return "redirect:/staff_tousu.html";
+		
+	}
 	@RequestMapping(value="/staff_seachyh.html")
 	public String staffSeachyh(){
 		return "staff_seachyh";
@@ -126,6 +190,7 @@ public class StaffController {
 	@RequestMapping(value="/updatestaff.html")
 	public  ModelAndView updatestaff(HttpServletRequest request,
 			Staff staff) throws IllegalAccessException, InvocationTargetException{
+		System.out.println(staff.isGender());
 		staffService.updateStaff(staff);
 		request.getSession().setAttribute("staff", staff);
 		return new ModelAndView("redirect:staff_person.html");	
@@ -133,18 +198,24 @@ public class StaffController {
 
 	
 	@RequestMapping(value="/updatestaffpassword.html")
-	public  ModelAndView updatepassword(HttpServletRequest request,String email,String oldPassword,String newPassword,String reNewPassword) throws IllegalAccessException, InvocationTargetException{
+	public  ModelAndView updatepassword(HttpServletRequest request,String oldPassword,String newPassword,String reNewPassword) throws IllegalAccessException, InvocationTargetException{
 		Staff staff  = (Staff) request.getSession().getAttribute("staff");
-		email = staff.getEmail();
- 
-		if(request.getSession().getAttribute("password")==request.getParameter(oldPassword)&&request.getParameter(newPassword)==request.getParameter(reNewPassword))
-		{
-			staffService.updatePassword(email, newPassword);
-			request.getSession().setAttribute("staff", staff);
-			return new ModelAndView("redirect:staff_person.html");	
-		}else
-		return new ModelAndView("redirect:staff_person.html");	
+		String email = staff.getEmail();
+		if(staff.getPassword().equals(oldPassword)){
+			if(newPassword.equals(reNewPassword)){
+				staffService.updatePassword(email, newPassword);
+				int id = staffService.getStaffIdByEmail(email);
+				Staff staff2 = staffService.getStaffById(id);
+				request.getSession().setAttribute("staff", staff2);
+				return new ModelAndView("redirect:/staff_person.html");	
+			}else{
+				return new ModelAndView("staff_person","error","两次密码不同");	
+			}
+			
+		}
+		return new ModelAndView("staff_person","error","旧密码错误");	
 		
+
 	}
 
 }

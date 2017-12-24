@@ -77,7 +77,7 @@
 
       <div class="tab-pane fade in active" id="results-pages">
       
-      <!--                -->
+<c:if test="${goods.code!=null}">
     <div class="panel">
 
       <div class="panel-body p-a-4 b-b-4 bg-white darken">
@@ -168,7 +168,7 @@
       </div>
 
     </div>
-       
+ </c:if>      
 
 
       </div>

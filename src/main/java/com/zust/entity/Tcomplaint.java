@@ -18,9 +18,9 @@ public class Tcomplaint {
 	private int complaintId;
 //	private int userId;
 	private String content;
-
+	private String rcontent;
 	private Date time;
-
+	
 	private boolean status;
 	private int handlerId;
 	private Tuser user;
@@ -50,7 +50,13 @@ public class Tcomplaint {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	@Column
+	public String getRcontent() {
+		return rcontent;
+	}
+	public void setRcontent(String rcontent) {
+		this.rcontent = rcontent;
+	}
 	@Column
 	public Date getTime() {
 		return time;

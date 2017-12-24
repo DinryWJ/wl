@@ -45,104 +45,8 @@
   <script src="assets/pace/pace.min.js"></script>
 
   <script src="assets/demo/demo.js"></script>
-  <!-- Custom styling -->
-  <style>
 
-    /* Common styles */
 
-    .box, .box-row, .box-cell { overflow: visible !important; -webkit-mask-image: none !important; }
-    .page-messages-container > .box-row > .box-cell { display: block !important; }
-
-    .page-messages-label {
-      width: 8px;
-      height: 8px;
-      display: block;
-      border-radius: 999px;
-      float: left;
-      margin-top: 6px;
-      margin-right: 12px;
-    }
-
-    html[dir="rtl"] .page-messages-label {
-      float: right;
-      margin-left: 12px;
-      margin-right: 0;
-    }
-
-    #page-messages-aside-nav {
-      max-height: 0;
-      overflow: hidden;
-      -webkit-transition: max-height .3s;
-      transition: max-height .3s;
-    }
-
-    #page-messages-aside-nav.show { max-height: 2000px; }
-
-    @media (min-width: 768px) {
-      .page-messages-container > .box-row > .box-cell {
-        display: table-cell !important;
-        padding-top: 15px;
-      }
-      .page-messages-aside { width: 200px; }
-      .page-messages-content { padding-left: 20px; }
-
-      html[dir="rtl"] .page-messages-content {
-        padding-left: 0;
-        padding-right: 20px;
-      }
-
-      #page-messages-aside-nav { max-height: none !important; }
-
-      .page-messages-wide-buttons .btn { width: 60px; }
-    }
-
-    /* Special styles */
-
-    .page-messages-pages { line-height: 31px; }
-
-    .page-messages-items td {
-      border: none !important;
-      padding-top: 12px !important;
-      padding-bottom: 12px !important;
-    }
-
-    .page-messages-item-actions {
-      width: 60px;
-    }
-
-    .page-messages-item-from,
-    .page-messages-item-subject {
-      display: block;
-    }
-
-    .page-messages-item-date {
-      display: block;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-
-    html[dir="rtl"] .page-messages-item-date {
-      right: auto;
-      left: 0;
-    }
-
-    @media (min-width: 768px) {
-      .page-messages-item-from,
-      .page-messages-item-subject {
-        display: table-cell;
-      }
-
-      .page-messages-item-from { width: 140px; }
-
-      .page-messages-item-date {
-        display: table-cell;
-        position: static;
-        width: 80px;
-      }
-    }
-  </style>
-  <!-- / Custom styling -->
 </head>
 <body>
 <jsp:include page="staff_around.jsp"></jsp:include>
@@ -150,98 +54,56 @@
     <div class="page-header">
       <h1>投诉管理</h1>
     </div>
-    
-    <!-- Content -->
+    <div class="panel-body">
 
-        <div class="page-messages-content box-cell valign-top">
-          <div class="row">
-            <h3 class="p-x-3 col-xs-12 col-md-7 col-lg-8" style="margin-top: 5px;"><i class="fa fa-inbox"></i>&nbsp;&nbsp;投诉信息列表</h3>
+        <div class="table-primary">
+          <table class="table table-striped table-bordered" id="datatables"  style="table-layout:fixed;" >
+            <thead>
+              <tr>
+                <th>用户名</th>
+                <th>时间</th>
+                <th>内容</th>
+                <th>状态</th>
+                <th>处理员工编号</th>
+              	<th>~</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="complaint" items="${complaints}">
+              <tr id="cloneTr">
+                <td><c:out value="${complaint.userId}"></c:out></td>
+                <td><c:out value="${complaint.time}"></c:out></td>
+                <td style="white-space:nowrap;overflow:hidden;text-overflow: ellipsis;"><span style="width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><c:out value="${complaint.content}"></c:out></span></td>
+                <td>
+	                 <c:if test="${complaint.status==true }">
+	                	已完成
+	                </c:if>
+	                <c:if test="${complaint.status==false }">
+	                	未完成
+	                </c:if>
+                </td>
+                <td><c:out value="${complaint.handlerId}"></c:out></td>
+                <td>                
+	                <c:if test="${complaint.status==false }">
+	               		<a class="btn btn-primary btn-3d"  href="/staff_tousu2.html?id=<c:out value="${complaint.complaintId}"></c:out>">查看</a>
+	                </c:if>
+                </td>
+               	
+              </tr>
+ 			</c:forEach>
+            </tbody>
+          </table>
 
-            <div class="col-xs-12 col-md-5 col-lg-4">
-              <form action="" method="GET" class="input-group">
-                <input type="text" name="s" class="form-control" placeholder="Search">
-                <span class="input-group-btn">
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                </span>
-              </form>
-            </div>
-          </div>
-
-          <!-- Spacer -->
-          <div class="m-t-3 visible-xs visible-sm"></div>
-
-          <div class="panel">
-
-            <!-- Controls -->
-
-            <div class="panel-body p-a-1 clearfix">
-              <div class="btn-toolbar page-messages-wide-buttons pull-left" role="toolbar">
-                <div class="btn-group">
-                  <div class="btn-group">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-check-square-o"></i>&nbsp;<i class="fa fa-caret-down"></i></button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Check all</a></li>
-                      <li><a href="#">Check read</a></li>
-                      <li><a href="#">Check unread</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Uncheck all</a></li>
-                      <li><a href="#">Uncheck read</a></li>
-                      <li><a href="#">Uncheck unread</a></li>
-                    </ul>
-                  </div>
-                  <button type="button" class="btn"><i class="fa fa-repeat"></i></button>
-                </div>
-
-                <div class="btn-group">
-                  <button type="button" class="btn"><i class="fa fa fa-file-text-o"></i></button>
-                  <button type="button" class="btn"><i class="fa fa-exclamation-circle"></i></button>
-                  <button type="button" class="btn"><i class="fa fa-trash-o"></i></button>
-                </div>
-              </div>
-
-              <div class="btn-toolbar pull-right" role="toolbar">
-                <div class="btn-group">
-                  <button type="button" class="btn"><i class="fa fa-chevron-left"></i></button>
-                  <button type="button" class="btn"><i class="fa fa-chevron-right"></i></button>
-                </div>
-              </div>
-              <div class="page-messages-pages pull-right p-r-1 text-muted">1-50 of 825</div>
-            </div>
-   <!-- / Controls -->
-
-            <hr class="m-y-0">
-
-            <!-- List -->
-
-            <div class="panel-body p-a-1 clearfix">
-              <table class="page-messages-items table table-striped m-a-0">
-                <tbody>
-
-                  <tr>
-                    <td class="page-messages-item-actions">
-                      <label class="custom-control custom-checkbox custom-control-blank m-a-0 pull-xs-left">
-                        <input type="checkbox" class="custom-control-input"><span class="custom-control-indicator"></span>
-                      </label>
-                      <a href="#" class="pull-xs-left m-l-1 text-muted font-size-14"><i class="fa fa-star"></i></a>
-                    </td>
-                    <td>
-                      <div class="box m-a-0 bg-transparent">
-                        <a name="goods_num" href="#" class="page-messages-item-from box-cell text-default">物品id</a>
-                        <div class="page-messages-item-subject box-cell"><a name="content" href="item.html" class="text-default font-weight-bold">内容</a></div>
-                        <div name="time" class="page-messages-item-date box-cell text-muted text-xs-right">时间</div>
-                      </div>
-                    </td>
-                  </tr>                                              
-                </tbody>
-              </table>
-            </div>
-
-            <!-- / List -->
-
-          </div>
         </div>
-
-        <!-- / Content -->
+		<nav>
+            <ul class="pager">
+              <li class="previous" id="xg1"><a id="pre">← Preview</a></li>
+              <strong id="pageNum" class="font-size-28" >${spageNum}</strong>/<strong id="total">${total }</strong>
+              <li class="next" id="xg2"><a id="nex" >Next →</a></li>
+            </ul>
+          </nav>
+      </div>
   </div>
 
 
@@ -298,5 +160,29 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
+  	<script>
+		var x = $('#pageNum').text();	
+		var t = Number($('#total').text());
+		var p = Number(x)-Number(1);
+		var n = Number(x)+Number(1);
+		var a="/staff_tousu.html?pageNum="+p;
+		var b="/staff_tousu.html?pageNum="+n;
+		if(t==1){
+			document.getElementById('xg1').setAttribute('class','previous disabled');
+			document.getElementById('xg2').setAttribute('class','next disabled');
+		}else if(p>0&&n<=t){
+			$('#pre').attr("href",a);
+			$('#nex').attr("href",b);
+		}else if(p<=0){
+			document.getElementById('xg1').setAttribute('class','previous disabled');
+			$('#nex').attr("href",b);
+		}else if(n>t){
+			document.getElementById('xg2').setAttribute('class','next disabled');
+			$('#pre').attr("href",a);
+		}
+		
+
+		
+	</script>
 </body>
 </html>

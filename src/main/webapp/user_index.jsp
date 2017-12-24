@@ -47,12 +47,114 @@
 </head>
 <body>
 <jsp:include page="user_around.jsp"></jsp:include>
-  <div class="px-content">
+  <div class="px-content" style="padding-bottom: 210px;">
     <div class="page-header">
-      <h1>个人用户首页</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h1><i class="page-header-icon ion-ios-pie"></i>首页</h1>
+        </div>
+      </div>
     </div>
 
-    <div>Content </div>
+    <div class="row">
+
+      <!-- Stats -->
+
+      <div class="col-md-3">
+        <div class="box bg-info darken">
+          <div class="box-cell p-x-3 p-y-1">
+            <div class="font-weight-semibold font-size-12">已完成</div>
+            <div class="font-weight-bold font-size-20" ><span id="yj1"></span></div>
+            <i class="box-bg-icon middle right font-size-52 ion-android-cloud-done"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="box bg-danger darken">
+          <div class="box-cell p-x-3 p-y-1">
+            <div class="font-weight-semibold font-size-12">运输中</div>
+            <div class="font-weight-bold font-size-20"><span id="yj2"></span></div>
+            <i class="box-bg-icon middle right font-size-52 ion-android-plane"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="box bg-warning darken">
+          <div class="box-cell p-x-3 p-y-1">
+            <div class="font-weight-semibold font-size-12">等待取件</div>
+            <div class="font-weight-bold font-size-20"><span id="yj3"></span></div>
+            <i class="box-bg-icon middle right font-size-52 ion-android-walk"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="box bg-success darken">
+          <div class="box-cell p-x-3 p-y-1">
+            <div class="font-weight-semibold font-size-12">所有邮件</div>
+            <div class="font-weight-bold font-size-20"><span id="yj4"></span></div>
+            <i class="box-bg-icon middle right font-size-52 ion-android-apps"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- / Stats -->
+
+    </div>
+<span id="clock" class="pull-xs-right"></span>
+    <hr class="page-wide-block m-y-0">
+
+    <!-- Metrics -->
+
+    <div class="page-wide-block">
+      <div class="box m-a-0 border-radius-0" id="metrics">
+        <div class="box-row valign-top">
+
+          <!-- Fast buttons -->
+          <div class="box-cell col-md-4">
+            <div class="box-container text-xs-center text-primary">
+
+              <div class="box-row valign-middle">
+                <a href="/user_jj.html" class="box-cell p-y-1 b-r-1 bg-white">
+                  <i class="ion-android-create font-size-52 line-height-1"></i>
+                  <div class="font-size-12">寄件</div>
+                </a>
+                <a href="/user_sh.html" class="box-cell p-y-1 bg-white">
+                  <i class="fa fa-search font-size-52 line-height-1"></i>
+                  <div class="font-size-12">搜索</div>
+                </a>
+              </div>
+
+              <div class="box-row valign-middle">
+                <a href="/user_ts.html" class="box-cell p-y-1 b-r-1 b-t-1 bg-white">
+                  <i class="fa fa-times-circle-o font-size-52 line-height-1"></i>
+                  <div class="font-size-12">投诉</div>
+                </a>
+                <a href="/user_person.html" class="box-cell p-y-1 b-t-1 bg-white">
+                  <i class="fa fa-cog font-size-52 line-height-1"></i>
+                  <div class="font-size-12">设置</div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+          <!-- / Fast butons -->
+
+        </div>
+	
+      </div>
+    </div>
+
+    <!-- / Metrics -->
+
+
+
+
+
+
+   
   </div>
 
 
@@ -109,5 +211,33 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
+  	<script type="text/javascript">
+		function displayTime(){
+			var elt = document.getElementById("clock");
+			var now = new Date();
+			elt.innerHTML = now.toLocaleString();
+			setTimeout(displayTime,1000);
+		}
+		window.onload=displayTime;
+
+	</script>
+     <script>
+    // -------------------------------------------------------------------------
+    // Initialize DataTables
+
+
+	$.ajax({    
+	    type: "post",    
+	    url:'/user_getYJNum.html',    
+	    cache: false,    
+	    dataType : "json",    
+	    success: function(data){     
+			$('#yj1').text(data.yj1);
+			$('#yj2').text(data.yj2);
+			$('#yj3').text(data.yj3);
+			$('#yj4').text(data.yj4);
+	    }
+	});
+	    	</script>
 </body>
 </html>

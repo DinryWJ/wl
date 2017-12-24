@@ -50,6 +50,7 @@
 <body>
 	<jsp:include page="user_around.jsp"></jsp:include>
   <div class="px-content">
+  <small><c:if test ="${!empty error}" ><font color="red"><c:out value="${error}"></c:out></font></c:if></small>
     <div class="page-header m-b-0 p-b-0 b-b-0">
       <h1>Account <span class="text-muted font-weight-light">Settings</span></h1>
 
@@ -83,7 +84,7 @@
 
       <div class="tab-pane fade in active" id="account-profile">
         <div class="row">
-          <form action="updateperson.html" class="col-md-8 col-lg-9">
+          <form action="updateperson.html" class="col-md-8 col-lg-9" onSubmit="return check(this);" method="post">
             <div class="p-x-1">
               <fieldset class="form-group form-group-lg">
                 <label for="account-name">Name</label>
@@ -91,27 +92,24 @@
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-gender">gender</label>
-                <label for="switcher-icon" class="switcher">
-                  <input type="checkbox" id="switcher-icon" checked="" name="gender">
-                  <div class="switcher-indicator">
-                    <div class="switcher-yes"><i class="fa fa-mars"></i></div>
-                    <div class="switcher-no"><i class="fa fa-venus"></i></div>
-                  </div>
-                  <small class="text-muted"><i class="fa fa-mars"></i><strong>男</strong>|<i class="fa fa-venus"></i><strong>女</strong></small>
-                </label>
+                <select class="form-control m-b-2"  id ="select" name="gender">
+                	<option> </option>
+                	<option>男</option>
+                	<option>女</option>           
+              	</select>
+              </fieldset>
+              <fieldset class="form-group form-group-lg">
+                <label for="account-phone">phone</label>
+                <input type="text" class="form-control" id="account-phone" value="${sessionScope.user.phone}" name="phone" style="ime-mode:disabled" onkeyup="return ValidateNumber($(this),value)" maxlength="11">
+              </fieldset>
+              <fieldset class="form-group form-group-lg">
+                <label for="account-address">Address</label>
+                <input type="text" class="form-control" id="account-address" value="${sessionScope.user.address}" name="address">
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-email">E-mail</label>
                 <input type="email" class="form-control" id="account-email" value="${sessionScope.user.email}" readonly="readonly" name="email">
                 <small class="text-muted">注册邮箱无法修改</small>
-              </fieldset>
-              <fieldset class="form-group form-group-lg">
-                <label for="account-phone">phone</label>
-                <input type="text" class="form-control" id="account-phone" value="${sessionScope.user.phone}" name="phone">
-              </fieldset>
-              <fieldset class="form-group form-group-lg">
-                <label for="account-address">Address</label>
-                <input type="text" class="form-control" id="account-address" value="${sessionScope.user.address}" name="address">
               </fieldset>
               <fieldset class="form-group form-group-lg">
                 <label for="account-type">type</label>
@@ -138,8 +136,8 @@
               </div>
               <hr class="m-y-0">
               <div class="panel-body text-xs-center">
-                <button type="button" class="btn btn-primary">Change</button>&nbsp;
-                <button type="button" class="btn"><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-primary" disabled="disabled">Change</button>&nbsp;
+                <button type="button" class="btn" disabled="disabled"><i class="fa fa-trash"></i></button>
                 <div class="m-t-2 text-muted font-size-12">JPG, GIF or PNG. Max size of 1MB</div>
               </div>
             </div>
@@ -156,7 +154,7 @@
       <!-- Password tab -->
 
       <div class="tab-pane fade" id="account-password">
-        <form action="updatepassword.html" class="p-x-1">
+        <form action="updatepassword.html" class="p-x-1" onSubmit="return check2(this);" method="post">
           <fieldset class="form-group form-group-lg">
             <label for="account-password">Old password</label>
             <input type="password" class="form-control" id="account-password" name="oldPassword">
@@ -244,5 +242,50 @@
       $('#account-bio').pxCharLimit();
     });
   </script>
+  <script>
+  
+  var x =${sessionScope.user.gender};
+  if(true==x){
+	  $("#select").val("男");
+  }else{
+	  $("#select").val("女");
+  }
+
+  function ValidateNumber(e, pnumber){
+		if (!/^\d+$/.test(pnumber)){
+			$(e).val(/^\d+/.exec($(e).val()));
+		}
+		return false;
+	}
+  function check() {
+	    // body...
+	    var a = $(" input[ name='name' ] ").val();
+	    var b = $(" input[ name='phone' ] ").val();
+	    var c = $(" input[ name='address' ] ").val();
+
+	    if(''==a||''==b||''==c){
+	      alert('不能有空值');
+	      return false;
+	    }
+
+	    
+	    return true;
+	  }
+  function check2() {
+	    // body...
+	    var opwd = $(" input[ name='oldPassword' ] ").val();
+	    var npwd = $(" input[ name='newPassword' ] ").val();
+	    var rpwd = $(" input[ name='reNewPassword' ] ").val();
+	    if(''==opwd||''==npwd||''==rpwd){
+	      	alert('不能有空值');
+	      	return false;
+	    }
+	    
+	    return true;
+		
+	    
+	   
+	  }
+</script>
 </body>
 </html>

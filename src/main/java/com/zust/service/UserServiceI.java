@@ -11,7 +11,7 @@ public interface UserServiceI {
 	public boolean isMatched(String email, String password);
 	public int getUserIdByEmail(String email);
 	public void createUser(String email, String name, String password);
-	public void updateUser(String email, String name, String address, String phone);
+	public void updateUser(String email, String name, String gender, String address, String phone);
 	public void updatePassword(String email,String newPassword);
 	
 	public User entity2dto(Tuser tuser) throws IllegalAccessException, InvocationTargetException;

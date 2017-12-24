@@ -52,17 +52,6 @@ public class UserDAOImpl extends BaseDaoImpl<Tuser> implements UserDaoI{
 		int result = (Integer) getCurrentSession().createQuery(hql).setParameter(0, email).uniqueResult();
 		return result;
 	}
-	
-	
-	public void updateUser(String email,String name,String phone,String address){
-		int id = getUserIdByEmail(email);
-		Tuser tuser = (Tuser)get(Tuser.class,id);
-		tuser.setName(name);
-//		tuser.setGender(gender);
-		tuser.setPhone(phone);
-		tuser.setAddress(address);
-		
-	}
 	public void updatePassword(Tuser tuser,String newPassword){
 		tuser.setPassword(newPassword);
 	}

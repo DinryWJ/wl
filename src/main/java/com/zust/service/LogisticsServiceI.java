@@ -11,7 +11,9 @@ public interface LogisticsServiceI {
 	Logistics getLogisticsByGoodsId(int goodsId) throws IllegalAccessException, InvocationTargetException;
 
 	void setZhongzhuan(int goodsId, String address);
-
+	
 	void setLogistics(Logistics logistic);
+
+
 
 }

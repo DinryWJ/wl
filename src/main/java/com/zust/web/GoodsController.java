@@ -1,7 +1,9 @@
 package com.zust.web;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -68,5 +70,15 @@ public class GoodsController {
 	@RequestMapping(value="/user_yj2.html")
 	public String userYj2(){
 		return "user_yj2";
+	}
+	@ResponseBody
+	@RequestMapping(value="/user_getYJNum.html")
+	public Map<String,Long> getYJNums(HttpServletRequest request){
+		User user = (User) request.getSession().getAttribute("user");
+		int id = user.getUserId();
+		Map<String,Long> map = goodsService.getYJNums(id);
+		
+		return map;
+		
 	}
 }

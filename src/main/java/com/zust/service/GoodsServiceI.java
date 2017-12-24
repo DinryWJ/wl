@@ -2,6 +2,7 @@ package com.zust.service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,7 @@ public interface GoodsServiceI {
 
 	Goods search(String s) throws IllegalAccessException, InvocationTargetException;
 
-	List<Goods> getUncheckedYJ() throws IllegalAccessException, InvocationTargetException;
+	List<Goods> getUncheckedYJ(int pageNum, int raw) throws IllegalAccessException, InvocationTargetException;
 	
 	Goods entity2dto(Tgoods tgood) throws IllegalAccessException, InvocationTargetException;
 	
@@ -25,7 +26,7 @@ public interface GoodsServiceI {
 
 	void delGoodsByCode(String delcode);
 
-	List<Goods> getAllYJ() throws IllegalAccessException, InvocationTargetException;
+	List<Goods> getAllYJ(int pageNum, int num) throws IllegalAccessException, InvocationTargetException;
 
 	void modify(Goods goods) throws IllegalAccessException, InvocationTargetException;
 
@@ -33,6 +34,18 @@ public interface GoodsServiceI {
 
 	void userJjPage(int id, Goods goods);
 	
-	 String getNewCode();
+	String getNewCode();
+
+
+	void setComplete(int goodsId);
+
+
+	int getPageNum(int num);
+
+
+	int getUncheckPageNum(int num);
+
+
+	Map<String, Long> getYJNums(int id);
 	
 }

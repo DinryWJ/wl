@@ -52,13 +52,19 @@
     <div class="page-header p-y-4">
       <div class="box m-a-0 bg-transparent">
         <h1 class="box-cell col-md-7 col-lg-8 col-xl-9 font-weight-bold"><i class="page-header-icon ion-chatbubbles"></i>未处理订单</h1>
-
         <!-- Spacer -->
         <hr class="visible-xs visible-sm">
-
-
       </div>
     </div>
+<div>
+	<nav>
+		<ul class="pager">
+	  		<li class="previous" id="xg1"><a id="pre">← Preview</a></li>
+	  		<strong id="pageNum" class="font-size-28" >${spageNum}</strong>/<strong id="total">${total }</strong>
+		  	<li class="next" id="xg2"><a id="nex" >Next →</a></li>
+		</ul>
+    </nav>
+</div>
 <c:forEach var="good" items="${goods}">
     <div class="page-forums-list-item box panel p-y-2 p-x-3">
       <div class="box-row">
@@ -66,12 +72,6 @@
           <strong>编号：</strong><span id="code"><c:out value="${good.code}"></c:out></a></span>
           <div>
             <strong>名称：</strong><span id="GoodsName"><c:out value="${good.name}"></c:out></span>
-          </div>
-          <div>
-            <strong>发货地址：</strong><span id="GoodsSAddress"><c:out value="${good.sUserAddress}"></c:out></span>
-          </div>
-          <div>
-            <strong>发件人：</strong><span id="GoodsSAddress"><c:out value="${good.sUserName}"></c:out></span>
           </div>
         </div>
 
@@ -176,5 +176,29 @@
       });
     });
   </script>
+   	<script>
+		var x = $('#pageNum').text();	
+		var t = Number($('#total').text());
+		var p = Number(x)-Number(1);
+		var n = Number(x)+Number(1);
+		var a="/staff_shenhe.html?pageNum="+p;
+		var b="/staff_shenhe.html?pageNum="+n;
+		if(t==1){
+			document.getElementById('xg1').setAttribute('class','previous disabled');
+			document.getElementById('xg2').setAttribute('class','next disabled');
+		}else if(p>0&&n<=t){
+			$('#pre').attr("href",a);
+			$('#nex').attr("href",b);
+		}else if(p<=0){
+			document.getElementById('xg1').setAttribute('class','previous disabled');
+			$('#nex').attr("href",b);
+		}else if(n>t){
+			document.getElementById('xg2').setAttribute('class','next disabled');
+			$('#pre').attr("href",a);
+		}
+		
+
+		
+	</script>
 </body>
 </html>

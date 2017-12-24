@@ -47,12 +47,86 @@
 </head>
 <body>
 <jsp:include page="staff_around.jsp"></jsp:include>
-  <div class="px-content">
-    <div class="page-header">
-      <h1>admin 首页</h1>
+<div class="px-content" style="padding-bottom: 210px;">
+   <div class="page-header">
+      <div class="row">
+        <div class="col-md-4 text-xs-center text-md-left text-nowrap">
+          <h1><i class="page-header-icon ion-ios-pulse-strong"></i>首页</h1>
+        </div>
+      </div>
     </div>
 
-    <div>Content</div>
+    <div class="row">
+      <div class="col-md-8">
+
+        <div class="box bg-warning">
+          <div class="box-row">
+            <div class="box-cell p-a-2">
+              <div class="font-weight-semibold font-size-17">这里是</div>
+              <div class="font-size-24 text-xs-center"><strong>${station.name }</strong></div>
+              <div class="font-size-12 text-xs-right">${station.address }</div>
+              <div class="font-size-12 text-xs-right">${station.intro }</div>
+              <div class="font-size-12 text-xs-right">${station.phone }</div>
+            </div>
+          </div>
+          <div class="box-row">
+            <div class="box-cell p-x-2 p-b-1 valign-bottom text-xs-center">
+              <span id="sparkline-2"><canvas width="298" height="42" style="display: inline-block; width: 298px; height: 42px; vertical-align: top;"></canvas></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pie charts -->
+
+       
+
+        <!-- / Pie charts -->
+
+      </div>
+    
+      <div class="col-md-4">
+
+        <!-- Stats -->
+		<div class="panel box">
+          <div class="box-row">
+            <div class="box-cell text-xs-center bg-info font-size-52">
+              <i class="fa fa-clock-o"></i>
+            </div>
+          </div>
+          <div class="box-row">
+            <div class="box-cell p-y-2 text-xs-center font-size-20">
+              <span id="clock" class="m-x-auto"></span>
+            </div>
+          </div>
+        </div>
+        <a href="/staff_person.html" class="box bg-danger">
+          <div class="box-cell p-a-3 valign-middle">
+            <i class="box-bg-icon middle right fa fa-cog"></i>
+
+            <span class="font-size-24"><strong>个人设置</strong></span><br>
+            
+          </div>
+        </a>
+		<a href="#" class="box bg-success darken">
+          <div class="box-cell p-a-3 valign-middle">
+            <i class="box-bg-icon middle right fa fa-search"></i>
+
+            <span class="font-size-24"><strong>邮件搜索</strong></span><br>
+          </div>
+        </a>
+       
+
+
+
+        <!-- / Stats -->
+
+      </div>
+    </div>
+
+
+
+
+
   </div>
 
 
@@ -109,5 +183,33 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
+  	<script type="text/javascript">
+		function displayTime(){
+			var elt = document.getElementById("clock");
+			var now = new Date();
+			elt.innerHTML = now.toLocaleString();
+			setTimeout(displayTime,1000);
+		}
+		window.onload=displayTime;
+
+	</script>
+	     <script>
+    // -------------------------------------------------------------------------
+    // Initialize DataTables
+
+
+	$.ajax({    
+	    type: "post",    
+	    url:'/staff_indexInfo.html',    
+	    cache: false,    
+	    dataType : "json",    
+	    success: function(data){     
+			$('#yj1').text(data.yj1);
+			$('#yj2').text(data.yj2);
+			$('#yj3').text(data.yj3);
+			$('#yj4').text(data.yj4);
+	    }
+	});
+	    	</script>
 </body>
 </html>

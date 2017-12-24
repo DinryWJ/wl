@@ -11,8 +11,8 @@ import com.zust.entity.Tuser;
 
 @Repository
 public class ComplaintDaoImpl extends BaseDaoImpl<Tcomplaint> implements ComplaintDaoI{
-	public void createComplaint(int id,String name,String content){
-		System.out.println("2处哦啊据哦"+id);
+	public void createComplaint(int id,String content){
+
 		Tuser tuser = (Tuser) getCurrentSession().get(Tuser.class,id);
 		
 		Tcomplaint tcomplaint = new Tcomplaint();
@@ -21,11 +21,8 @@ public class ComplaintDaoImpl extends BaseDaoImpl<Tcomplaint> implements Complai
 		tcomplaint.setUser(tuser);
 		save(tcomplaint);
 	}
+
+
 	
-	public int getUserIdByEmail(String email) {
-		// TODO Auto-generated method stub
-		String hql ="SELECT userId FROM Tuser WHERE email = ?";
-		int result = (Integer) getCurrentSession().createQuery(hql).setParameter(0, email).uniqueResult();
-		return result;
-	}
+
 }

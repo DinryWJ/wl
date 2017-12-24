@@ -151,12 +151,18 @@
             <label class="sr-only" for="form-inline-input-8"></label>
             <div class="input-group">
               <div class="input-group-addon">当前地址</div>
-              <input type="hidden" name="goodsId" value="${goods.goodsId}"/>
+              <input type="hidden" name="goodsId" value="${goods.goodsId}" readonly="readonly"/>
               <input type="text" class="form-control" id="form-inline-input-8" value="${station.address}"  readonly="readonly" name="address">
             </div>
           </div>
           <button type="submit" class="btn btn-primary">录入物流信息</button>
       </form>
+     <form class="form-inline m-t-1" method="post" action="/setZhongzhuan2.html">
+     	<input type="hidden" name="goodsId" value="${goods.goodsId}" readonly="readonly"/>
+     	<input type="hidden" name="code" value="${goods.code}" readonly="readonly"/>
+     	<input type="hidden" class="form-control" id="form-inline-input-8" value="${station.address}"  readonly="readonly" name="address">     
+       	<button id="setZZ2" type="submit" class="btn btn-primary">成功到站</button>
+     </form>
       </c:if>
   </div>
 
@@ -227,7 +233,7 @@
   		$("#tbd").append('<tr><td class="p-a-2"><div class="font-weight-semibold">'+a2+'</div><div class="font-size-12 text-muted"></div></td><td class="p-a-2"><strong>'+b2+'</strong></td></tr>');
   	}
   	
-  	
+ 
   </script>
 </body>
 </html>

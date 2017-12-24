@@ -53,7 +53,7 @@
       <h1>寄件</h1>
     </div>
 
-    <form action="jj.html" class="panel form-horizontal"  method="post">
+    <form action="jj.html" class="panel form-horizontal"  onSubmit="return check(this);" method="post">
       <div class="panel-heading">
         <span class="panel-title">寄件人信息</span>
       </div>
@@ -61,15 +61,15 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">寄件人姓名</label>
-            <input type="text" name="sUserName" placeholder="寄件人姓名" class="form-control form-group-margin">
+            <input type="text" name="sUserName" placeholder="寄件人姓名" class="form-control form-group-margin" value="${sessionScope.user.name }" readonly="readonly">
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="sUserPhone" placeholder="手机号" class="form-control form-group-margin">
+            <input type="text" name="sUserPhone" placeholder="手机号" class="form-control form-group-margin"  value="${sessionScope.user.phone }"  readonly="readonly" style="ime-mode:disabled" onkeyup="return ValidateNumber($(this),value)" maxlength="11">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
-            <input type="text" name="sUserAddress" placeholder="详细地址" class="form-control form-group-margin">
+            <input type="text" name="sUserAddress" placeholder="详细地址" class="form-control form-group-margin" value="${sessionScope.user.address }" readonly="readonly">
           </div>
         </div><!-- row -->
         
@@ -84,40 +84,40 @@
         <div class="row">
           <div class="col-md-4">
             <label class="control-label">名字</label>
-            <input type="text" name="name" placeholder="物品名称" class="form-control form-group-margin">
+            <input type="text" name="name" placeholder="物品名称" class="form-control form-group-margin" >
           </div>
           <div  class="col-md-4">
           <label  class="col-sm-2 control-label">类型</label>
               <div class="col-sm-10">
                 <div class="radio">
                   <label>
-                    <input type="radio" name="type" id="optionsRadios1" value="option1" class="px" checked="">
+                    <input type="radio" name="type" id="optionsRadios1" value="服饰" class="px" checked="">
                     <span class="lbl">服饰</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="type" id="optionsRadios2" value="option2" class="px">
+                    <input type="radio" name="type" id="optionsRadios2" value="电子产品" class="px">
                     <span class="lbl">电子产品</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="type" id="optionsRadios3" value="option3" class="px">
+                    <input type="radio" name="type" id="optionsRadios3" value="食品" class="px">
                     <span class="lbl">食品</span>
                   </label>
                 </div> <!-- / .radio -->
                 <div class="radio">
                   <label>
-                    <input type="radio" name="type" id="optionsRadios4" value="option4" class="px">
+                    <input type="radio" name="type" id="optionsRadios4" value="书籍" class="px">
                     <span class="lbl">书籍</span>
                   </label>
                 </div> <!-- / .radio -->
               </div> 
           </div>
           <div class="col-md-4">
-            <label class="control-label">重量</label>
-            <input type="text" name="weight" placeholder="预估重量" class="form-control form-group-margin">
+            <label class="control-label">重量/kg</label>
+            <input type="text" name="weight" placeholder="预估重量" class="form-control form-group-margin"  oninput="javascript:this.value=this.value.replace(/[^\d]/g,'')" >
           </div>
         </div><!-- row -->
         <label class="control-label">备注</label>
@@ -135,7 +135,7 @@
           </div>
           <div class="col-md-4">
             <label class="control-label">手机号</label>
-            <input type="text" name="rUserPhone" placeholder="手机号" class="form-control form-group-margin">
+            <input type="text" name="rUserPhone" placeholder="手机号" class="form-control form-group-margin" style="ime-mode:disabled" onkeyup="return ValidateNumber($(this),value)" maxlength="11">
           </div>
           <div class="col-md-4">
             <label class="control-label">地址</label>
@@ -204,6 +204,33 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
+<script>
+function ValidateNumber(e, pnumber){
+	if (!/^\d+$/.test(pnumber)){
+		$(e).val(/^\d+/.exec($(e).val()));
+	}
+	return false;
+}
+function check() {
+    // body...
+    var a = $(" input[ name='sUserName' ] ").val();
+    var b = $(" input[ name='sUserPhone' ] ").val();
+    var c = $(" input[ name='sUserAddress' ] ").val();
+    var d = $(" input[ name='name' ] ").val();
+    var e = $(" input[ name='type' ] ").val();
+    var f = $(" input[ name='weight' ] ").val();
+    var g = $(" input[ name='intro' ] ").val();
+    var h = $(" input[ name='rUserName' ] ").val();
+    var i = $(" input[ name='rUserPhone' ] ").val();
+    var j = $(" input[ name='rUserAddress' ] ").val();
+    if(''==a||''==b||''==c||''==d||''==e||''==f||''==g||''==h||''==i||''==j){
+      alert('不能有空值');
+      return false;
+    }
 
+    
+    return true;
+  }
+</script>
 </body>
 </html>

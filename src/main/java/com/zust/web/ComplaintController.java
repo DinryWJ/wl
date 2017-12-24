@@ -20,9 +20,10 @@ public class ComplaintController {
 	private ComplaintServiceI complaintService;
 	
 	@RequestMapping(value="/tousu.html")
-	public String tousu(HttpServletRequest request,String name,String email,String content){
-		int id = complaintService.getUserIdByEmail(email);
-		complaintService.createComplaint(id, name, content);
+	public String tousu(HttpServletRequest request,String content){
+		User user = (User) request.getSession().getAttribute("user");
+		int id = user.getUserId();
+		complaintService.createComplaint(id,content);
 		return "redirect:/user_index.html";	
 		}	
 }

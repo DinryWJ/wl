@@ -91,7 +91,7 @@
                 <td><a class="btn btn-primary btn-3d"  href="/user_sh.html?s=<c:out value="${good.code}"></c:out>">查看</a></td>
               	</c:if>
               	 <c:if test="${good.status2==false }">
-                <td><a class="btn btn-info btn-3d" >等待中</a></td>
+                <td><a class="btn btn-info btn-3d" disabled="disabled">等待中</a></td>
               	</c:if>
               </tr>
 

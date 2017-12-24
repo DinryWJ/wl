@@ -53,7 +53,7 @@
       <h1>我要投诉</h1>
     </div>
 
-    <form action="tousu.html" class="panel form-horizontal form-bordered"  onsubmit="return check()">
+    <form action="tousu.html" class="panel form-horizontal form-bordered"  onsubmit="return check()" method="post">
           <div class="panel-heading">
             <span class="panel-title">投诉</span>
           </div>
@@ -62,15 +62,7 @@
               <div class="row">
                 <label class="col-sm-4 control-label">Name:</label>
                 <div class="col-sm-8">
-                  <input type="text" name="name" class="form-control" value="${sessionScope.user.name }">
-                </div>
-              </div>
-            </div>
-            <div class="form-group no-margin-hr panel-padding-h">
-              <div class="row">
-                <label class="col-sm-4 control-label">Email:</label>
-                <div class="col-sm-8">
-                  <input type="email" name="email" class="form-control" value="${sessionScope.user.email }">
+                  <input type="text" name="name" class="form-control" value="${sessionScope.user.name }" readonly="readonly">
                 </div>
               </div>
             </div>
@@ -78,24 +70,7 @@
               <div class="row">
                 <label class="col-sm-4 control-label">内容:</label>
                 <div class="col-sm-8">
-                   <div class="panel">
-                      <div class="panel-heading">
-                        <span class="panel-title">Markdown</span>
-                        <div class="panel-heading-controls">
-                          <label for="markdown-layout-switcher" class="panel-heading-text font-size-11 font-weight-semibold"><span class="valign-middle">BOXED&nbsp;</span></label>
-                          <label for="markdown-layout-switcher" class="switcher switcher-rounded switcher-sm switcher-success switcher-blank">
-                            <input type="checkbox" id="markdown-layout-switcher">
-                            <div class="switcher-indicator">
-                              <div class="switcher-yes">ON</div>
-                              <div class="switcher-no">OFF</div>
-                            </div>
-                          </label>
-                        </div>
-                      </div>
-			     <div class="panel-body">
-			        <textarea id="markdown" name="content" class="form-control" rows="6"></textarea>
-			     </div>
-			    </div>
+                   <textarea class="form-control" rows="7" id="textarea" name="content"></textarea>
                 </div>
               </div>
             </div>
@@ -163,50 +138,18 @@
     });
   </script>
     <script>
-    // -------------------------------------------------------------------------
-    // Initialize Markdown
+    function check() {
+        // body...
+        var a = $("#textarea ").text();
 
-    $(function() {
-      $('#markdown').markdown({
-        iconlibrary: 'fa',
-        footer:      '<div id="md-character-footer"></div><small id="md-character-counter" class="text-muted">100 character left</small>',
+        if(''==a){
+          alert('内容不能为空');
+          return false;
+        }
 
-        onChange: function(e) {
-          var contentLength = e.getContent().length;
-
-          if (contentLength > 100) {
-            $('#md-character-counter')
-              .removeClass('text-muted')
-              .addClass('text-danger')
-              .html((contentLength - 100) + ' character surplus.');
-          } else {
-            $('#md-character-counter')
-              .removeClass('text-danger')
-              .addClass('text-muted')
-              .html((100 - contentLength) + ' character left.');
-          }
-        },
-      });
-
-      // Update character counter
-      $('#markdown').trigger('change');
-    });
-    // -------------------------------------------------------------------------
-    // Initialize "Boxed" switchers
-
-    $(function() {
-      $('#markdown-layout-switcher, #summernote-layout-switcher').on('change', function() {
-        var $this = $(this);
-        var method = $this.is(':checked') ? 'addClass' : 'removeClass';
-
-        $this.parents('.panel')
-          .find('> .panel-body')[method]('p-a-0')
-          .find('> *')[method]('m-a-0 b-a-0 border-radius-0');
-      });
-    });
-    </script>
-      <script>
-
+        
+        return true;
+      }
   </script>
 </body>
 </html>

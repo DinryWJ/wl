@@ -177,8 +177,6 @@
 	    dataType : "json",    
 	    success: function(data){        		
 	    	$.each(data, function(index,item){                              
-	    		 
-
                  $("#centerNameSelect").append("<option value='"+item+"'>"+item+"</option>");
 	         })
 	    }

@@ -64,6 +64,12 @@ public class LogisticsController {
 		logisticsService.setZhongzhuan(goodsId,address);
 		return "staff_zhongzhuan";
 	}
+	@RequestMapping(value="/setZhongzhuan2.html")
+	public String setZhongzhuan2(int goodsId,String address,String code){
+		logisticsService.setZhongzhuan(goodsId,address);
+		goodsService.setComplete(goodsId);
+		return "redirect:/staff_zhongzhuan.html?code="+code;
+	}
 	@RequestMapping(value="/user_sh.html")
 	public ModelAndView goodsSearch(HttpServletRequest request, @RequestParam(value = "s", required = false)String code) throws IllegalAccessException, InvocationTargetException{
 		ModelAndView mav = new ModelAndView();

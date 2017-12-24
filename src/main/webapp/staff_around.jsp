@@ -18,7 +18,8 @@
         <ul class="px-nav-content">
       <li class="px-nav-box p-a-3 b-b-1" id="demo-px-nav-box">
         <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <img src="assets/demo/avatars/1.jpg" alt="" class="pull-xs-left m-r-2 border-round" style="width: 54px; height: 54px;">
+
+       <img src="/images/staff.PNG" alt="" class="pull-xs-left m-r-2 border-round" style="width: 54px; height: 54px;">  
         <div class="font-size-16"><span class="font-weight-light"></span><strong>${sessionScope.staff.name}</strong></div>
         <div class="btn-group" style="margin-top: 4px;">
           <a href="/staff_tousu.html" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-envelope"></i></a>
@@ -47,7 +48,7 @@
         <a href="staff_tongzhi.html"><i class="px-nav-icon fa fa-telegram"></i><span class="px-nav-label">上门取件管理</span></a>
       	 <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="staff_tongzhi.html"><span class="px-nav-label">未处理订单</span></a></li>
-          <li class="px-nav-item"><a href="staff_tongzhi2.html"><span class="px-nav-label">通知上门取件</span></a></li>
+          <li class="px-nav-item"><a href="staff_tongzhi2.html"><span class="px-nav-label">上门取件</span></a></li>
         </ul>
       </li>
       <li class="px-nav-item">

@@ -44,62 +44,7 @@
   <script src="assets/pace/pace.min.js"></script>
 
   <script src="assets/demo/demo.js"></script>
-  <style>
-
-    /* Common styles */
-
-    .box, .box-row, .box-cell { overflow: visible !important; -webkit-mask-image: none !important; }
-    .page-messages-container > .box-row > .box-cell { display: block !important; }
-
-    .page-messages-label {
-      width: 8px;
-      height: 8px;
-      display: block;
-      border-radius: 999px;
-      float: left;
-      margin-top: 6px;
-      margin-right: 12px;
-    }
-
-    html[dir="rtl"] .page-messages-label {
-      float: right;
-      margin-left: 12px;
-      margin-right: 0;
-    }
-
-    #page-messages-aside-nav {
-      max-height: 0;
-      overflow: hidden;
-      -webkit-transition: max-height .3s;
-      transition: max-height .3s;
-    }
-
-    #page-messages-aside-nav.show { max-height: 2000px; }
-
-    @media (min-width: 768px) {
-      .page-messages-container > .box-row > .box-cell {
-        display: table-cell !important;
-        padding-top: 15px;
-      }
-      .page-messages-aside { width: 200px; }
-      .page-messages-content { padding-left: 20px; }
-
-      html[dir="rtl"] .page-messages-content {
-        padding-left: 0;
-        padding-right: 20px;
-      }
-
-      #page-messages-aside-nav { max-height: none !important; }
-
-      .page-messages-wide-buttons .btn { width: 60px; }
-    }
-
-    /* Special styles */
-
-    .page-messages-item-label {
-      vertical-align: text-bottom;
-    }
-  </style>
+ 
 </head>
 <body>
 <jsp:include page="staff_around.jsp"></jsp:include>
@@ -110,10 +55,6 @@
       <!-- Content -->
 
         <div class="page-messages-content box-cell valign-top">
-          
-
-        
-            <!-- Info -->
 
             <div class="panel-body p-y-1 clearfix">
               <div class="box m-a-0 valign-middle">
@@ -124,7 +65,7 @@
                         <img src="assets/demo/avatars/3.jpg" alt="" class="border-round" style="width: 100%;">
                       </div>
                       <div class="box-cell p-l-2">
-                        <div class="font-size-14">物品编号</div>
+                        <div class="font-size-14">${complaint.userId}</div>
                         <div class="font-size-12 text-muted">投诉人</div>
                       </div>
                     </div>
@@ -133,30 +74,28 @@
                 <div class="box-cell text-muted col-md-4 text-md-right">
                   <!-- Spacer -->
                   <div class="m-t-2 visible-xs visible-sm"></div>
-
-                  August 11 (3 days ago)
+				${complaint.time}
                 </div>
               </div>
             </div>
 
-            <!-- / Info -->
-
+  
             <hr class="m-y-0">
 
             <!-- Message -->
 
             <div class="panel-body font-size-14">
-              <p>Hi John,</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <blockquote>
-                <div class="widget-products-item col-xs-12 col-sm-6 col-xl-4">
-                  <a href="#" class="widget-products-image">
-                    <img src="assets/demo/thumbs/1.jpg">
-                    <span class="widget-products-overlay"></span>
-                  </a>
-                  </div>
-              </blockquote>
-             
+              <p>${complaint.content}</p>
+					              <!-- 
+					              <blockquote>
+					                <div class="widget-products-item col-xs-12 col-sm-6 col-xl-4">
+					                  <a href="#" class="widget-products-image">
+					                    <img src="assets/demo/thumbs/1.jpg">
+					                    <span class="widget-products-overlay"></span>
+					                  </a>
+					                  </div>
+					              </blockquote>
+					              -->
             </div>
 
             <!-- / Message -->
@@ -165,8 +104,9 @@
             <!-- Form -->
 
             <div class="panel-body">
-              <form action="" class="expanding-input" id="page-messages-item-form">
-                <textarea class="form-control expanding-input-control" rows="4" placeholder="回复"></textarea>
+              <form action="/recall.html" class="expanding-input" id="page-messages-item-form" onSubmit="return check();" method="post">
+              	<input type="hidden" name="complaintId" value="${complaint.complaintId}"/>
+                <textarea class="form-control expanding-input-control" rows="4" placeholder="回复" name="recall" id="textarea"></textarea>
 
                 <div>
                   <button type="submit" class="btn btn-primary ">Send message</button>
@@ -237,6 +177,21 @@
       $('#navbar-notifications').perfectScrollbar();
       $('#navbar-messages').perfectScrollbar();
     });
+  </script>
+  <script type="text/javascript">
+  function check() {
+	var complaintId = $(" input[ name='complaintId' ] ").val();
+	var textarea = $('#textarea').val();
+	if (complaintId=="") {
+		alert('请选择投诉编号！');
+		return false;	
+	}else if(textarea==""){
+		alert('请回复！');
+		return false;
+	}else{
+		return true;
+	}
+  }
   </script>
 </body>
 </html>
