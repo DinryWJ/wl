@@ -3,9 +3,12 @@ package com.zust.service.Impl;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -14,10 +17,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mysql.fabric.xmlrpc.base.Array;
 import com.zust.dao.GoodsDaoI;
+import com.zust.dao.LogisticsDaoI;
+import com.zust.dao.StaffDaoI;
 import com.zust.dao.UserDaoI;
 import com.zust.dto.Goods;
 import com.zust.entity.Tgoods;
+import com.zust.entity.Tlogistics;
 import com.zust.entity.Tuser;
 import com.zust.service.GoodsServiceI;
 @Transactional
@@ -29,6 +36,11 @@ public class GoodsServiceImpl implements GoodsServiceI {
 	@Autowired
 	private UserDaoI userDao;
 	
+	@Autowired
+	private LogisticsDaoI logisticsDao;
+	
+	@Autowired
+	private StaffDaoI staffDao;
 	
 	public void userJjPage(int id,Goods goods) {
 		// TODO Auto-generated method stub
@@ -190,6 +202,37 @@ public class GoodsServiceImpl implements GoodsServiceI {
 		map.put("yj1", c1);
 		
 		return map;
+	}
+	public List<Goods> staffConfirm(int id,int pageNum,int raw) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		String name = staffDao.getStaffById(id).getStation().getName();
+		String hql = "FROM Tlogistics WHERE   wait=true AND mAddress ='"+name+"'";
+		List<Tlogistics> list = logisticsDao.find(hql,pageNum,raw);
+		List<Tgoods> tgoods = new ArrayList<Tgoods>();
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i).getmAddress());
+			int gid = list.get(i).getGoods().getGoodsId();
+			Tgoods e = goodsDao.get(Tgoods.class, gid);
+			System.out.println(e.getCode());
+			tgoods.add(e);
+		}
+		if(tgoods.isEmpty()) return null;
+		else {
+			List<Goods> listDestination= entity2dto(tgoods);
+
+			return listDestination;
+		}
+	}
+	public int getUnConfirmPageNum(int id,int num) {
+		// TODO Auto-generated method stub
+		String name = staffDao.getStaffById(id).getStation().getName();
+		String hql = "SELECT count(*) FROM Tlogistics WHERE   wait=true AND mAddress ='"+name+"'";
+		Long i = goodsDao.count(hql);
+		double tota = (double)i;
+		double total = Math.ceil(tota/num); 
+		int total2 =(int)(total); 
+		if(total2<=1)total2=1;
+		return total2;
 	}
 
 	

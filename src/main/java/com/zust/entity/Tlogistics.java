@@ -19,7 +19,7 @@ public class Tlogistics {
 	
 	private String mTime;
 	
-	private String intro;
+	private boolean wait;
 	
 	private Tgoods goods;
 
@@ -51,19 +51,18 @@ public class Tlogistics {
 		this.mTime = mTime;
 	}
 	@Column
-	public String getIntro() {
-		return intro;
+	public boolean isWait() {
+		return wait;
 	}
 
-	public void setIntro(String intro) {
-		this.intro = intro;
+	public void setWait(boolean wait) {
+		this.wait = wait;
 	}
 	@OneToOne
 	@JoinColumn(name="goods_id")
 	public Tgoods getGoods() {
 		return goods;
 	}
-
 	public void setGoods(Tgoods goods) {
 		this.goods = goods;
 	}

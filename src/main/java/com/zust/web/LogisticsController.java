@@ -40,14 +40,38 @@ public class LogisticsController {
 		logisticsService.setLogistics(logistic);
 		return "redirect:/staff_tongzhi.html";
 	}
-	
+	@RequestMapping(value="staff_confirm.html")
+	public ModelAndView staffConfirm(HttpServletRequest request,@RequestParam(value="pageNum",required=false)String pageNum) throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		Staff staff = (Staff) request.getSession().getAttribute("staff");
+		int id = staff.getStationId();
+		int num=1;
+		int total = goodsService.getUnConfirmPageNum(id,10);
+		if(pageNum==null){
+			num=1;		
+		}else{
+			num = Integer.parseInt(pageNum);
+		}
+
+		mav.setViewName("staff_confirm");
+		List<Goods> list = goodsService.staffConfirm(id,num,10);
+		mav.addObject("goods", list);
+		mav.addObject("spageNum", num);
+		mav.addObject("total", total);
+		return mav;
+	}
+	@RequestMapping(value="staff_checkConfirm.html")
+	public String staffCheckConfirm(String code){
+		logisticsService.checkConfirm(code);
+		return "redirect:/staff_confirm.html";
+	}
 	@RequestMapping(value="staff_zhongzhuan.html")
 	public ModelAndView staffZhongzhuan(HttpServletRequest request,@RequestParam(value="code",required=false)String code) throws IllegalAccessException, InvocationTargetException{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("staff_zhongzhuan");
 		if(code!=null){
 			Goods goods = goodsService.search(code);
-			if(code!=null){
+			if(goods!=null){ //xiugai
 				Logistics logistics = logisticsService.getLogisticsByGoodsId(goods.getGoodsId());
 				Staff staff =  (Staff) request.getSession().getAttribute("staff");
 				int id = staff.getStationId();
@@ -70,18 +94,5 @@ public class LogisticsController {
 		goodsService.setComplete(goodsId);
 		return "redirect:/staff_zhongzhuan.html?code="+code;
 	}
-	@RequestMapping(value="/user_sh.html")
-	public ModelAndView goodsSearch(HttpServletRequest request, @RequestParam(value = "s", required = false)String code) throws IllegalAccessException, InvocationTargetException{
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("user_sh");
-		if(code!=null){
-			Goods goods = goodsService.search(code);
-			if(goods!=null){
-				Logistics logistics = logisticsService.getLogisticsByGoodsId(goods.getGoodsId());
-				mav.addObject("goods", goods);
-				mav.addObject("logistics", logistics);
-			}
-		}
-		return mav;	
-	}
+
 }

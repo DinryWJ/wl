@@ -37,16 +37,7 @@ public class GoodsController {
 	}
 	
 
-	@RequestMapping(value="/staff_sh.html")
-	public ModelAndView goodsSearch2(HttpServletRequest request, @RequestParam(value = "s", required = false)String s) throws IllegalAccessException, InvocationTargetException{
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("staff_sh");
-		if(s!=null){
-			Goods good = goodsService.search(s);
-			mav.addObject("good", good);
-		}
-		return mav;	
-	}
+
 	@RequestMapping(value="/user_yj.html")
 	public ModelAndView userYj(HttpServletRequest request,@RequestParam(value="pageNum",required=false)String pageNum)throws IllegalAccessException, InvocationTargetException{
 		ModelAndView mav = new ModelAndView();

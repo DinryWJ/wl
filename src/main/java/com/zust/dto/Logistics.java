@@ -15,7 +15,7 @@ public class Logistics {
 	
 	private String goodsNum;
 	
-	private String intro;
+	private boolean wait;
 	
 	public int getLogisticsId() {
 		return logisticsId;
@@ -65,13 +65,15 @@ public class Logistics {
 		this.goodsNum = goodsNum;
 	}
 
-	public String getIntro() {
-		return intro;
+	public boolean isWait() {
+		return wait;
 	}
 
-	public void setIntro(String intro) {
-		this.intro = intro;
+	public void setWait(boolean wait) {
+		this.wait = wait;
 	}
+
+
 	
 	
 }

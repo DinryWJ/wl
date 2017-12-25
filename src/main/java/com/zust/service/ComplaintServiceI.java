@@ -14,4 +14,7 @@ public interface ComplaintServiceI {
 	public Complaint getComplaintById(int complaintId) throws IllegalAccessException, InvocationTargetException;
 	public Complaint entity2dto2(Tcomplaint tcomplaint) throws IllegalAccessException, InvocationTargetException;
 	public void recall(int handlerId, String recall,int complaintId);
+	public Long getNewComplaintsNum();
+
+
 }

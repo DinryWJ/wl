@@ -31,12 +31,15 @@
       <li class="px-nav-item">
         <a href="staff_index.html"><i class="px-nav-icon ion-ios-pulse-strong"></i><span class="px-nav-label">首页</span></a>
       </li>
+<c:if test="${sessionScope.staff.position!=0}">
       <li class="px-nav-item">
          <a href="staff_sh.html"><i class="px-nav-icon fa fa-search"></i><span class="px-nav-label">邮件搜索</span></a>
       </li>
+
        <li class="px-nav-item">
          <a href="staff_person.html"><i class="px-nav-icon fa fa-cog"></i><span class="px-nav-label">个人设置</span></a>
       </li>
+</c:if>
 <c:if test="${sessionScope.staff.position==2}">
       <li class="px-nav-item px-nav-dropdown">
         <a href="shenhe.html"><i class="px-nav-icon fa fa-archive"></i><span class="px-nav-label">寄件信息管理</span></a>
@@ -45,19 +48,24 @@
           <li class="px-nav-item"><a href="staff_shenhe2.html"><span class="px-nav-label">修改</span></a></li>
         </ul>
       </li>
-</c:if>
-<c:if test="${sessionScope.staff.position==1 }">
       <li class="px-nav-item px-nav-dropdown">
         <a href="staff_tongzhi.html"><i class="px-nav-icon fa fa-telegram"></i><span class="px-nav-label">上门取件管理</span></a>
       	 <ul class="px-nav-dropdown-menu">
           <li class="px-nav-item"><a href="staff_tongzhi.html"><span class="px-nav-label">未处理订单</span></a></li>
           <li class="px-nav-item"><a href="staff_tongzhi2.html"><span class="px-nav-label">上门取件</span></a></li>
         </ul>
-      </li>     
+      </li>  
+      
+</c:if>   
+<c:if test="${sessionScope.staff.position==1}">
+      <li class="px-nav-item">
+        <a href="staff_confirm.html"><i class="px-nav-icon fa fa-check"></i><span class="px-nav-label">待确认邮件</span></a>
+      </li>
       <li class="px-nav-item">
         <a href="staff_zhongzhuan.html"><i class="px-nav-icon fa fa-map-marker"></i><span class="px-nav-label">物流信息管理</span></a>
       </li>
-</c:if>
+
+</c:if>  
 <c:if test="${sessionScope.staff.position==2}">
       <li class="px-nav-item px-nav-dropdown">
         <a href="staff_tousu.html"><i class="px-nav-icon fa fa-times-circle-o"></i><span class="px-nav-label">投诉管理</span></a>

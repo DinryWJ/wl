@@ -21,6 +21,7 @@ import com.zust.dto.Staff;
 import com.zust.dto.Station;
 import com.zust.service.ComplaintServiceI;
 import com.zust.service.GoodsServiceI;
+import com.zust.service.LogisticsServiceI;
 import com.zust.service.StaffServiceI;
 import com.zust.service.StationServiceI;
 
@@ -38,32 +39,26 @@ public class StaffController {
 	@Autowired
 	private StationServiceI stationService;
 	
-	@RequestMapping(value="/staffloginCheck.html")
-	public  ModelAndView userloginCheck(HttpServletRequest request,LoginCommand loginCommand) throws IllegalAccessException, InvocationTargetException{
-		boolean isVaild = staffService.isMatched(loginCommand.getEmail(), loginCommand.getPassword());
-		if(!isVaild){
-			return new ModelAndView("staff_signin","error","邮箱或密码错误");
-		}else{
-			int id = staffService.getStaffIdByEmail(loginCommand.getEmail());
-			Staff staff = staffService.getStaffById(id);
-			request.getSession().setAttribute("staff", staff);
-			//登陆后跳转
-			return new ModelAndView("redirect:/staff_index.html");
-			
-		}	
-	}
-    @RequestMapping("/stafftoLogin.html")
-    public String execute(HttpSession session){
-        session.invalidate();
-        return "redirect:/staff_signin.html";
-    }
-	
+	@Autowired
+	private LogisticsServiceI logisticsService;
+
+
 	@RequestMapping(value="staff_index.html")
 	public String staffIndex(HttpServletRequest request) throws IllegalAccessException, InvocationTargetException{	
 		Staff staff = (Staff) request.getSession().getAttribute("staff");
-		int id = staff.getStationId();
-		Station station = stationService.getStationById(id);
-		request.setAttribute("station", station);
+		if(staff.getPosition()==1){
+			int id = staff.getStationId();
+			Station station = stationService.getStationById(id);
+			request.setAttribute("station", station);
+			Long num = logisticsService.getNewComNum(id);
+			request.setAttribute("num", num);
+		}
+		if(staff.getPosition()==2){
+			Long num2 = logisticsService.getNewComNum2();			
+			Long num3 = complaintService.getNewComplaintsNum();
+			request.setAttribute("num2", num2);
+			request.setAttribute("num3", num3);
+		}
 		return "staff_index";
 	}
 
@@ -178,10 +173,17 @@ public class StaffController {
 		return "redirect:/staff_tousu.html";
 		
 	}
-	@RequestMapping(value="/staff_seachyh.html")
-	public String staffSeachyh(){
-		return "staff_seachyh";
+	@RequestMapping(value="/staff_sh.html")
+	public ModelAndView goodsSearch2(HttpServletRequest request, @RequestParam(value = "s", required = false)String s) throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("staff_sh");
+		if(s!=null){
+			Goods good = goodsService.search(s);
+			mav.addObject("good", good);
+		}
+		return mav;	
 	}
+
 	@RequestMapping(value="/staff_person.html")
 	public String staffPerson(){
 		return "staff_person";
@@ -193,7 +195,7 @@ public class StaffController {
 		System.out.println(staff.isGender());
 		staffService.updateStaff(staff);
 		request.getSession().setAttribute("staff", staff);
-		return new ModelAndView("redirect:staff_person.html");	
+		return new ModelAndView("redirect:/staff_person.html");	
 		}	
 
 	

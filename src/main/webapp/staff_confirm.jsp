@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-  <title>首页 工作人员端 物流信息管理平台</title>
+  <title>确认邮件 工作人员端 物流信息管理平台</title>
 
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
   <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
@@ -51,122 +51,53 @@
    <div class="page-header">
       <div class="row">
         <div class="col-md-4 text-xs-center text-md-left text-nowrap">
-          <h1><i class="page-header-icon ion-ios-pulse-strong"></i>首页</h1>
+          <h1><i class="page-header-icon ion-ios-pulse-strong"></i>确认邮件</h1>
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-8">
-<c:if test="${sessionScope.staff.position==1 }">
-        <div class="box bg-warning">
-          <div class="box-row">
-            <div class="box-cell p-a-2">
-              <div class="font-weight-semibold font-size-17">这里是</div>
-              <div class="font-size-24 text-xs-center"><strong>${station.name }</strong></div>
-              <div class="font-size-12 text-xs-right">${station.address }</div>
-              <div class="font-size-12 text-xs-right">${station.intro }</div>
-              <div class="font-size-12 text-xs-right">${station.phone }</div>
-            </div>
-          </div>
-          <div class="box-row">
-            <div class="box-cell p-x-2 p-b-1 valign-bottom text-xs-center">
-              <span id="sparkline-2"><canvas width="298" height="42" style="display: inline-block; width: 298px; height: 42px; vertical-align: top;"></canvas></span>
-            </div>
+	<div>
+	<nav>
+		<ul class="pager">
+	  		<li class="previous" id="xg1"><a id="pre">← Preview</a></li>
+	  		<strong id="pageNum" class="font-size-28" >${spageNum}</strong>/<strong id="total">${total }</strong>
+		  	<li class="next" id="xg2"><a id="nex" >Next →</a></li>
+		</ul>
+    </nav>
+</div>
+<c:forEach var="good" items="${goods}">
+    <div class="page-forums-list-item box panel p-y-2 p-x-3">
+      <div class="box-row">
+        <div class="page-forums-list-title box-cell col-md-7 col-lg-8 col-xl-9 p-r-4">
+          <strong>编号：</strong><span id="code"><c:out value="${good.code}"></c:out></a></span>
+          <div>
+            <strong>名称：</strong><span id="GoodsName"><c:out value="${good.name}"></c:out></span>
           </div>
         </div>
 
-        <!-- Pie charts -->
-		<div class="col-md-6">
-        <a href="/staff_confirm.html" class="box bg-primary">
-          <div class="box-cell p-a-3 valign-middle">
-            <i class="box-bg-icon middle right ion-ios-chatbubble-outline"></i>
+        <!-- Spacer -->
+        <hr class="visible-xs visible-sm m-y-2">
 
-            <span class="font-size-24"><strong>${num}</strong></span><br>
-            <span class="font-size-15">新的待处理邮件</span>
-          </div>
-        </a>
-      </div>
-</c:if>    
- <c:if test="${sessionScope.staff.position==2 }">      
-	<div class="panel box">
-          <div class="box-row">
-            <div class="box-container">
-              <div class="box-cell p-a-3 valign-middle bg-primary">
-                <i class="box-bg-icon middle right font-size-52 ion-ios-information-outline"></i>
-                <div class="font-size-17">预览</div>
-
+        <div class="box-cell col-md-5 col-lg-4 col-xl-3 valign-middle text-md-center">
+          <!-- Reset container's height by wrapping in a div -->
+          <div class="pull-md-right">
+            <div class="box-container width-md-auto valign-middle">
+              <div class="box-cell ">
+                <div class="font-size-11 text-muted">时间</div>
+                <div class="font-size-14 line-height-1"><span class="font-size-12" id="createtime"><c:out value="${good.createtime}"></c:out></span>&nbsp;</div>
               </div>
-            </div> <!-- / .box-container -->
-          </div>
-          <div class="box-row">
-            <div class="box-container text-xs-center">
-              <div class="box-row valign-middle">
-                <div class="box-cell p-y-1 b-r-1">
-                  <div class="font-size-17"><strong><a href="/staff_tongzhi.html">${num2 }</a></strong></div>
-                  <div class="font-size-11">待取件</div>
-                </div>
-                <div class="box-cell p-y-1 b-r-1">
-                  <div class="font-size-17"><strong><a href="/staff_tousu.html">${num3}</a></strong></div>
-                  <div class="font-size-11">新的投诉</div>
-                </div>
-                <div class="box-cell p-y-1">
-
-                  <div class="font-size-11"><a href=“/staff_shenhe.html”>所有邮件</a></div>
-                </div>
+              <div class="box-cell p-x-1">
+                <a class="btn btn-primary"  href="/staff_checkConfirm.html?code=${good.code}">确认</a>
               </div>
-
-            </div> <!-- / .box-container -->
-          </div>
-        </div>
-</c:if>      
- 
-        <!-- / Pie charts -->
-
-      </div>
-    
-      <div class="col-md-4">
-
-        <!-- Stats -->
-		<div class="panel box">
-          <div class="box-row">
-            <div class="box-cell text-xs-center bg-info font-size-52">
-              <i class="fa fa-clock-o"></i>
-            </div>
-          </div>
-          <div class="box-row">
-            <div class="box-cell p-y-2 text-xs-center font-size-20">
-              <span id="clock" class="m-x-auto"></span>
+              <div class="box-cell">
+                <button class="bootbox-confirm btn btn-danger" >删除</button>
+              </div>
             </div>
           </div>
         </div>
-<c:if test="${sessionScope.staff.position!=0}">
-        <a href="/staff_person.html" class="box bg-danger">
-          <div class="box-cell p-a-3 valign-middle">
-            <i class="box-bg-icon middle right fa fa-cog"></i>
-
-            <span class="font-size-24"><strong>个人设置</strong></span><br>
-            
-          </div>
-        </a>
-		<a href="/staff_sh.html" class="box bg-success darken">
-          <div class="box-cell p-a-3 valign-middle">
-            <i class="box-bg-icon middle right fa fa-search"></i>
-
-            <span class="font-size-24"><strong>邮件搜索</strong></span><br>
-          </div>
-        </a>
-</c:if>
-
-
-
-        <!-- / Stats -->
 
       </div>
     </div>
-
-
-
+</c:forEach>
 
 
   </div>
@@ -235,7 +166,7 @@
 		window.onload=displayTime;
 
 	</script>
-	     <script>
+<script>
     // -------------------------------------------------------------------------
     // Initialize DataTables
 
@@ -252,6 +183,46 @@
 			$('#yj4').text(data.yj4);
 	    }
 	});
-	    	</script>
+</script>
+  <script>
+  var code =$('#code').html();
+  $('.bootbox-confirm').on('click', function() {
+      bootbox.confirm({
+        message:   'Are you sure?',
+        className: 'bootbox-sm',
+
+        callback: function(result) {
+          if(true==result){
+        	window.location.href="/staff_tongzhi2.html?delcode="+code;
+        	
+          }
+        },
+      });
+    });
+  </script>
+<script>
+	var x = $('#pageNum').text();	
+	var t = Number($('#total').text());
+	var p = Number(x)-Number(1);
+	var n = Number(x)+Number(1);
+	var a="/staff_shenhe.html?pageNum="+p;
+	var b="/staff_shenhe.html?pageNum="+n;
+	if(t==1){
+		document.getElementById('xg1').setAttribute('class','previous disabled');
+		document.getElementById('xg2').setAttribute('class','next disabled');
+	}else if(p>0&&n<=t){
+		$('#pre').attr("href",a);
+		$('#nex').attr("href",b);
+	}else if(p<=0){
+		document.getElementById('xg1').setAttribute('class','previous disabled');
+		$('#nex').attr("href",b);
+	}else if(n>t){
+		document.getElementById('xg2').setAttribute('class','next disabled');
+		$('#pre').attr("href",a);
+	}
+
+
+
+</script>
 </body>
 </html>

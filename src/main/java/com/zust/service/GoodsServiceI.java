@@ -47,5 +47,11 @@ public interface GoodsServiceI {
 
 
 	Map<String, Long> getYJNums(int id);
+
+
+	List<Goods> staffConfirm(int id, int pageNum, int raw) throws IllegalAccessException, InvocationTargetException;
+
+
+	int getUnConfirmPageNum(int id, int num);
 	
 }

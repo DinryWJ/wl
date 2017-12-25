@@ -14,6 +14,11 @@ public interface LogisticsServiceI {
 	
 	void setLogistics(Logistics logistic);
 
+	void checkConfirm(String code);
+
+	Long getNewComNum(int id);
+	
+	Long getNewComNum2();
 
 
 }

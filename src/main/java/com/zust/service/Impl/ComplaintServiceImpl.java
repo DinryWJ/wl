@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zust.dao.ComplaintDaoI;
+import com.zust.dao.StationDaoI;
 import com.zust.dao.UserDaoI;
 import com.zust.dto.Complaint;
 import com.zust.dto.Goods;
 import com.zust.entity.Tcomplaint;
+import com.zust.entity.Tstaff;
+import com.zust.entity.Tstation;
 import com.zust.service.ComplaintServiceI;
 import com.zust.service.GoodsServiceI;
+import com.zust.service.StationServiceI;
 
 @Transactional
 @Service
@@ -23,6 +27,9 @@ public class ComplaintServiceImpl implements ComplaintServiceI{
 
 	@Autowired
 	private ComplaintDaoI complaintDao;
+	
+	@Autowired
+	private StationDaoI stationDao;
 
 	public void createComplaint(int id,String content) {
 		// TODO Auto-generated method stub
@@ -79,4 +86,16 @@ public class ComplaintServiceImpl implements ComplaintServiceI{
 		
 	
 	}
+
+	public Long getNewComplaintsNum() {
+		// TODO Auto-generated method stub
+		String hql = "SELECT count(*) FROM Tcomplaint";
+		Long x = complaintDao.count(hql);
+		return x;
+	}
+
+
+
+
+
 }

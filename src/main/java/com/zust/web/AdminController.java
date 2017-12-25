@@ -77,6 +77,10 @@ public class AdminController {
 		staffService.aupdateStaff(staff);
 			return new ModelAndView("redirect:admin_getyh.html?email="+staff.getEmail()+"");
 	}
+	@RequestMapping(value="/staff_seachyh.html")
+	public String staffSeachyh(){
+		return "staff_seachyh";
+	}
 	@RequestMapping("/staff_seachyh1.html")
 	public ModelAndView staffSeachyh1(HttpServletRequest request,String s,String page) throws IllegalAccessException, InvocationTargetException{
 		String i =request.getParameter("page");

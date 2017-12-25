@@ -99,6 +99,7 @@
           <!-- Reset container's height by wrapping in a div -->
           <div class="pull-md-right">
             <div class="box-container width-md-auto valign-middle">
+<c:if test="${sessionScope.staff.position==2 && good.status==false}">
               <div class="box-cell ">
                 <c:if test="${good.status2 == 'false' }">  
 					<a class="btn btn-primary"  href="/staff_tongzhi2.html?code=${good.code}">通知</a>
@@ -107,17 +108,35 @@
 					<a class="btn btn-success" >已通知</a>
 				</c:if>  
               </div>
- 
+ </c:if>
+ <c:if test="${sessionScope.staff.position==1 }">
               <div class="box-cell p-x-1">	
 				<a class="btn btn-primary" href="/staff_zhongzhuan.html?code=${good.code}">设置中转</a>
               </div>
+</c:if>   
+ <c:if test="${sessionScope.staff.position==2}">
+              <div class="box-cell p-x-1">	
+				<a class="btn btn-primary" href="/staff_zhongzhuan.html?code=${good.code}">查看路径</a>
+              </div>
+</c:if>              
+<c:if test="${sessionScope.staff.position==1 }">
+ 			  <div class="box-cell p-x-1">	
+				<a class="btn btn-danger"  href="/staff_checkConfirm.html?code=${good.code}">确认取件</a>
+              </div>
+</c:if>   
+<c:if test="${sessionScope.staff.position==2 && good.status==false}">
               <div class="box-cell">
                 <a class="btn btn-info" href="/staff_shenhe2.html?code=${good.code}">编辑</a>
               </div>
               <div class="box-cell">
                <button class="bootbox-confirm btn btn-danger" >删除</button>
               </div>
-             
+ </c:if>  
+ <c:if test="${sessionScope.staff.position==2 && good.status==true}">    
+ 			<div class="box-cell">
+               <button class="btn btn-primary" >已完成</button>
+              </div>       
+</c:if> 
             </div>
           </div>
         </div>

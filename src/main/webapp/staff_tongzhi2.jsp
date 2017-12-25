@@ -78,14 +78,6 @@
                 </div>
               </div>
             </div>
-            <div class="form-group no-margin-hr no-margin-b panel-padding-h">
-              <div class="row">
-                <label class="col-sm-4 control-label">备注:</label>
-                <div class="col-sm-8">
-                  <textarea placeholder="备注" name="intro" class="form-control"></textarea>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="panel-footer text-right">
             <button class="btn btn-primary">Submit</button>

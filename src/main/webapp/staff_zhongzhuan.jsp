@@ -109,12 +109,15 @@
             <div class="box-cell col-md-6 bg-white darken p-x-3 p-y-2">
               <div class="pull-xs-left m-y-1 font-size-12 text-muted"><strong>当前状态</strong></div>
               <div class="pull-xs-right font-size-24"><strong>
-              	<c:if test="${goods.status == 'false' }">  
+
+              	<c:if test="${logistics.wait==false && goods.status == false }">  
 					正在运输
 				</c:if>  
-				<c:if test="${goods.status == 'true' }">  
+				<c:if test="${logistics.wait==false && goods.status == true }">  
 					已完成
 				</c:if>  
+
+ 				<c:if test="${logistics.wait==true}">等待取件</c:if>
               </strong></div>
             </div>
           </div>
@@ -145,7 +148,7 @@
       </div>
 
     </div>
-    <c:if test="${goods.status ==false &&sessionScope.staff.position==1}">
+    <c:if test="${goods.status ==false &&sessionScope.staff.position==1 && logistics.wait==false}">
     <form class="form-inline" method="post" action="/setZhongzhuan.html">
           <div class="form-group">
             <label class="sr-only" for="form-inline-input-8"></label>

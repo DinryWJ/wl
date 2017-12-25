@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zust.dto.LoginCommand;
+import com.zust.dto.Staff;
 import com.zust.dto.User;
+import com.zust.service.StaffServiceI;
 import com.zust.service.UserServiceI;
 
 
@@ -20,6 +22,9 @@ import com.zust.service.UserServiceI;
 public class MainController {
 	@Autowired
 	private UserServiceI userService;
+
+	@Autowired
+	private StaffServiceI staffService;
 	
 	@RequestMapping(value="/index.html")
 	public String loginPage(){
@@ -40,11 +45,21 @@ public class MainController {
 			
 		}	
 	}
-    @RequestMapping("/toLogin.html")
-    public String execute(HttpSession session){
-        session.invalidate();
-        return "redirect:/index.html";
-    }
+	@RequestMapping(value="/staffloginCheck.html")
+	public  ModelAndView staffloginCheck(HttpServletRequest request,LoginCommand loginCommand) throws IllegalAccessException, InvocationTargetException{
+		boolean isVaild = staffService.isMatched(loginCommand.getEmail(), loginCommand.getPassword());
+		if(!isVaild){
+			return new ModelAndView("staff_signin","error","邮箱或密码错误");
+		}else{
+			int id = staffService.getStaffIdByEmail(loginCommand.getEmail());
+			Staff staff = staffService.getStaffById(id);
+			request.getSession().setAttribute("staff", staff);
+			//登陆后跳转
+			return new ModelAndView("redirect:/staff_index.html");
+			
+		}	
+	}
+
 	@RequestMapping(value="/user_signup.html")
 	public String loginUpPage(){
 		return "user_signup";
@@ -63,5 +78,14 @@ public class MainController {
 	public String staffloginUpPage(){
 		return "staff_signup";
 	}
-
+    @RequestMapping("/stafftoLogin.html")
+    public String execute1(HttpSession session){
+        session.invalidate();
+        return "redirect:/staff_signin.html";
+    }
+    @RequestMapping("/toLogin.html")
+    public String execute2(HttpSession session){
+        session.invalidate();
+        return "redirect:/index.html";
+    }
 }

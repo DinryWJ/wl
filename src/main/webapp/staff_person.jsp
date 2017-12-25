@@ -101,6 +101,7 @@
                 <input type="email" class="form-control" id="email" value="${sessionScope.staff.email}" readonly="readonly" name="email">
                 <small class="text-muted">注册邮箱无法修改</small>
               </fieldset>
+
               <fieldset class="form-group form-group-lg">
                 <label for="account-address">职位</label>
                 <input type="text" class="form-control" id="position" value="${sessionScope.staff.position}" name="position" disabled="true">

@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,15 +15,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zust.dto.Goods;
+import com.zust.dto.Logistics;
 import com.zust.dto.User;
 import com.zust.service.GoodsServiceI;
+import com.zust.service.LogisticsServiceI;
 import com.zust.service.UserServiceI;
 
 @Controller
 public class UserController {
 	@Autowired
 	private UserServiceI userService;
-	
+	@Autowired
+	private GoodsServiceI goodsService;
+	@Autowired
+	private LogisticsServiceI logisticsService;
 
 	
 	@RequestMapping(value="/user_index.html")
@@ -73,6 +79,19 @@ public class UserController {
 		return new ModelAndView("user_person","error","旧密码错误");	
 		
 	}
-
+	@RequestMapping(value="/user_sh.html")
+	public ModelAndView goodsSearch(HttpServletRequest request, @RequestParam(value = "s", required = false)String code) throws IllegalAccessException, InvocationTargetException{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("user_sh");
+		if(code!=null){
+			Goods goods = goodsService.search(code);
+			if(goods!=null){
+				Logistics logistics = logisticsService.getLogisticsByGoodsId(goods.getGoodsId());
+				mav.addObject("goods", goods);
+				mav.addObject("logistics", logistics);
+			}
+		}
+		return mav;	
+	}
 
 }
