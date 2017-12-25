@@ -77,10 +77,10 @@
 </c:if>
 <c:if test="${sessionScope.staff.position==0}">
 		<li class="px-nav-item px-nav-dropdown">
-        <a href=""><i class="px-nav-icon fa fa-user"></i><span class="px-nav-label">用户管理</span></a>
+        <a href="/admin_searchUser.html"><i class="px-nav-icon fa fa-user"></i><span class="px-nav-label">用户管理</span></a>
          <ul class="px-nav-dropdown-menu">
-          <li class="px-nav-item"><a href="staff_seachyh.html"><span class="px-nav-label">搜索用户</span></a></li>
-          <li class="px-nav-item"><a href="staff_getyh.html"><span class="px-nav-label">修改用户信息</span></a></li>
+          <li class="px-nav-item"><a href="admin_searchUser.html"><span class="px-nav-label">搜索用户</span></a></li>
+          <li class="px-nav-item"><a href="admin_allUser.html"><span class="px-nav-label">所有用户</span></a></li>
         </ul>
       </li>
 
@@ -94,10 +94,10 @@
       </li>
       
       <li class="px-nav-item px-nav-dropdown">
-        <a href="#"><i class="px-nav-icon fa fa-building"></i><span class="px-nav-label">工作人员管理</span></a>
+        <a href="#"><i class="px-nav-icon fa fa-users"></i><span class="px-nav-label">工作人员管理</span></a>
          <ul class="px-nav-dropdown-menu">
-          <li class="px-nav-item"><a href="admin_searchyh.html"><span class="px-nav-label">所有工作人员</span></a></li>
-          <li class="px-nav-item"><a href="admin_getyh.html"><span class="px-nav-label">修改工作人员</span></a></li>
+          <li class="px-nav-item"><a href="admin_searchStaff.html"><span class="px-nav-label">搜索工作人员</span></a></li>
+          <li class="px-nav-item"><a href="admin_allStaff.html"><span class="px-nav-label">所有工作人员</span></a></li>
          </ul>
       </li>
 </c:if>

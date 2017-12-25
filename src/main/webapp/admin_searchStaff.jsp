@@ -52,64 +52,133 @@
       <h1>查找工作人员</h1>
     </div>
     
-    <!-- Header -->
+<!-- Header -->
 
-    <div class="page-header panel m-b-0 p-y-0 b-a-0 border-radius-0">
-      <form action="admin_searchyh1.html?page=1" method="POST" class="input-group input-group-lg p-y-3">
-        <input type="text" name="findby" class="form-control" placeholder="Search for...">
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-        </span>
-      </form>
+		<div class="page-header panel m-b-0 p-y-0 b-a-0 border-radius-0">
+			<form action="/admin_searchStaff.html" 
+				class="input-group input-group-lg p-y-3">
+				<input type="text" name="search" class="form-control"
+					placeholder="Search for email"> <span
+					class="input-group-btn">
+					<button type="submit" class="btn btn-primary">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</form>
 
-      <hr class="page-wide-block m-y-0">
+			<hr class="page-wide-block m-y-0">
 
-      <ul class="search-nav nav nav-tabs nav-tabs-simple nav-sm page-block b-b-0">
-        <li class="active"><a href="#results-pages" data-toggle="tab">FIND</a></li>           
-      </ul>
-    </div>
+			<ul
+				class="search-nav nav nav-tabs nav-tabs-simple nav-sm page-block b-b-0">
+				<li class="active"><a href="#results-pages">FIND</a></li>
+			</ul>
+		</div>
 
-    <hr class="page-wide-block m-t-0 b-t-2">
+		<hr class="page-wide-block m-t-0 b-t-2">
 
-    <!-- / Header -->
-    <div class="tab-content p-y-0">
+		<!-- / Header -->
+		<div class="tab-content p-y-0">
 
-      <!-- Pages -->
+			<!-- Pages -->
+			<c:if test="${!empty astaff}">
+				<form action="/admin_updateStaff.html" class="panel form-horizontal"
+					method="post">
 
-      <div class="tab-pane fade in active" id="results-pages">
-	<c:forEach var="sta" items="${staffs}"> 
-        <div class="panel">
-          <div class="panel-body">
-            <div class="font-weight-semibold font-size-16">
-            <a href="admin_getyh.html?email=${sta.email}">
-            	<c:out value="${sta.email}"/>&nbsp;&nbsp;
-            	<c:out value="${sta.name}"/>
-            </a></div>
-          </div>
-        </div>
-</c:forEach>
+					<div class="panel">
+						<div class="panel-heading">
+							<span class="panel-title">基本信息</span>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-3">
+									<label class="control-label">id</label> <input type="text"
+										value="${astaff.staffId}" name="staffId" placeholder=""
+										readonly="readonly" class="form-control form-group-margin">
+								</div>
+								<div class="col-md-3">
+									<label class="control-label">邮箱</label> <input type="email"
+										value="${astaff.email}" name="email" placeholder=""
+										class="form-control form-group-margin">
+								</div>
+								<div class="col-md-3">
+									<label class="control-label">用户名</label> <input type="text"
+										value="${astaff.name}" name="name" placeholder=""
+										class="form-control form-group-margin">
+								</div>
+								<div class="col-md-3">
+									<label class="control-label">密码</label> <input type="text"
+										value="${astaff.password}" name="password" placeholder=""
+										class="form-control form-group-margin">
+								</div>
+							</div>
+							<!-- row -->
+						</div>
 
-       
-        <nav class="pagination pagination-sm m-a-0">
-           <c:forEach var="p"  items="${pageall}" varStatus="stat">
-            <c:if test="${stat.first}" >
-          <li><a href="admin_searchyh1.html?page=${p}&findby=${email}" onclick="changactive()">«</a></li>
-          </c:if>
-          </c:forEach>
-           <c:forEach var="p"  items="${pageall}">
-          <li><a href="admin_searchyh1.html?page=${p}&findby=${email}" onclick="changactive()">${p}</a></li>
-          </c:forEach>
-         <c:forEach var="p" items="${pageall}" varStatus="stat">
-           <c:if test="${stat.last}" >
-          <li><a href="admin_searchyh1.html?page=${p}&findby=${email}" onclick="changactive()">»</a></li>
-          </c:if>
-          </c:forEach>
-        </nav>
 
-      </div>
 
-      <!-- / Pages -->
-  </div>
+
+
+						<div class="panel-heading">
+							<span class="panel-title">详细信息</span>
+						</div>
+						<div class="panel-body">
+							<div class="col-md-12 row">
+								<div class="col-md-6">
+									<label class="control-label">手机号</label> <input type="text"
+										value="${astaff.phone}" name="phone" placeholder=""
+										class="form-control form-group-margin">
+								</div>
+								<div class="col-md-6">
+									<label class="control-label">地址</label> <input type="text"
+										value="${astaff.address}" name="address" placeholder=""
+										class="form-control form-group-margin">
+								</div>
+	
+								<div class="col-md-6">
+									<label class="control-label">中转站</label> <input type="text"
+										value="${astaff.stationId}" name="stationId" placeholder=""
+										class="form-control form-group-margin">
+								</div>
+
+								<div class="col-md-6 ">
+									<label for="account-gender">gender</label> <select
+										class="form-control form-group-margin" id="select"
+										name="gender">
+										<option value=true>男</option>
+										<option value=false>女</option>
+									</select>
+								</div>
+								<div class="col-md-6 ">
+									<label for="account-gender">权限</label> <select
+										class="form-control form-group-margin" id="select2"
+										name="position">
+										<option value=1>中转人员</option>
+										<option value=2>工作人员</option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+
+						<!-- row -->
+
+
+
+
+
+
+						<div class="panel-footer text-right">
+							<button class="bootbox-confirm btn btn-xl btn-success btn-3d">修改</button>
+						</div>
+					</div>
+
+				</form>
+			</c:if>
+			<!-- / Pages -->
+		</div>
+
+	</div>
+
 
 
 
@@ -174,5 +243,19 @@
   });
   });
   </script>
+  	<script>
+	 var x =${astaff.gender};
+	  if(true==x){
+		  $("#select").val("true");
+	  }else{
+		  $("#select").val("false");
+	  }
+	 var x2 =${astaff.position};
+	  if(2==x2){
+		  $("#select2").val("2"); 
+	  }else if(1==x2){
+		  $("#select2").val("1");
+	  } 
+	</script>
 </body>
 </html>

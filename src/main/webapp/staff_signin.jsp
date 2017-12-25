@@ -98,7 +98,7 @@
   <div class="page-signin-container" id="page-signin-form">
     <h2 class="m-t-0 m-b-4 text-xs-center font-weight-semibold font-size-20">登录账号（<strong>工作人员</strong>）</h2>
 <small><c:if test ="${!empty error}" ><font color="red"><c:out value="${error}"></c:out></font></c:if></small>
-    <form action="staffloginCheck.html" class="panel p-a-4">
+    <form action="staffloginCheck.html" class="panel p-a-4" method="post">
       <fieldset class=" form-group form-group-lg">
         <input type="email" class="form-control" placeholder="Your Email" name="email">
       </fieldset>

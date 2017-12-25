@@ -104,7 +104,7 @@
 
         <form action="/user_signupCheck.html" class="p-a-4">
           <h4 class="m-t-0 m-b-4 text-xs-center font-weight-semibold">快速创建账号</h4>
-
+			<small><c:if test ="${!empty error}" ><font color="red"><c:out value="${error}"></c:out></font></c:if></small>
           <fieldset class="page-signup-form-group form-group form-group-lg">
             <div class="page-signup-icon text-muted"><i class="ion-at"></i></div>
             <input type="email" class="page-signup-form-control form-control" placeholder="登陆邮箱" name="email">

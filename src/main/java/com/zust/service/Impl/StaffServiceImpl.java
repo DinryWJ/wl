@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zust.dao.StaffDaoI;
+import com.zust.dao.StationDaoI;
 import com.zust.dto.Staff;
+import com.zust.dto.User;
 import com.zust.entity.Tstaff;
+import com.zust.entity.Tstation;
+import com.zust.entity.Tuser;
 import com.zust.service.StaffServiceI;
 @Transactional
 @Service
@@ -19,6 +23,9 @@ public class StaffServiceImpl implements StaffServiceI {
 
 	@Autowired
 	private StaffDaoI staffDao;
+	
+	@Autowired
+	private StationDaoI stationDao;
 	
 	public boolean isMatched(String email, String password) {
 		// TODO Auto-generated method stub
@@ -47,37 +54,7 @@ public class StaffServiceImpl implements StaffServiceI {
 		Tstaff tstaff = staffDao.getStaffById(id);	
 		staffDao.updatePassword(tstaff,newPassword);
 	}
-	public List<Staff> searchByemail(String s, int page) throws IllegalAccessException, InvocationTargetException {
-		if(s!=null){
-			List<Tstaff> tstaff =  staffDao.searchByemail(s,page);
-			List<Staff> staff = entity2dto(tstaff);
-			return staff;
-			}
-			return null;
-	}
 
-	public List getPageall(String s) {
-		return staffDao.getPageall(s);
-	}
-
-	public List<Staff> searchByname(String s, int page) throws IllegalAccessException, InvocationTargetException {
-		if(s!=null){
-			List<Tstaff> tstaff = staffDao.searchByname(s,page);
-			List<Staff> staff= entity2dto(tstaff);
-			return staff;
-			}
-		return null;
-	}
-
-	public Staff getStaffByemail(String email) throws IllegalAccessException, InvocationTargetException{
-		Tstaff tstaff = staffDao.getStaffByemail(email);
-	     Staff staff= entity2dto(tstaff);
-		return staff;
-	}
-
-	public void aupdateStaff(Staff staff) {
-		staffDao.aupdateStaff(staff);
-	}
 	public Staff entity2dto(Tstaff tstaff) throws IllegalAccessException, InvocationTargetException{
 		Staff staff = new Staff();
 		BeanUtils.copyProperties(staff, tstaff);
@@ -94,5 +71,41 @@ public class StaffServiceImpl implements StaffServiceI {
 		     }
 			return listDestination;
 	}
+
+	public void adminUpdateStaff(Staff astaff) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		int id = astaff.getStaffId();
+		Tstaff atstaff = staffDao.get(Tstaff.class, id);
+		BeanUtils.copyProperties(atstaff, astaff);
+		if(astaff.getPosition()==1){
+			Tstation tstation = stationDao.get(Tstation.class, astaff.getStationId());
+			atstaff.setStation(tstation);
+		}else{
+			Tstation tstation = stationDao.get(Tstation.class,1);
+			atstaff.setStation(tstation);
+		}
+		
+		staffDao.update(atstaff);
+	}
+
+	public int getStaffPageNum(int num) {
+		// TODO Auto-generated method stub
+		String hql="select count(*) FROM Tstaff";
+		Long i = staffDao.count(hql);
+		double tota = (double)i;
+		double total = Math.ceil(tota/num); 
+		int total2 =(int)(total); 
+		if(total2<=1)total2=1;
+		return total2;
+	}
+
+	public List<Staff> getAllStaff(int pageNum, int num) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		String hql ="FROM Tstaff";
+		List<Tstaff> list = staffDao.find(hql,pageNum,num);
+		List<Staff> lstaff = entity2dto(list);
+		return lstaff;
+	}
+	
 
 }

@@ -39,6 +39,7 @@ public class MainController {
 		}else{
 			int id = userService.getUserIdByEmail(loginCommand.getEmail());
 			User user = userService.getUserById(id);
+			if(user.getStatus()==true) return new ModelAndView("user_signin","error","该用户已被禁用");
 			request.getSession().setAttribute("user", user);
 			//登陆后跳转
 			return new ModelAndView("redirect:/user_index.html");
@@ -65,10 +66,15 @@ public class MainController {
 		return "user_signup";
 	}
 	@RequestMapping(value="/user_signupCheck.html")
-	public String loginUpCheck(String email,String name,String password){
-		userService.createUser(email,name,password);
+	public ModelAndView loginUpCheck(String email,String name,String password){
+		boolean isc = userService.isCrashed(email);
+		if(isc==false){
+			userService.createUser(email,name,password);
+			return new ModelAndView("user_signin");
+		}
+		return new ModelAndView("user_signup","error","该邮箱已被使用");	
 		
-		return "user_signin";
+		
 	}
 	@RequestMapping(value="/staff_signin.html")
 	public String staffloginPage(){

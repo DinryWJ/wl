@@ -3,6 +3,7 @@ package com.zust.service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import com.zust.dto.Station;
 import com.zust.dto.User;
 import com.zust.entity.Tuser;
 
@@ -13,13 +14,11 @@ public interface UserServiceI {
 	public void createUser(String email, String name, String password);
 	public void updateUser(String email, String name, String gender, String address, String phone);
 	public void updatePassword(String email,String newPassword);
-	
-	public User entity2dto(Tuser tuser) throws IllegalAccessException, InvocationTargetException;
-	public List<User> searchByname(String s,int page) throws IllegalAccessException, InvocationTargetException;
-	public List<User> searchByemail(String s,int page) throws IllegalAccessException, InvocationTargetException;
-	public List getPageall(String s);
-	public User getUserByemail(String email) throws IllegalAccessException, InvocationTargetException;
-	public void supdateUser(String email, String name, String password, String phone, String address, String createtime,
-			String updatetime,boolean gender,boolean status);
+	public void adminUpdateUser(User user) throws IllegalAccessException, InvocationTargetException;
+	public int getUserPageNum(int num);
+	public List<User> getAllUser(int pageNum, int num) throws IllegalAccessException, InvocationTargetException;
+	public List<User> entity2dto(List<Tuser> list) throws IllegalAccessException, InvocationTargetException;
+	public boolean isCrashed(String email);
+
 
 }

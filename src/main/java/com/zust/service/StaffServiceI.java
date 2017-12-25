@@ -4,30 +4,30 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.zust.dto.Staff;
+import com.zust.dto.User;
 import com.zust.entity.Tstaff;
 
 public interface StaffServiceI {
 
-	boolean isMatched(String email, String password);
+	public boolean isMatched(String email, String password);
 
-	int getStaffIdByEmail(String email);
+	public int getStaffIdByEmail(String email);
 
 	public Staff getStaffById(int id) throws IllegalAccessException, InvocationTargetException;
 	
+	public void updateStaff(Staff staff) throws IllegalAccessException, InvocationTargetException;
+
+	public void updatePassword(String email, String newPassword) throws IllegalAccessException, InvocationTargetException;
+	
+	public List<Staff> entity2dto(List<Tstaff> listOrigin) throws IllegalAccessException, InvocationTargetException;
+
 	public Staff entity2dto(Tstaff tstaff) throws IllegalAccessException, InvocationTargetException;
 
-	void updateStaff(Staff staff) throws IllegalAccessException, InvocationTargetException;
+	public void adminUpdateStaff(Staff astaff) throws IllegalAccessException, InvocationTargetException;
 
-	void updatePassword(String email, String newPassword) throws IllegalAccessException, InvocationTargetException;
-	
-	List<Staff> searchByemail(String s, int page1) throws IllegalAccessException, InvocationTargetException;
+	public int getStaffPageNum(int num);
 
-	List getPageall(String s);
+	public List<Staff> getAllStaff(int pageNum, int num) throws IllegalAccessException, InvocationTargetException;
 
-	List<Staff> searchByname(String s, int page1) throws IllegalAccessException, InvocationTargetException;
-
-	Staff getStaffByemail(String email) throws IllegalAccessException, InvocationTargetException;
-
-	void aupdateStaff(Staff staff);
 
 }

@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zust.dto.Goods;
+import com.zust.dto.Station;
 import com.zust.dto.User;
 import com.zust.dao.UserDaoI;
 import com.zust.entity.Tgoods;
+import com.zust.entity.Tstation;
 import com.zust.entity.Tuser;
 import com.zust.service.UserServiceI;
 @Transactional
@@ -59,50 +61,49 @@ public class UserServiceImpl implements UserServiceI{
 		Tuser tuser = userDao.getUserById(id);
 		userDao.updatePassword(tuser,newPassword);
 	}
-	public User entity2dto(Tuser tuser) throws IllegalAccessException, InvocationTargetException{
-		User user = new User();
-		BeanUtils.copyProperties(user, tuser);
-		return user;
+	public void adminUpdateUser(User user) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		int id = user.getUserId();
+		Tuser tuser = userDao.get(Tuser.class, id);
+		BeanUtils.copyProperties(tuser, user);
+		userDao.update(tuser);
+		
 	}
-	
-	public List<User> entity2dto(List<Tuser> listOrigin) throws IllegalAccessException, InvocationTargetException{
+	public int getUserPageNum(int num) {
+		// TODO Auto-generated method stub
+		String hql="select count(*) FROM Tuser";
+		Long i = userDao.count(hql);
+		double tota = (double)i;
+		double total = Math.ceil(tota/num); 
+		int total2 =(int)(total); 
+		if(total2<=1)total2=1;
+		return total2;
+	}
+	public List<User> getAllUser(int pageNum,int num) throws IllegalAccessException, InvocationTargetException {
+		// TODO Auto-generated method stub
+		String hql ="FROM Tuser";
+		List<Tuser> list = userDao.find(hql,pageNum,num);
+		List<User> users = entity2dto(list);
+		return users;
+	}
+	public List<User> entity2dto(List<Tuser> list) throws IllegalAccessException, InvocationTargetException{
+		// TODO Auto-generated method stub
 		List<User> listDestination= new ArrayList<User>(); 
-		 for (Object source: listOrigin ) {
+		 for (Object source: list ) {
 			 User target= new User();
 		        BeanUtils.copyProperties(target,source);
 		        listDestination.add(target);
 		     }
 			return listDestination;
 	}
-	
-	public List<User> searchByemail(String s,int page) throws IllegalAccessException, InvocationTargetException {
-		if(s!=null){
-		List<Tuser> tuser =  userDao.searchByemail(s,page);
-		List<User> user = entity2dto(tuser);
-		return user;
-		}
-		return null;
-	}
-	public List<User> searchByname(String s,int page) throws IllegalAccessException, InvocationTargetException {
-		if(s!=null){
-		List<Tuser> tuser = userDao.searchByname(s,page);
-		List<User> user= entity2dto(tuser);
-		return user;
-		}
-	return null;
-	}
-	public List getPageall(String s) {
-		return userDao.getPageall(s);
-	}
-	public User getUserByemail(String email) throws IllegalAccessException, InvocationTargetException {
-		Tuser tuser = userDao.getUserByemail(email);
-	     User user= entity2dto(tuser);
-		return user;
-	}
-	public void supdateUser(String email, String name, String password, String phone, String address, String createtime,
-			String updatetime,boolean gender,boolean status) {
-		userDao.supdateUser(email, name, password,phone,address,createtime,updatetime, gender,status);
+	public boolean isCrashed(String email) {
+		// TODO Auto-generated method stub
+		String hql="SELECT count(*) FROM Tuser WHERE email='"+email+"'";
+		Long num = userDao.count(hql);
+		if(num==0)return false;
+		return true;
 	}
 
+	
 
 }

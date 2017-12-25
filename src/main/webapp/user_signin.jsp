@@ -115,7 +115,7 @@
 
               <!-- Sign In form -->
 
-              <form action="/loginCheck.html" class="p-a-4" id="page-signin-form">
+              <form action="/loginCheck.html" class="p-a-4" id="page-signin-form" method="post">
                 <h4 class="m-t-0 m-b-4 text-xs-center font-weight-semibold">登录</h4>
 				<small><c:if test ="${!empty error}" ><font color="red"><c:out value="${error}"></c:out></font></c:if></small>
                 <fieldset class="page-signin-form-group form-group form-group-lg">
