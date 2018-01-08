@@ -32,7 +32,7 @@ public interface GoodsServiceI {
 
 	int getYJPageNum(int userId,int num);
 
-	void userJjPage(int id, Goods goods);
+	String userJjPage(int id, Goods goods);
 	
 	String getNewCode();
 

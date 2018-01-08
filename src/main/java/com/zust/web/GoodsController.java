@@ -32,8 +32,9 @@ public class GoodsController {
 	public String userJjPage(HttpServletRequest request,Goods goods){
 		User user  = (User) request.getSession().getAttribute("user");
 		int id = user.getUserId();
-		goodsService.userJjPage(id,goods);
-		return "redirect:/user_index.html";
+		String code  = goodsService.userJjPage(id,goods);
+		request.setAttribute("code", code);
+		return "redirect:/user_result";
 	}
 	
 

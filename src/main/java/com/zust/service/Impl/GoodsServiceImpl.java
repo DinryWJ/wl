@@ -42,7 +42,7 @@ public class GoodsServiceImpl implements GoodsServiceI {
 	@Autowired
 	private StaffDaoI staffDao;
 	
-	public void userJjPage(int id,Goods goods) {
+	public String userJjPage(int id,Goods goods) {
 		// TODO Auto-generated method stub
 		Tuser tuser = userDao.get(Tuser.class, id);
 		System.out.println(id);
@@ -64,6 +64,7 @@ public class GoodsServiceImpl implements GoodsServiceI {
 		tgoods.setCode(getNewCode());
 		tgoods.setUser(tuser);
 		goodsDao.save(tgoods);
+		return tgoods.getCode();
 	}
 	public String getNewCode(){		
 		Date date = new Date();
