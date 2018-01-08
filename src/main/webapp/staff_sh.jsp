@@ -76,7 +76,7 @@
       <!-- Pages -->
 
       <div class="tab-pane fade in active" id="results-pages">
-<c:if test="${good.code!=null}">
+<c:if test="${good.code!=null}"><c:if test="${good.status2==true}">
         <div class="page-forums-list-item box panel p-y-2 p-x-3">
       <div class="box-row">
         <div class="page-forums-list-title box-cell col-md-7 col-lg-8 col-xl-9 p-r-4">
@@ -99,16 +99,7 @@
           <!-- Reset container's height by wrapping in a div -->
           <div class="pull-md-right">
             <div class="box-container width-md-auto valign-middle">
-<c:if test="${sessionScope.staff.position==2 && good.status==false}">
-              <div class="box-cell ">
-                <c:if test="${good.status2 == 'false' }">  
-					<a class="btn btn-primary"  href="/staff_tongzhi2.html?code=${good.code}">通知</a>
-				</c:if>  
-				<c:if test="${good.status2 == 'true' }">  
-					<a class="btn btn-success" >已通知</a>
-				</c:if>  
-              </div>
- </c:if>
+
  <c:if test="${sessionScope.staff.position==1 }">
               <div class="box-cell p-x-1">	
 				<a class="btn btn-primary" href="/staff_zhongzhuan.html?code=${good.code}">设置中转</a>
@@ -144,9 +135,7 @@
       </div>
     </div>
 		
-</c:if>
-       
-
+</c:if></c:if>
 
       </div>
 
