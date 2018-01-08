@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   
-  <title>404 - Pages - PixelAdmin: Responsive Bootstrap Template</title>
+  <title>404</title>
 
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
   <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
@@ -134,21 +134,14 @@
 <body>
   <div class="page-404-bg bg-warning"></div>
   <div class="page-404-header bg-white">
-    <a class="px-demo-brand px-demo-brand-lg text-default" href="index.html"><span class="px-demo-logo bg-black"><span class="px-demo-logo-1"></span><span class="px-demo-logo-2"></span><span class="px-demo-logo-3"></span><span class="px-demo-logo-4"></span><span class="px-demo-logo-5"></span><span class="px-demo-logo-6"></span><span class="px-demo-logo-7"></span><span class="px-demo-logo-8"></span><span class="px-demo-logo-9"></span></span>PixelAdmin</a>
+    <a class="px-demo-brand px-demo-brand-lg text-default" href="index.html"><span class="px-demo-logo bg-black"><span class="px-demo-logo-1"></span><span class="px-demo-logo-2"></span><span class="px-demo-logo-3"></span><span class="px-demo-logo-4"></span><span class="px-demo-logo-5"></span><span class="px-demo-logo-6"></span><span class="px-demo-logo-7"></span><span class="px-demo-logo-8"></span><span class="px-demo-logo-9"></span></span>物流平台</a>
   </div>
   <h1 class="page-404-error-code"><strong>404</strong></h1>
   <h2 class="page-404-subheader">OOPS!</h2>
   <h3 class="page-404-text">
     SOMETHING WENT WRONG, OR THAT PAGE DOESN'T EXIST... YET
   </h3>
-  <form class="page-404-form" action="">
-    <div class="input-group input-group-lg">
-      <input type="text" class="form-control">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-warning font-weight-bold font-size-14">Search</button>
-      </span>
-    </div>
-  </form>
+  
 
   <!-- ==============================================================================
   |

@@ -85,7 +85,7 @@ public class UserController {
 		mav.setViewName("user_sh");
 		if(code!=null){
 			Goods goods = goodsService.search(code);
-			if(goods!=null){
+			if(goods!=null&&goods.isStatus2()==true){
 				Logistics logistics = logisticsService.getLogisticsByGoodsId(goods.getGoodsId());
 				mav.addObject("goods", goods);
 				mav.addObject("logistics", logistics);
