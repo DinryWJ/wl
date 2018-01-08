@@ -72,4 +72,10 @@ public class StationController {
 		return sst;
 		
 	}
+	
+	@RequestMapping(value="admin_delZZZ.html")
+	public String adminDelZZZ(int id){
+		stationService.delZZZ(id);
+		return "admin_allZZZ";
+	}
 }

@@ -88,13 +88,12 @@ public class StationServiceImpl implements StationServiceI {
 	public List<Object[]> getZZZName(){
 		// TODO Auto-generated method stub
 		List<Object[]> list = stationDao.getZZZname();
-//		System.out.println(list.size());
-//		for(Object[] object : list){    
-//            int id = Integer.parseInt(object[0].toString());    
-//            String name = (String)object[1];            
-//            System.out.println("id="+id+","+"name="+name);    
-//
-//        }  
 		return list;
+	}
+
+	public void delZZZ(int id) {
+		// TODO Auto-generated method stub
+		Tstation tstation = stationDao.get(Tstation.class, id);
+		stationDao.delete(tstation);
 	}
 }

@@ -20,5 +20,7 @@ public interface LogisticsServiceI {
 	
 	Long getNewComNum2();
 
+	void delLogisticsByGoodsId(int id);
+
 
 }

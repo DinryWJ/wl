@@ -60,6 +60,14 @@ public class LogisticsController {
 		mav.addObject("total", total);
 		return mav;
 	}
+	@RequestMapping(value="staff_delLogistics.html")
+	public String staffDelLogistics(String delcode) throws IllegalAccessException, InvocationTargetException{
+		Goods goods = goodsService.search(delcode);
+		int id = goods.getGoodsId();
+		logisticsService.delLogisticsByGoodsId(id);
+		goodsService.delGoodsByCode(delcode);
+		return "redirect:/staff_confirm.html";
+	}
 	@RequestMapping(value="staff_checkConfirm.html")
 	public String staffCheckConfirm(String code){
 		logisticsService.checkConfirm(code);

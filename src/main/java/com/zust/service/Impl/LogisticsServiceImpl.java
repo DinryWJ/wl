@@ -95,6 +95,14 @@ public class LogisticsServiceImpl implements LogisticsServiceI{
 		return x;
 	}
 
+	public void delLogisticsByGoodsId(int id) {
+		// TODO Auto-generated method stub
+		Tgoods t = goodsDao.get(Tgoods.class, id);
+		String hql = "FROM Tlogistics WHERE goods.goodsId="+t.getGoodsId();
+		Tlogistics tlogistics = logisticsDao.get(hql);
+		logisticsDao.delete(tlogistics);
+	}
+
 
 
 

@@ -101,7 +101,7 @@ public class StaffServiceImpl implements StaffServiceI {
 
 	public List<Staff> getAllStaff(int pageNum, int num) throws IllegalAccessException, InvocationTargetException {
 		// TODO Auto-generated method stub
-		String hql ="FROM Tstaff";
+		String hql ="FROM Tstaff WHERE position!=0";
 		List<Tstaff> list = staffDao.find(hql,pageNum,num);
 		List<Staff> lstaff = entity2dto(list);
 		return lstaff;

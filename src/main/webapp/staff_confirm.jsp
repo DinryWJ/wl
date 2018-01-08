@@ -71,7 +71,7 @@
                       <div class="panel-group" id="${good.code}">
               <div class="panel">
                 <a class="panel-title p-y-2 font-size-14 accordion-toggle collapsed" data-toggle="collapse" data-parent="#${good.code}" href="#${ good.goodsId}">
-                 	          <strong>编号：</strong><span><c:out value="${good.code}"></c:out></span><br>
+                 	          <strong>编号：</strong><span id="code"><c:out value="${good.code}"></c:out></span><br>
 					          <strong>名称：</strong><span><c:out value="${good.name}"></c:out></span><br>					          
 					          <strong>发货地址：</strong><span><c:out value="${good.sUserAddress}"></c:out></span><br>
 					          <strong>收货地址：</strong><span><c:out value="${good.rUserAddress}"></c:out></span><br>
@@ -175,16 +175,6 @@
       $('#navbar-messages').perfectScrollbar();
     });
   </script>
-  	<script type="text/javascript">
-		function displayTime(){
-			var elt = document.getElementById("clock");
-			var now = new Date();
-			elt.innerHTML = now.toLocaleString();
-			setTimeout(displayTime,1000);
-		}
-		window.onload=displayTime;
-
-	</script>
 <script>
     // -------------------------------------------------------------------------
     // Initialize DataTables
@@ -204,7 +194,7 @@
 	});
 </script>
   <script>
-  var code =$('#code').html();
+  var code =$('#code').text();
   $('.bootbox-confirm').on('click', function() {
       bootbox.confirm({
         message:   'Are you sure?',
@@ -212,8 +202,7 @@
 
         callback: function(result) {
           if(true==result){
-        	window.location.href="/staff_tongzhi2.html?delcode="+code;
-        	
+        	window.location.href="/staff_delLogistics.html?delcode="+code;        	
           }
         },
       });

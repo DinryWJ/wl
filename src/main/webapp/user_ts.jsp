@@ -140,8 +140,7 @@
     <script>
     function check() {
         // body...
-        var a = $("#textarea ").text();
-
+        var a = $("#textarea").val();
         if(''==a){
           alert('内容不能为空');
           return false;

@@ -61,8 +61,16 @@
               <div class="row">
                 <label class="col-sm-4 control-label">编号:</label>
                 <div class="col-sm-8">
-                  <input type="text" name="goodsNum" class="form-control"  value="${good.code}">
+                  <input type="text" name="goodsNum" class="form-control"  value="${good.code}" readonly="readonly">
                 </div>
+              </div>
+              <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+              <div class="row">
+                <label class="col-sm-4 control-label">发货地址:</label>
+                <div class="col-sm-8">
+                  <input type="text"  class="form-control"  value="${good.sUserAddress}" disabled="disabled">
+                </div>
+              </div>
               </div>
             </div>
             <div class="form-group no-margin-hr no-margin-b panel-padding-h">

@@ -48,7 +48,7 @@ public class ComplaintServiceImpl implements ComplaintServiceI{
 	}
 	public List<Complaint> getAllComplaints(int pageNum, int num) throws IllegalAccessException, InvocationTargetException {
 		// TODO Auto-generated method stub
-		String hql = "FROM Tcomplaint";
+		String hql = "FROM Tcomplaint WHERE status=false";
 		List<Tcomplaint> tcomplaints = complaintDao.find(hql,pageNum,num);
 		List<Complaint> complaints = entity2dto(tcomplaints);
 		for(int i=0;i<tcomplaints.size();i++){

@@ -130,7 +130,7 @@ public class StaffController {
 		}
 		if(delcode!=null){
 			goodsService.delGoodsByCode(delcode);
-			return new ModelAndView("redirect:/staff_tongzhi.html");
+			return new ModelAndView("redirect:/staff_confirm.html");
 		}
 		mav.setViewName("staff_tongzhi2");		
 		return mav;

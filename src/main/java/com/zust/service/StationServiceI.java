@@ -25,4 +25,6 @@ public interface StationServiceI {
 	
 
 	List<Object[]> getZZZName();
+
+	void delZZZ(int id);
 }

@@ -69,10 +69,29 @@
     <div class="page-forums-list-item box panel p-y-2 p-x-3">
       <div class="box-row">
         <div class="page-forums-list-title box-cell col-md-7 col-lg-8 col-xl-9 p-r-4">
-          <strong>编号：</strong><span id="code"><c:out value="${good.code}"></c:out></a></span>
-          <div>
-            <strong>名称：</strong><span id="GoodsName"><c:out value="${good.name}"></c:out></span>
-          </div>
+          			<div class="panel-group" id="${good.code}">
+              <div class="panel">
+                <a class="panel-title p-y-2 font-size-14 accordion-toggle collapsed" data-toggle="collapse" data-parent="#${good.code}" href="#${ good.goodsId}">
+                 	          <strong>编号：</strong><span id="code"><c:out value="${good.code}"></c:out></span><br>
+					          <strong>名称：</strong><span><c:out value="${good.name}"></c:out></span><br>					          
+					          <strong>发货地址：</strong><span><c:out value="${good.sUserAddress}"></c:out></span><br>
+					          <strong>收货地址：</strong><span><c:out value="${good.rUserAddress}"></c:out></span><br>
+                 </a>
+                <div id="${good.goodsId}" class="panel-collapse collapse">
+                  <hr class="m-y-0">
+                  <div class="panel-body">
+                   		<strong>类型：</strong><span><c:out value="${good.type}"></c:out></span><br>
+                   		<strong>重量：</strong><span><c:out value="${good.weight}"></c:out></span><br>
+                   		<strong>发货人：</strong><span><c:out value="${good.sUserName}"></c:out></span><br>
+                   		<strong>发货人手机号：</strong><span><c:out value="${good.sUserPhone}"></c:out></span><br>
+                   		<strong>收件人：</strong><span><c:out value="${good.rUserName}"></c:out></span><br>         
+                   		<strong>收件人手机号：</strong><span><c:out value="${good.rUserPhone}"></c:out></span><br>
+                   		<strong>详细信息：</strong><span><c:out value="${good.intro}"></c:out></span><br>
+                   </div>
+                </div>
+              </div>
+
+            </div>
         </div>
 
         <!-- Spacer -->

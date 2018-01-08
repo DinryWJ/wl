@@ -28,13 +28,13 @@ public class GoodsController {
 	
 
 	
-	@RequestMapping(value="/jj.html")
+	@RequestMapping(value="/user_result.html")
 	public String userJjPage(HttpServletRequest request,Goods goods){
 		User user  = (User) request.getSession().getAttribute("user");
 		int id = user.getUserId();
 		String code  = goodsService.userJjPage(id,goods);
 		request.setAttribute("code", code);
-		return "redirect:/user_result";
+		return "user_result";
 	}
 	
 

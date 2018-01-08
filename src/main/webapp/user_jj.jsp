@@ -53,7 +53,7 @@
       <h1>寄件</h1>
     </div>
 
-    <form action="jj.html" class="panel form-horizontal"  onSubmit="return check(this);" method="post">
+    <form action="/user_result.html" class="panel form-horizontal"  onSubmit="return check(this);" method="post">
       <div class="panel-heading">
         <span class="panel-title">寄件人信息</span>
       </div>
