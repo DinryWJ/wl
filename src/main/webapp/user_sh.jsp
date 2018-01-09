@@ -98,9 +98,9 @@
               <div class="m-t-3 visible-xs visible-sm"></div>
 
               <div class="display-inline-block p-l-1 b-l-3 valign-middle font-size-12 text-muted">
-                <div>${goods.rUserName}<STRONG>(发货人)</STRONG></div>
-                <div>${goods.rUserAddress}<STRONG>(发货地址)</STRONG></div>
-                <div>${goods.rUserPhone}<STRONG>(手机号)</STRONG></div>
+                <div>${goods.sUserName}<STRONG>(发货人)</STRONG></div>
+                <div>${goods.sUserAddress}<STRONG>(发货地址)</STRONG></div>
+                <div>${goods.sUserPhone}<STRONG>(手机号)</STRONG></div>
               </div>
             </div>
 
