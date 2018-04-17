@@ -10,18 +10,14 @@
 
 使用
 
-1、	JDK：
+1、	JDK：jdk版本位1.8.0_121
 
-jdk版本位1.8.0_121
-二、	Eclipse：
-导入项目wl 
- 																		
-2、	Mysql：
-		设置用户名root  密码123456
-		导入sql文件
- 
+2、	Eclipse：导入项目wl 		
 
-3、	修改/resource/application.xml  id为dataSource的bean
+3、	Mysql：设置用户名root  密码123456 导入sql文件
 
-4、	项目右键 run as maven bulid... 输入命令clean jetty:run 运行
+4、	修改/resource/application.xml  id为dataSource的bean
+
+5、	项目右键 run as maven bulid... 输入命令clean jetty:run 运行
+
 
